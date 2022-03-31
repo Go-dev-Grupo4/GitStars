@@ -16,14 +16,14 @@
 		2662182A27F24C0A008A8B48 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182927F24C0A008A8B48 /* MainTabBarController.swift */; };
 		2662182C27F24C3A008A8B48 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182B27F24C3A008A8B48 /* FavoritesViewController.swift */; };
 		2662182E27F24CB3008A8B48 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182D27F24CB3008A8B48 /* TeamViewController.swift */; };
-		519F2EAB27F4F8FF00CE7717 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519F2EAA27F4F8FF00CE7717 /* CoreData.framework */; };
-		519F2EB027F5180300CE7717 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F2EAF27F5180300CE7717 /* Repository.swift */; };
-		519F2EB227F518D100CE7717 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */; };
 		4CF2C22327F3A6F800ABB8E7 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22227F3A6F800ABB8E7 /* License.swift */; };
 		4CF2C22527F3A81F00ABB8E7 /* GitResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22427F3A81F00ABB8E7 /* GitResponse.swift */; };
 		4CF2C22727F3A8CB00ABB8E7 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22627F3A8CB00ABB8E7 /* Repo.swift */; };
 		4CF2C22927F3A90000ABB8E7 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22827F3A90000ABB8E7 /* Author.swift */; };
 		4CF2C22C27F4BC6E00ABB8E7 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22B27F4BC6E00ABB8E7 /* DataSource.swift */; };
+		519F2EAB27F4F8FF00CE7717 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519F2EAA27F4F8FF00CE7717 /* CoreData.framework */; };
+		519F2EB027F5180300CE7717 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F2EAF27F5180300CE7717 /* Repository.swift */; };
+		519F2EB227F518D100CE7717 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,14 +57,14 @@
 		2662182927F24C0A008A8B48 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2662182B27F24C3A008A8B48 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		2662182D27F24CB3008A8B48 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
-		519F2EAA27F4F8FF00CE7717 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		519F2EAF27F5180300CE7717 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectContext.swift; sourceTree = "<group>"; };
 		4CF2C22227F3A6F800ABB8E7 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		4CF2C22427F3A81F00ABB8E7 /* GitResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitResponse.swift; sourceTree = "<group>"; };
 		4CF2C22627F3A8CB00ABB8E7 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		4CF2C22827F3A90000ABB8E7 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		4CF2C22B27F4BC6E00ABB8E7 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		519F2EAA27F4F8FF00CE7717 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		519F2EAF27F5180300CE7717 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,9 +117,6 @@
 			children = (
 				519F2EAE27F5179A00CE7717 /* Model */,
 				4CF2C22A27F3EBB200ABB8E7 /* Mock */,
-				4CF2C22127F3A4B000ABB8E7 /* Model */,
-				2662182627F24AEC008A8B48 /* Networking */,
-				2662182527F24AD0008A8B48 /* Data */,
 				2662182327F24AB3008A8B48 /* Application */,
 				2662182227F24AA5008A8B48 /* Resources */,
 				266217F327F24A03008A8B48 /* HomeViewController.swift */,
@@ -150,6 +147,14 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		4CF2C22A27F3EBB200ABB8E7 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				4CF2C22B27F4BC6E00ABB8E7 /* DataSource.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		519F2EA927F4F8FF00CE7717 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,29 +166,14 @@
 		519F2EAE27F5179A00CE7717 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				519F2EAF27F5180300CE7717 /* Repository.swift */,
-				519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4CF2C22127F3A4B000ABB8E7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
 				4CF2C22227F3A6F800ABB8E7 /* License.swift */,
 				4CF2C22427F3A81F00ABB8E7 /* GitResponse.swift */,
 				4CF2C22627F3A8CB00ABB8E7 /* Repo.swift */,
 				4CF2C22827F3A90000ABB8E7 /* Author.swift */,
+				519F2EAF27F5180300CE7717 /* Repository.swift */,
+				519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		4CF2C22A27F3EBB200ABB8E7 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				4CF2C22B27F4BC6E00ABB8E7 /* DataSource.swift */,
-			);
-			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

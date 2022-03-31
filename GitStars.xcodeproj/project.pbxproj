@@ -16,6 +16,9 @@
 		2662182A27F24C0A008A8B48 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182927F24C0A008A8B48 /* MainTabBarController.swift */; };
 		2662182C27F24C3A008A8B48 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182B27F24C3A008A8B48 /* FavoritesViewController.swift */; };
 		2662182E27F24CB3008A8B48 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182D27F24CB3008A8B48 /* TeamViewController.swift */; };
+		519F2EAB27F4F8FF00CE7717 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519F2EAA27F4F8FF00CE7717 /* CoreData.framework */; };
+		519F2EB027F5180300CE7717 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F2EAF27F5180300CE7717 /* Repository.swift */; };
+		519F2EB227F518D100CE7717 /* ManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		2662182927F24C0A008A8B48 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2662182B27F24C3A008A8B48 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		2662182D27F24CB3008A8B48 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		519F2EAA27F4F8FF00CE7717 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		519F2EAF27F5180300CE7717 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				519F2EAB27F4F8FF00CE7717 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +88,7 @@
 			children = (
 				266217EE27F24A03008A8B48 /* GitStars */,
 				266217ED27F24A03008A8B48 /* Products */,
+				519F2EA927F4F8FF00CE7717 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +105,7 @@
 		266217EE27F24A03008A8B48 /* GitStars */ = {
 			isa = PBXGroup;
 			children = (
-				2662182627F24AEC008A8B48 /* Networking */,
-				2662182527F24AD0008A8B48 /* Data */,
+				519F2EAE27F5179A00CE7717 /* Model */,
 				2662182327F24AB3008A8B48 /* Application */,
 				2662182227F24AA5008A8B48 /* Resources */,
 				266217F327F24A03008A8B48 /* HomeViewController.swift */,
@@ -129,18 +136,21 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		2662182527F24AD0008A8B48 /* Data */ = {
+		519F2EA927F4F8FF00CE7717 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				519F2EAA27F4F8FF00CE7717 /* CoreData.framework */,
 			);
-			path = Data;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2662182627F24AEC008A8B48 /* Networking */ = {
+		519F2EAE27F5179A00CE7717 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				519F2EAF27F5180300CE7717 /* Repository.swift */,
+				519F2EB127F518D100CE7717 /* ManagedObjectContext.swift */,
 			);
-			path = Networking;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +286,8 @@
 				266217F427F24A03008A8B48 /* HomeViewController.swift in Sources */,
 				266217F027F24A03008A8B48 /* AppDelegate.swift in Sources */,
 				2662182A27F24C0A008A8B48 /* MainTabBarController.swift in Sources */,
+				519F2EB027F5180300CE7717 /* Repository.swift in Sources */,
+				519F2EB227F518D100CE7717 /* ManagedObjectContext.swift in Sources */,
 				266217FA27F24A03008A8B48 /* GitStars.xcdatamodeld in Sources */,
 				2662182C27F24C3A008A8B48 /* FavoritesViewController.swift in Sources */,
 				266217F227F24A03008A8B48 /* SceneDelegate.swift in Sources */,

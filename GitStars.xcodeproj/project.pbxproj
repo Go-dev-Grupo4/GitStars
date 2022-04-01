@@ -16,6 +16,7 @@
 		2662182A27F24C0A008A8B48 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182927F24C0A008A8B48 /* MainTabBarController.swift */; };
 		2662182C27F24C3A008A8B48 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182B27F24C3A008A8B48 /* FavoritesViewController.swift */; };
 		2662182E27F24CB3008A8B48 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182D27F24CB3008A8B48 /* TeamViewController.swift */; };
+		26AB8F0227F3BC99005F1275 /* ReusableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB8F0127F3BC99005F1275 /* ReusableTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2662182927F24C0A008A8B48 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2662182B27F24C3A008A8B48 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		2662182D27F24CB3008A8B48 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		26AB8F0127F3BC99005F1275 /* ReusableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		266217EE27F24A03008A8B48 /* GitStars */ = {
 			isa = PBXGroup;
 			children = (
+				26AB8F0027F3BC50005F1275 /* Components */,
 				2662182627F24AEC008A8B48 /* Networking */,
 				2662182527F24AD0008A8B48 /* Data */,
 				2662182327F24AB3008A8B48 /* Application */,
@@ -141,6 +144,14 @@
 			children = (
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		26AB8F0027F3BC50005F1275 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				26AB8F0127F3BC99005F1275 /* ReusableTableViewCell.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +288,7 @@
 				266217F027F24A03008A8B48 /* AppDelegate.swift in Sources */,
 				2662182A27F24C0A008A8B48 /* MainTabBarController.swift in Sources */,
 				266217FA27F24A03008A8B48 /* GitStars.xcdatamodeld in Sources */,
+				26AB8F0227F3BC99005F1275 /* ReusableTableViewCell.swift in Sources */,
 				2662182C27F24C3A008A8B48 /* FavoritesViewController.swift in Sources */,
 				266217F227F24A03008A8B48 /* SceneDelegate.swift in Sources */,
 				2662182E27F24CB3008A8B48 /* TeamViewController.swift in Sources */,
@@ -375,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -430,7 +442,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -11,7 +11,12 @@ class MainTabBarController: UITabBarController {
 
     
     lazy var homeNavigationController: UINavigationController! = {
-        let navigationController = UINavigationController(rootViewController: HomeViewController())
+        let searchRepoService = SearchRepoService()
+        let repoViewModel = RepoViewModel(searchRepoServices: searchRepoService)
+        let homeViewController = HomeViewController()
+        homeViewController.viewModel = repoViewModel
+        
+        let navigationController = UINavigationController(rootViewController: homeViewController)
         
         let itemBar = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
         navigationController.tabBarItem = itemBar

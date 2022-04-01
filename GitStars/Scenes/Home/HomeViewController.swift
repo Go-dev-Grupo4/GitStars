@@ -9,7 +9,46 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - Constants
+    
+    private enum HomeViewState {
+        case loading
+        case normal
+        case error
+    }
+    
+    let searchRepoService = SearchRepoService()
+    
+    // MARK: - Variables
+    
     var safeArea: UILayoutGuide!
+    
+    var viewModel: RepoViewModel?
+    
+    private var state: HomeViewState = .normal {
+        didSet {
+            self.setupHomeView()
+        }
+    }
+    
+    private func setupHomeView() {
+        switch state {
+        case .loading:
+            print("loading")
+            // Carrega o loading
+        case .normal:
+            print("normal")
+            // remover o loading
+            // carregar informações na tabela
+        case .error:
+            print("error")
+            // remover o loading
+            // Notificar o usuário que algo deu errado
+        }
+    }
+    
+    
+    // MARK: - UI Components
     
     lazy var searchBar: UISearchBar! = {
         let searchBar = UISearchBar(frame: .zero)
@@ -27,14 +66,20 @@ class HomeViewController: UIViewController {
         return searchBar
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         safeArea = view.layoutMarginsGuide
         
+        viewModel?.delegate = self
+        
         configUI()
         setupDelegates()
     }
+    
+    // MARK: - Private functions
     
     private func configUI() {
         title = "List"
@@ -68,7 +113,14 @@ class HomeViewController: UIViewController {
         searchBar.delegate = self
         searchBar.searchTextField.delegate = self
     }
+    
+    private func fetchRepositories(language: String) {
+        guard let viewModel = viewModel else { return state = .error }
+        viewModel.fetchRepositories(language: language)
+    }
 }
+
+// MARK: - UISearchBarDelegate
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -88,9 +140,36 @@ extension HomeViewController: UISearchBarDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         searchBar.setShowsCancelButton(true, animated: true)
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let language = searchBar.searchTextField.text else { return }
+        
+        self.fetchRepositories(language: language)
+    }
 }
+
+// MARK: - UISearchTextFieldDelegate
 
 extension HomeViewController: UISearchTextFieldDelegate {
 
+    
+}
+
+// MARK: - RepoViewModelDelegate
+
+extension HomeViewController: RepoViewModelDelegate {
+    func fetchRepoWithSuccess() {
+        print("Success")
+        viewModel?.repositories?.forEach({ repo in
+            print(repo.name)
+        })
+        // ReloadData
+        state = .normal
+    }
+    
+    func errorToFetchRepo(_ error: String) {
+        print("Error")
+        state = .error
+    }
     
 }

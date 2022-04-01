@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2643FB0527F68F0E008EA2C7 /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643FB0427F68F0E008EA2C7 /* LayoutAnchor.swift */; };
 		2643FB0727F69044008EA2C7 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643FB0627F69044008EA2C7 /* UIView+extensions.swift */; };
 		266217F027F24A03008A8B48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266217EF27F24A03008A8B48 /* AppDelegate.swift */; };
 		266217F227F24A03008A8B48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266217F127F24A03008A8B48 /* SceneDelegate.swift */; };
@@ -47,7 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2643FB0427F68F0E008EA2C7 /* LayoutAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAnchor.swift; sourceTree = "<group>"; };
 		2643FB0627F69044008EA2C7 /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		266217EC27F24A03008A8B48 /* GitStars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitStars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		266217EF27F24A03008A8B48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 		2643FB0327F68EFE008EA2C7 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				2643FB0427F68F0E008EA2C7 /* LayoutAnchor.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 				4CF2C22327F3A6F800ABB8E7 /* License.swift in Sources */,
 				266217F027F24A03008A8B48 /* AppDelegate.swift in Sources */,
 				4CF2C22927F3A90000ABB8E7 /* Author.swift in Sources */,
-				2643FB0527F68F0E008EA2C7 /* LayoutAnchor.swift in Sources */,
 				4CF2C22C27F4BC6E00ABB8E7 /* DataSource.swift in Sources */,
 				2662182A27F24C0A008A8B48 /* MainTabBarController.swift in Sources */,
 				519F2EB027F5180300CE7717 /* Repository.swift in Sources */,

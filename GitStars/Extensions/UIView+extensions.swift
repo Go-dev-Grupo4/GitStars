@@ -65,8 +65,3 @@ extension UIView {
     
 }
 
-extension Array where Element == NSLayoutConstraint {
-    func activateAll() {
-        NSLayoutConstraint.activate(self)
-    }
-}

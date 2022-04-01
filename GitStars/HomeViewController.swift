@@ -54,12 +54,57 @@ class HomeViewController: UIViewController {
         
         view.addSubview(tableView)
         
+        
+//        let constraint = NSLayoutConstraint.init(item: tableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 200)
+//        constraint.isActive = true
+        
+        // Nativo usando o NSLayoutConstraint.activate
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
+        
+        // Nativo usando o isActive
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        
+        // Extension 1
+        tableView
+            .topAnchorToTopAnchor(0)
+            .end()
+           
+        // Extension 2
+        tableView
+            .anchored(.top, to: .top, by: 0)
+            .end()
+        
+        // Extension 3 com superview default e constant default em 0
+        tableView
+            .attach(.top, to: .top)
+            .end()
+        
+        // Sobrecarga da extension 3 setando uma view e constant default em 0
+        tableView
+            .attach(.top, to: .top, of: view)
+            .end()
+        // Sobrecarga da extension 3 setando todos os parameetros
+        tableView
+            .attach(.top, to: .top, of: view, by: 0)
+            .end()
+        
+        tableView
+            .topAnchorToTopAnchor(0)
+            .leadingAnchorToLeadingAnchor(0)
+            .bottomAnchorToBottomAnchor(0)
+            .trailingAnchorToTrailingAnchor(0)
+            .end()
+        
+        
+        
+//        NSLayoutConstraint.activate([
+//            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+//            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+//            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+//            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+//        ])
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CELL")
         tableView.showsVerticalScrollIndicator = false

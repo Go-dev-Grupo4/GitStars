@@ -11,6 +11,16 @@ class ReusableTableViewCell: UITableViewCell {
 
     static let identifier = "ReusableTableViewCell"
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubview(mainImageView)
+        addSubview(descriptionStackView)
+        addSubview(titleLabel)
+        addSubview(descriptionLabel)
+    }
+    
+    
+    
     lazy var mainImageView: UIImageView = {
         let view = UIImageView(image: UIImage(systemName: "photo.circle.fill"))
         

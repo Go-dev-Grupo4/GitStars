@@ -106,7 +106,7 @@ class HomeViewController: UIViewController {
 //            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
 //        ])
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CELL")
+        tableView.register(RepositoryTableViewCell.self, forCellReuseIdentifier: ReusableTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
         
         
@@ -228,12 +228,15 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "CELL")
+        if let cell = tableView.dequeueReusableCell(withIdentifier: ReusableTableViewCell.identifier, for: indexPath) as? RepositoryTableViewCell {
+            cell.sizeToFit()
+            cell.descriptionLabel.text = "Larissa"
+            cell.setupConstraints()
+            cell.setupData()
+            return cell
+        }
         
-        cell.sizeToFit()
-        cell.textLabel?.text = "Teste"
-        
-        return cell
+        return UITableViewCell(style: .subtitle, reuseIdentifier: "CELL")
     }
     
     

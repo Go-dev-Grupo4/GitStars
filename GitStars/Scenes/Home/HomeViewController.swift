@@ -112,10 +112,6 @@ class HomeViewController: TriStateViewController {
         
     }
     
-    var handler: UIActionHandler = { action in
-        
-    }
-    
     private func configSearchBar() {
         
         self.navigationItem.searchController = searchController
@@ -126,7 +122,7 @@ class HomeViewController: TriStateViewController {
         
         searchController.delegate = self
         searchController.searchBar.delegate = self
-        searchController.searchBar.searchTextField.delegate = self
+        //searchController.searchBar.searchTextField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         viewModel?.delegate = self
@@ -195,17 +191,6 @@ extension HomeViewController: UISearchControllerDelegate {
         //searchBar.setShowsScope(false, animated: true)
         //searchBar.resignFirstResponder()
     }
-}
-
-extension HomeViewController: UITextFieldDelegate {
-    
-    
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        //searchController.searchBar.showsScopeBar = false
-    }
-    
-    
 }
 
 extension HomeViewController: UITableViewDelegate {

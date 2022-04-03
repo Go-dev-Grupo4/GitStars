@@ -8,7 +8,7 @@
 import Foundation
 
 struct Repository: Codable {
-    let id: UUID
+    let id: Int
     let repoName: String
     let repoDescription: String
     let avatarURL: String

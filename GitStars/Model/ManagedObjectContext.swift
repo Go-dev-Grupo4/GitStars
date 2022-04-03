@@ -20,7 +20,7 @@ protocol managedSaveProtocol {
 }
 
 protocol managedDeleteProtocol {
-    func delete(uuid: String, onCompletionHandler: onCompletionHandler)
+    func delete(id: Int, onCompletionHandler: onCompletionHandler)
 }
 
 class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteProtocol {
@@ -46,7 +46,7 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
             
             for item in repositories {
                 
-                if let id = item.value(forKey: "id") as? UUID,
+                if let id = item.value(forKey: "id") as? Int,
                    let repoName = item.value(forKey: "repoName") as? String,
                    let repoDescription = item.value(forKey: "repoDescription") as? String,
                    let avatarURL = item.value(forKey: "avatarURL") as? String,
@@ -89,7 +89,7 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
     func update(repository: Repository, onCompletionHandler: (String) -> Void) {
         let context = getContext()
         
-        let predicate = NSPredicate(format: "id == %@","\(repository.id.uuidString)")
+        let predicate = NSPredicate(format: "id == %@","\(repository.id)")
         let fetchRequest: NSFetchRequest<NSFetchRequestResult>=NSFetchRequest(entityName: entity)
         fetchRequest.predicate = predicate
         
@@ -110,10 +110,10 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
         }
     }
 
-    func delete(uuid: String, onCompletionHandler: (String) -> Void) {
+    func delete(id: Int, onCompletionHandler: (String) -> Void) {
         
         let context = getContext()
-        let predicate = NSPredicate(format: "id == %@","\(uuid)")
+        let predicate = NSPredicate(format: "id == %@","\(id)")
         let fetchRequest: NSFetchRequest<NSFetchRequestResult>=NSFetchRequest(entityName: entity)
         
         fetchRequest.predicate = predicate
@@ -134,5 +134,37 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
             print("Fetch failed \(error.localizedDescription)")
             
         }
+    }
+
+    func getRepositoryById(_ id: Int) -> Repository? {
+        
+        var repo: Repository?
+        
+        let predicate = NSPredicate(format: "id == %@","\(id)")
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult>=NSFetchRequest(entityName: entity)
+        
+        fetchRequest.predicate = predicate
+        
+        do {
+            guard let entityReult = try getContext().fetch(fetchRequest).first as? NSManagedObject else { return repo }
+            
+            
+            
+            if let id = entityReult.value(forKey: "id") as? Int,
+               let repoName = entityReult.value(forKey: "repoName") as? String,
+               let repoDescription = entityReult.value(forKey: "repoDescription") as? String,
+               let avatarURL = entityReult.value(forKey: "avatarURL") as? String,
+               let isFavorite = entityReult.value(forKey: "isFavorite") as? Bool {
+
+                repo = Repository(id: id, repoName: repoName, repoDescription: repoDescription, avatarURL: avatarURL, isFavorite: isFavorite)
+            }
+
+        } catch let error as NSError {
+            
+            print("Fetch failed \(error.localizedDescription)")
+            
+        }
+        
+        return repo
     }
 }

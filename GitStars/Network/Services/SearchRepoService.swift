@@ -7,13 +7,14 @@
 
 import Foundation
 
-typealias Completion = (Result<GitResponse, RepoError>) -> Void
+internal typealias Completion = (Result<GitResponse, RepoError>) -> Void
 
 class SearchRepoService: SearchRepoServiceProtocol {
     let session = URLSession.shared
     
     func execute(language: String, handler: @escaping Completion) {
-        let request: HomeRequest = .searchRepo(language)
+        
+        let request: HomeRequest = .searchAllRepoByLanguage(language)
         
         if var baseUrl = URLComponents(string: "\(request.baseURL)/\(request.path)") {
             baseUrl.query = request.queryParams

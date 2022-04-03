@@ -230,9 +230,8 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ReusableTableViewCell.identifier, for: indexPath) as? RepositoryTableViewCell {
             cell.sizeToFit()
-            cell.descriptionLabel.text = "Larissa"
             cell.setupConstraints()
-            cell.setupData()
+            cell.setupViews()
             return cell
         }
         

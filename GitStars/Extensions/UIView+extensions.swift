@@ -9,6 +9,11 @@ import UIKit
 
 extension UIView {
  
+    enum SuperviewAreaReference {
+        case safeArea
+        case viewArea
+    }
+    
     func topAnchorToTopAnchor(_ constant: CGFloat) -> UIView {
         
         let constraint = NSLayoutConstraint.init(item: self, attribute: .top, relatedBy: .equal, toItem: self.superview, attribute: .top, multiplier: 1, constant: constant)
@@ -62,6 +67,16 @@ extension UIView {
     }
     
     func end() {}
+    
+    func sizeUpToFillSuperview() {
+        
+        self.topAnchorToTopAnchor(0)
+            .leadingAnchorToLeadingAnchor(0)
+            .bottomAnchorToBottomAnchor(0)
+            .trailingAnchorToTrailingAnchor(0)
+            .end()
+       
+    }
     
 }
 

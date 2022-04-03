@@ -11,14 +11,6 @@ class ReusableTableViewCell: UITableViewCell {
     
     static let identifier = "ReusableTableViewCell"
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(mainImageView)
-        addSubview(descriptionStackView)
-        addSubview(titleLabel)
-        addSubview(descriptionLabel)
-    }
-    
     lazy var mainImageView: UIImageView = {
         let view = UIImageView(image: UIImage(systemName: "photo.circle.fill"))
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -26,10 +18,22 @@ class ReusableTableViewCell: UITableViewCell {
         return view
     }()
     
-    lazy var descriptionStackView: UIStackView = {
+    lazy var contentStackView: UIStackView = {
         let view = UIStackView(frame: .zero)
         
         view.axis = .vertical
+        view.spacing = 0
+        view.distribution = .fillProportionally
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    
+    lazy var horizontalStackView: UIStackView = {
+        let view = UIStackView(frame: .zero)
+        
+        view.axis = .horizontal
         view.spacing = 0
         view.distribution = .fillProportionally
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -46,11 +50,10 @@ class ReusableTableViewCell: UITableViewCell {
         return view
     }()
     
-    
     lazy var descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont(name: "Abel", size: 13)
-        label.numberOfLines = 2
+        label.numberOfLines = 3
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -65,45 +68,84 @@ class ReusableTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    init() {
-        super.init(style: .default, reuseIdentifier: nil)
-        addSubview()
-        setupConstraints()    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func addSubview() {
-        self.addSubview(mainImageView)
-        self.addSubview(descriptionLabel)
+    func configUI() {
+        addSubview(horizontalStackView)
+        horizontalStackView.addArrangedSubview(mainImageView)
+        horizontalStackView.addArrangedSubview(contentStackView)
+        
+        let image = UIImage(named: "seta-direita.png")
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleAspectFill
+        horizontalStackView.addArrangedSubview(imageView)
+        
+        contentStackView.addArrangedSubview(titleLabel)
+        contentStackView.addArrangedSubview(descriptionLabel)
+        
+        
+        //accessoryView = imageView
+        //self.accessoryType = .disclosureIndicator
+        setupConstraints()
     }
     
     public func setupConstraints() {
+        
         let padding: CGFloat = 15
+        
+        horizontalStackView.sizeUpToFillSuperview()
+        
         NSLayoutConstraint.activate([
-            mainImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            mainImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            mainImageView.heightAnchor.constraint(equalToConstant: 85),
-            mainImageView.widthAnchor.constraint(equalToConstant: 85),
-            
-            titleLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor,constant: padding),
-            titleLabel.topAnchor.constraint(equalTo: mainImageView.topAnchor, constant: 5),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 9),
-            descriptionLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: padding),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            descriptionLabel.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: -9),
-            
+            contentStackView.widthAnchor.constraint(equalToConstant: bounds.width  - 85 - 15),
         ])
         
+        NSLayoutConstraint.activate([
+            mainImageView.widthAnchor.constraint(equalToConstant: 85),
+            mainImageView.heightAnchor.constraint(equalToConstant: 85),
+        ])
+        
+        NSLayoutConstraint.activate([
+            mainImageView.widthAnchor.constraint(equalToConstant: 85),
+            mainImageView.heightAnchor.constraint(equalToConstant: 85),
+        ])
+        
+        backgroundColor = .red
+//        NSLayoutConstraint.activate([
+//            mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            mainImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            mainImageView.heightAnchor.constraint(equalToConstant: 85),
+//            mainImageView.widthAnchor.constraint(equalToConstant: 85),
+//
+//            contentStackView.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: padding),
+//            contentStackView.topAnchor.constraint(equalTo: topAnchor),
+//            contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            //contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
+//
+//        ])
+        
+        
+        
+//        NSLayoutConstraint.activate([
+//            imageView.widthAnchor.constraint(equalToConstant: 12),
+//            imageView.heightAnchor.constraint(equalToConstant: 21),
+//            contentStackView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor),
+//            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+//        ])
     }
     
-    func setupViews(){
-        mainImageView.center = self.center
-        titleLabel.text = "Title"
-        descriptionLabel.text = "Description Description Description Description Description Description Description Description Description Description Description"
+    func setupView(with model: Any){
         
+        configUI()
+        
+        if let repo = model as? Repo {
+            mainImageView.image = UIImage(systemName: "swift")//repo.author.avatarUrl
+            titleLabel.text = repo.name
+            descriptionLabel.text = repo.repoDescription
+        }
+        
+        if let dev = model as? Desenvolvedor {
+            mainImageView.image = UIImage(systemName: "swift")//repo.author.avatarUrl
+            titleLabel.text = dev.nome
+            descriptionLabel.text = dev.descricao
+        }
     }
 }
-

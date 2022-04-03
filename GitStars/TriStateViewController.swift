@@ -45,7 +45,7 @@ class TriStateViewController: UIViewController {
     
     private func configUI() {
         view.addSubview(contentView)
-
+        
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             contentView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),

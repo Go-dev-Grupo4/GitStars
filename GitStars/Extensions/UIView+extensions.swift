@@ -16,7 +16,7 @@ extension UIView {
     
     func topAnchorToTopAnchor(_ constant: CGFloat) -> UIView {
         
-        let constraint = NSLayoutConstraint.init(item: self, attribute: .top, relatedBy: .equal, toItem: self.superview, attribute: .top, multiplier: 1, constant: constant)
+        let constraint = NSLayoutConstraint.init(item: self, attribute: .top, relatedBy: .equal, toItem: self.superview?.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: constant)
         
         constraint.isActive = true
         
@@ -25,7 +25,7 @@ extension UIView {
     
     func bottomAnchorToBottomAnchor(_ constant: CGFloat) -> UIView {
         
-        let constraint = NSLayoutConstraint.init(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.superview, attribute: .bottom, multiplier: 1, constant: constant)
+        let constraint = NSLayoutConstraint.init(item: self, attribute: .bottom, relatedBy: .equal, toItem: self.superview?.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: constant)
         
         constraint.isActive = true
         
@@ -34,7 +34,7 @@ extension UIView {
     
     func leadingAnchorToLeadingAnchor(_ constant: CGFloat) -> UIView {
         
-        let constraint = NSLayoutConstraint.init(item: self, attribute: .leading, relatedBy: .equal, toItem: self.superview, attribute: .leading, multiplier: 1, constant: constant)
+        let constraint = NSLayoutConstraint.init(item: self, attribute: .leading, relatedBy: .equal, toItem: self.superview?.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: constant)
         
         constraint.isActive = true
         
@@ -43,7 +43,7 @@ extension UIView {
     
     func trailingAnchorToTrailingAnchor(_ constant: CGFloat) -> UIView {
         
-        let constraint = NSLayoutConstraint.init(item: self, attribute: .trailing, relatedBy: .equal, toItem: self.superview, attribute: .trailing, multiplier: 1, constant: constant)
+        let constraint = NSLayoutConstraint.init(item: self, attribute: .trailing, relatedBy: .equal, toItem: self.superview?.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: constant)
         
         constraint.isActive = true
         

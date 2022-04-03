@@ -90,7 +90,7 @@ class HomeViewController: TriStateViewController {
     func fetchRepositories(language: String) {
         state = .loading
         viewModel?.fetchRepositories(language: language)
-        timeoutTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(fetchRepositoriesTimeout), userInfo: nil, repeats: false)
+//        timeoutTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(fetchRepositoriesTimeout), userInfo: nil, repeats: false)
     }
     
     @objc func fetchRepositoriesTimeout() {
@@ -197,6 +197,13 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repositoryDetailsViewController = RepositoryDetailsViewController()
+        repositoryDetailsViewController.repository = viewModel?.repositories?[indexPath.row]
+        
+        navigationController?.pushViewController(repositoryDetailsViewController, animated: true)
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -219,12 +226,14 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: RepoManagerDelegate {
     func fetchRepoWithSuccess() {
         self.state = .normal
+//        timeoutTimer?.invalidate()
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
     func errorToFetchRepo(_ error: String) {
+//        timeoutTimer.
         self.state = .error
     }
 }

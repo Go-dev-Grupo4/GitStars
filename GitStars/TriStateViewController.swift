@@ -43,6 +43,7 @@ class TriStateViewController: UIViewController {
         configUI()
     }
     
+    
     private func configUI() {
         view.addSubview(contentView)
         

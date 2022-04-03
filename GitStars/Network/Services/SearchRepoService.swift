@@ -10,11 +10,13 @@ import Foundation
 internal typealias Completion = (Result<GitResponse, RepoError>) -> Void
 
 class SearchRepoService: SearchRepoServiceProtocol {
-    let session = URLSession.shared
+    var session = URLSession.shared
     
     func execute(language: String, handler: @escaping Completion) {
+        session.configuration.waitsForConnectivity = false
         
         let request: HomeRequest = .searchAllRepoByLanguage(language)
+        
         
         if var baseUrl = URLComponents(string: "\(request.baseURL)/\(request.path)") {
             baseUrl.query = request.queryParams
@@ -25,7 +27,11 @@ class SearchRepoService: SearchRepoServiceProtocol {
             requestUrl.httpMethod = request.method.name
             
             let dataTask = session.dataTask(with: requestUrl) { data, response, _ in
-                guard let httpResponse = response as? HTTPURLResponse else { return }
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    handler(.failure(.error("No response")))
+                    self.session.invalidateAndCancel()
+                    return
+                }
                 
                 if httpResponse.statusCode == 200 {
                     
@@ -41,7 +47,7 @@ class SearchRepoService: SearchRepoServiceProtocol {
                         print(error.localizedDescription)
                     }
                     
-                } else if httpResponse.statusCode == 409 {
+                } else {
                     handler(.failure(.urlInvalid))
                 }
             }

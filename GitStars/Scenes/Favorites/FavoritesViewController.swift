@@ -48,6 +48,14 @@ class FavoritesViewController: TriStateViewController {
         configUI()
         
         setupDelegates()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        state = .loading
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchRepositories()
     }
     
@@ -72,7 +80,7 @@ class FavoritesViewController: TriStateViewController {
         tableView.delegate = self
         tableView.dataSource = self
         viewModel?.delegate = self
-        
+
     }
     
 }
@@ -94,6 +102,13 @@ extension FavoritesViewController: FavoriteManagerDelegate {
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repositoryDetailsViewController = RepositoryDetailsViewController()
+        repositoryDetailsViewController.repository = viewModel?.repositories?[indexPath.row]
+        
+        navigationController?.pushViewController(repositoryDetailsViewController, animated: true)
     }
 }
 

@@ -134,6 +134,14 @@ class ReusableTableViewCell: UITableViewCell {
             descriptionLabel.text = repo.repoDescription
         }
         
+        if let repo = model as? Repository {
+            if let url = URL(string: repo.avatarURL) {
+                mainImageView.kf.setImage(with: url)
+            }
+            titleLabel.text = repo.repoName
+            descriptionLabel.text = repo.repoDescription
+        }
+        
         if let dev = model as? Desenvolvedor {
             mainImageView.image = UIImage(systemName: "swift")//repo.author.avatarUrl
             titleLabel.text = dev.nome

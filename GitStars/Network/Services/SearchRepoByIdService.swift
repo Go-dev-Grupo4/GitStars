@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias CompletionRepository = (Result<Repository, RepoError>) -> Void
+typealias CompletionRepository = (Result<Any, RepoError>) -> Void
 
 class SearchRepoByIdService: SearchRepoByIdServiceProtocol {
     
@@ -44,9 +44,7 @@ class SearchRepoByIdService: SearchRepoByIdServiceProtocol {
                     
                     if let responseData = try? decoder.decode(Repo.self, from: jsonData) {
                         
-                        let repo = Repository(id: responseData.id, repoName: responseData.name, repoDescription: responseData.repoDescription ?? "", avatarURL: responseData.author.avatarUrl, isFavorite: false)
-                        
-                        handler(.success(repo))
+                        handler(.success(responseData))
                     }
                     
                 } else if httpResponse.statusCode == 409 {

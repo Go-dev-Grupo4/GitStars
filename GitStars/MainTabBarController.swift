@@ -12,7 +12,7 @@ class MainTabBarController: UITabBarController {
     
     lazy var homeNavigationController: UINavigationController! = {
         let searchRepoService = SearchRepoService()
-        let repoViewModel = RepoViewModel(searchRepoServices: searchRepoService)
+        let repoViewModel = HomeViewModel(searchRepoServices: searchRepoService)
         let homeViewController = HomeViewController()
         homeViewController.viewModel = repoViewModel
         

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		266217F027F24A03008A8B48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266217EF27F24A03008A8B48 /* AppDelegate.swift */; };
 		266217F227F24A03008A8B48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266217F127F24A03008A8B48 /* SceneDelegate.swift */; };
-		266217F427F24A03008A8B48 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266217F327F24A03008A8B48 /* HomeViewController.swift */; };
 		266217FA27F24A03008A8B48 /* GitStars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 266217F827F24A03008A8B48 /* GitStars.xcdatamodeld */; };
 		266217FC27F24A03008A8B48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266217FB27F24A03008A8B48 /* Assets.xcassets */; };
 		266217FF27F24A03008A8B48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 266217FD27F24A03008A8B48 /* LaunchScreen.storyboard */; };
@@ -31,10 +30,11 @@
 		F808F61227F755B900C44D28 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F61127F755B900C44D28 /* Environment.swift */; };
 		F808F61427F7572B00C44D28 /* SearchRepoServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F61327F7572A00C44D28 /* SearchRepoServiceProtocol.swift */; };
 		F808F61627F7578400C44D28 /* SearchRepoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F61527F7578400C44D28 /* SearchRepoService.swift */; };
-		F808F61F27F75F8B00C44D28 /* RepoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F61E27F75F8B00C44D28 /* RepoViewModel.swift */; };
-		F808F62127F75F9600C44D28 /* RepoViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62027F75F9600C44D28 /* RepoViewModelDelegate.swift */; };
+		F808F61F27F75F8B00C44D28 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F61E27F75F8B00C44D28 /* HomeViewModel.swift */; };
+		F808F62127F75F9600C44D28 /* RepoManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62027F75F9600C44D28 /* RepoManagerDelegate.swift */; };
 		F808F62327F7655300C44D28 /* UserGetServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62227F7655300C44D28 /* UserGetServiceProtocol.swift */; };
 		F808F62527F7656000C44D28 /* UserGetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62427F7656000C44D28 /* UserGetService.swift */; };
+		F808F62A27F7A12B00C44D28 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62927F7A12B00C44D28 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +58,6 @@
 		266217EC27F24A03008A8B48 /* GitStars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitStars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		266217EF27F24A03008A8B48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		266217F127F24A03008A8B48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		266217F327F24A03008A8B48 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		266217F927F24A03008A8B48 /* GitStars.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitStars.xcdatamodel; sourceTree = "<group>"; };
 		266217FB27F24A03008A8B48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		266217FE27F24A03008A8B48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,10 +82,11 @@
 		F808F61127F755B900C44D28 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		F808F61327F7572A00C44D28 /* SearchRepoServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepoServiceProtocol.swift; sourceTree = "<group>"; };
 		F808F61527F7578400C44D28 /* SearchRepoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepoService.swift; sourceTree = "<group>"; };
-		F808F61E27F75F8B00C44D28 /* RepoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewModel.swift; sourceTree = "<group>"; };
-		F808F62027F75F9600C44D28 /* RepoViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewModelDelegate.swift; sourceTree = "<group>"; };
+		F808F61E27F75F8B00C44D28 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F808F62027F75F9600C44D28 /* RepoManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoManagerDelegate.swift; sourceTree = "<group>"; };
 		F808F62227F7655300C44D28 /* UserGetServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetServiceProtocol.swift; sourceTree = "<group>"; };
 		F808F62427F7656000C44D28 /* UserGetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetService.swift; sourceTree = "<group>"; };
+		F808F62927F7A12B00C44D28 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../../../../../../../.Trash/HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +137,6 @@
 		266217EE27F24A03008A8B48 /* GitStars */ = {
 			isa = PBXGroup;
 			children = (
-				F808F61D27F75F7500C44D28 /* ViewModels */,
 				F808F61727F75EEB00C44D28 /* Scenes */,
 				F808F60E27F7559500C44D28 /* Commons */,
 				F808F60527F74E6F00C44D28 /* Network */,
@@ -251,7 +250,9 @@
 		F808F61827F75EF000C44D28 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				266217F327F24A03008A8B48 /* HomeViewController.swift */,
+				F808F62027F75F9600C44D28 /* RepoManagerDelegate.swift */,
+				F808F61E27F75F8B00C44D28 /* HomeViewModel.swift */,
+				F808F62927F7A12B00C44D28 /* HomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -270,15 +271,6 @@
 				2662182D27F24CB3008A8B48 /* TeamViewController.swift */,
 			);
 			path = Team;
-			sourceTree = "<group>";
-		};
-		F808F61D27F75F7500C44D28 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				F808F61E27F75F8B00C44D28 /* RepoViewModel.swift */,
-				F808F62027F75F9600C44D28 /* RepoViewModelDelegate.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,18 +403,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				266217F427F24A03008A8B48 /* HomeViewController.swift in Sources */,
 				4CF2C22727F3A8CB00ABB8E7 /* Repo.swift in Sources */,
 				F808F62327F7655300C44D28 /* UserGetServiceProtocol.swift in Sources */,
 				F808F62527F7656000C44D28 /* UserGetService.swift in Sources */,
-				F808F61F27F75F8B00C44D28 /* RepoViewModel.swift in Sources */,
+				F808F61F27F75F8B00C44D28 /* HomeViewModel.swift in Sources */,
 				4CF2C22527F3A81F00ABB8E7 /* GitResponse.swift in Sources */,
 				F808F61427F7572B00C44D28 /* SearchRepoServiceProtocol.swift in Sources */,
 				4CF2C22327F3A6F800ABB8E7 /* License.swift in Sources */,
 				F808F61627F7578400C44D28 /* SearchRepoService.swift in Sources */,
 				266217F027F24A03008A8B48 /* AppDelegate.swift in Sources */,
 				4CF2C22927F3A90000ABB8E7 /* Author.swift in Sources */,
-				F808F62127F75F9600C44D28 /* RepoViewModelDelegate.swift in Sources */,
+				F808F62A27F7A12B00C44D28 /* HomeViewController.swift in Sources */,
+				F808F62127F75F9600C44D28 /* RepoManagerDelegate.swift in Sources */,
 				F808F60D27F74EB800C44D28 /* HomeRequest.swift in Sources */,
 				4CF2C22C27F4BC6E00ABB8E7 /* DataSource.swift in Sources */,
 				2662182A27F24C0A008A8B48 /* MainTabBarController.swift in Sources */,

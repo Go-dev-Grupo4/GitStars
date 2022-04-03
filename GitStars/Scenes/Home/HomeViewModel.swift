@@ -7,8 +7,8 @@
 
 import Foundation
 
-class RepoViewModel {
-    weak var delegate: RepoViewModelDelegate?
+class HomeViewModel {
+    weak var delegate: RepoManagerDelegate?
     
     private var searchRepoServices: SearchRepoServiceProtocol
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RepoViewModelDelegate: AnyObject {
+protocol RepoManagerDelegate: AnyObject {
     func fetchRepoWithSuccess()
     func errorToFetchRepo(_ error: String)
 }

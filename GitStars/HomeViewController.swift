@@ -7,10 +7,34 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: TriStateViewController {
     
     var safeArea: UILayoutGuide!
     var toogle = true
+        
+    private var state: ViewState = .loading {
+    didSet {
+        DispatchQueue.main.async {
+            self.setupView()
+        }
+    }
+}
+
+private func setupView() {
+    switch state {
+    case .loading:
+        print("loading")
+        self.setupLoadingState()
+    case .normal:
+        print("normal")
+        self.setupNormalState()
+        self.tableView.reloadData()
+    case .error:
+        print("error")
+        setupErrorState()
+    }
+}
+
     
     lazy var searchController: UISearchController = {
         
@@ -51,6 +75,10 @@ class HomeViewController: UIViewController {
         
         configNavigationBar()
         configSearchBar()
+                        
+        state = .loading
+        //Teste
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(loadError), userInfo: nil, repeats: false)
         
         view.addSubview(tableView)
         
@@ -110,11 +138,32 @@ class HomeViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         
         
+        contentView.addSubview(tableView)
+
+        tableView.sizeUpToFillSuperview()
+    }
+    
+    //Teste
+    @objc func loadError() {
+        state = .error
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(loadLoadging), userInfo: nil, repeats: false)
+
+    }
+    
+    //Teste
+    @objc func loadNormal() {
+        state = .normal
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(loadLoadging), userInfo: nil, repeats: false)
+    }
+    
+    //Teste
+    @objc func loadLoadging() {
+        state = .loading
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(loadError), userInfo: nil, repeats: false)
+
     }
     
     private func configNavigationBar() {
-        
-        
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
         
@@ -244,10 +293,4 @@ extension HomeViewController: UITableViewDataSource {
         
         return UITableViewCell(style: .subtitle, reuseIdentifier: "CELL")
     }
-    
-//    extension HomeViewController: UITableViewCell
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//            return 85
-//        }
-    
 }

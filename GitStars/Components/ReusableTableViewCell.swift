@@ -17,9 +17,7 @@ class ReusableTableViewCell: UITableViewCell {
         addSubview(descriptionStackView)
         addSubview(titleLabel)
         addSubview(descriptionLabel)
-        addSubview(seeRepositoryButton)
     }
-    
     
     lazy var mainImageView: UIImageView = {
         let view = UIImageView(image: UIImage(systemName: "photo.circle.fill"))
@@ -52,19 +50,11 @@ class ReusableTableViewCell: UITableViewCell {
     lazy var descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont(name: "Abel", size: 13)
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
-    }()
-    
-    lazy var seeRepositoryButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "arrow.left")?.withTintColor(.white), for: .normal)
-        
-        return button
     }()
     
     override func awakeFromNib() {
@@ -90,24 +80,20 @@ class ReusableTableViewCell: UITableViewCell {
     }
     
     public func setupConstraints() {
-        let padding: CGFloat = 10
+        let padding: CGFloat = 15
         NSLayoutConstraint.activate([
-            mainImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            mainImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             mainImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             mainImageView.heightAnchor.constraint(equalToConstant: 85),
             mainImageView.widthAnchor.constraint(equalToConstant: 85),
             
-            titleLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: padding),
-            titleLabel.topAnchor.constraint(equalTo: mainImageView.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor,constant: padding),
+            titleLabel.topAnchor.constraint(equalTo: mainImageView.topAnchor, constant: 5),
             
-            seeRepositoryButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: padding * -1),
-            seeRepositoryButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            seeRepositoryButton.widthAnchor.constraint(equalToConstant: 30),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 9),
             descriptionLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: padding),
-            descriptionLabel.trailingAnchor.constraint(equalTo: seeRepositoryButton.leadingAnchor, constant: padding * -1),
-            descriptionLabel.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            descriptionLabel.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: -9),
             
         ])
         

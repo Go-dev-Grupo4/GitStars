@@ -11,6 +11,8 @@ class HomeViewController: TriStateViewController {
     
     var safeArea: UILayoutGuide!
     var toogle = true
+    var timeoutTimer: Timer?
+    var searchLanguage = "swift"
         
     var viewModel: HomeViewModel?
     
@@ -54,8 +56,7 @@ class HomeViewController: TriStateViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        
-        
+        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -69,7 +70,7 @@ class HomeViewController: TriStateViewController {
         configUI()
         setupDelegates()
         
-        fetchRepositories()
+        fetchRepositories(language: searchLanguage)
     }
     
     private func configUI() {
@@ -86,9 +87,15 @@ class HomeViewController: TriStateViewController {
         tableView.sizeUpToFillSuperview()
     }
     
-    func fetchRepositories() {
+    func fetchRepositories(language: String) {
         state = .loading
-        viewModel?.fetchRepositories(language: "swift")
+        viewModel?.fetchRepositories(language: language)
+        timeoutTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(fetchRepositoriesTimeout), userInfo: nil, repeats: false)
+    }
+    
+    @objc func fetchRepositoriesTimeout() {
+        timeoutTimer?.invalidate()
+        self.state = .error
     }
     
     private func configNavigationBar() {
@@ -160,6 +167,13 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let language = searchBar.searchTextField.text {
+            searchLanguage = language
+            fetchRepositories(language: language)
+        }
     }
 }
 

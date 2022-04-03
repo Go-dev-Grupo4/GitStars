@@ -6,21 +6,26 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ReusableTableViewCell: UITableViewCell {
     
     static let identifier = "ReusableTableViewCell"
     
+    let mainImageDiameter: CGFloat = 85
+    
     lazy var mainImageView: UIImageView = {
-        let view = UIImageView(image: UIImage(systemName: "photo.circle.fill"))
-        view.translatesAutoresizingMaskIntoConstraints = false
-        // view.autoSetDimensions(to: CGSize(width: 85, height: 85))
-        return view
+        let imageView = UIImageView(image: UIImage(systemName: "photo.circle.fill"))
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = mainImageDiameter / 2
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     lazy var contentStackView: UIStackView = {
         let view = UIStackView(frame: .zero)
-        
+
         view.axis = .vertical
         view.spacing = 0
         view.distribution = .fillProportionally
@@ -34,7 +39,7 @@ class ReusableTableViewCell: UITableViewCell {
         let view = UIStackView(frame: .zero)
         
         view.axis = .horizontal
-        view.spacing = 0
+        view.spacing = 12
         view.distribution = .fillProportionally
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -42,22 +47,31 @@ class ReusableTableViewCell: UITableViewCell {
     }()
     
     lazy var titleLabel: UILabel = {
-        let view = UILabel(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.numberOfLines = 0
-        view.adjustsFontSizeToFitWidth = true
+        let label = UILabel(frame: .zero)
+        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
         
-        return view
+        return label
     }()
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont(name: "Abel", size: 13)
+        label.font = .systemFont(ofSize: 14, weight: .regular)
         label.numberOfLines = 3
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
+    }()
+    
+    lazy var chevronImageView: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "seta-direita.png")
+        image.contentMode = .center
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
     
     override func awakeFromNib() {
@@ -69,32 +83,27 @@ class ReusableTableViewCell: UITableViewCell {
     }
     
     func configUI() {
+        addSubview(mainImageView)
         addSubview(horizontalStackView)
-        horizontalStackView.addArrangedSubview(mainImageView)
-        horizontalStackView.addArrangedSubview(contentStackView)
         
-        let image = UIImage(named: "seta-direita.png")
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-        horizontalStackView.addArrangedSubview(imageView)
+        horizontalStackView.addArrangedSubview(contentStackView)
+        horizontalStackView.addArrangedSubview(chevronImageView)
         
         contentStackView.addArrangedSubview(titleLabel)
         contentStackView.addArrangedSubview(descriptionLabel)
         
-        
-        //accessoryView = imageView
-        //self.accessoryType = .disclosureIndicator
         setupConstraints()
     }
     
     public func setupConstraints() {
         
-        let padding: CGFloat = 15
-        
-        horizontalStackView.sizeUpToFillSuperview()
-        
         NSLayoutConstraint.activate([
-            contentStackView.widthAnchor.constraint(equalToConstant: bounds.width  - 85 - 15),
+            mainImageView.widthAnchor.constraint(equalToConstant: mainImageDiameter),
+            mainImageView.heightAnchor.constraint(equalToConstant: mainImageDiameter),
+            mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            mainImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            chevronImageView.widthAnchor.constraint(equalToConstant: 24),
         ])
         
         NSLayoutConstraint.activate([
@@ -103,33 +112,14 @@ class ReusableTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            mainImageView.widthAnchor.constraint(equalToConstant: 85),
-            mainImageView.heightAnchor.constraint(equalToConstant: 85),
+            horizontalStackView.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: 15),
+            horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            horizontalStackView.topAnchor.constraint(equalTo: topAnchor, constant: 13),
+            horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -13),
         ])
         
-        backgroundColor = .red
-//        NSLayoutConstraint.activate([
-//            mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            mainImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            mainImageView.heightAnchor.constraint(equalToConstant: 85),
-//            mainImageView.widthAnchor.constraint(equalToConstant: 85),
-//
-//            contentStackView.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: padding),
-//            contentStackView.topAnchor.constraint(equalTo: topAnchor),
-//            contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-//            //contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
-//
-//        ])
-        
-        
-        
-//        NSLayoutConstraint.activate([
-//            imageView.widthAnchor.constraint(equalToConstant: 12),
-//            imageView.heightAnchor.constraint(equalToConstant: 21),
-//            contentStackView.trailingAnchor.constraint(equalTo: imageView.leadingAnchor),
-//            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-//        ])
+//        mainImageView.layer.cornerRadius = mainImageView.frame.size.height / 2
+//        mainImageView.clipsToBounds = true
     }
     
     func setupView(with model: Any){
@@ -137,7 +127,9 @@ class ReusableTableViewCell: UITableViewCell {
         configUI()
         
         if let repo = model as? Repo {
-            mainImageView.image = UIImage(systemName: "swift")//repo.author.avatarUrl
+            if let url = URL(string: repo.author.avatarUrl) {
+                mainImageView.kf.setImage(with: url)
+            }
             titleLabel.text = repo.name
             descriptionLabel.text = repo.repoDescription
         }

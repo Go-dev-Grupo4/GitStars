@@ -19,6 +19,7 @@
 		266217FF27F24A03008A8B48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 266217FD27F24A03008A8B48 /* LaunchScreen.storyboard */; };
 		2662182A27F24C0A008A8B48 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662182927F24C0A008A8B48 /* MainTabBarController.swift */; };
 		26AB8F0227F3BC99005F1275 /* ReusableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB8F0127F3BC99005F1275 /* ReusableTableViewCell.swift */; };
+		26D3037427FA187700EC561C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3037327FA187700EC561C /* HomeViewController.swift */; };
 		4CF2C22327F3A6F800ABB8E7 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22227F3A6F800ABB8E7 /* License.swift */; };
 		4CF2C22527F3A81F00ABB8E7 /* GitResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22427F3A81F00ABB8E7 /* GitResponse.swift */; };
 		4CF2C22727F3A8CB00ABB8E7 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22627F3A8CB00ABB8E7 /* Repo.swift */; };
@@ -38,7 +39,6 @@
 		F808F62127F75F9600C44D28 /* RepoManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62027F75F9600C44D28 /* RepoManagerDelegate.swift */; };
 		F808F62327F7655300C44D28 /* UserGetServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62227F7655300C44D28 /* UserGetServiceProtocol.swift */; };
 		F808F62527F7656000C44D28 /* UserGetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62427F7656000C44D28 /* UserGetService.swift */; };
-		F808F62A27F7A12B00C44D28 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62927F7A12B00C44D28 /* HomeViewController.swift */; };
 		F844159A27F9EF8100EF84AA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844159927F9EF8100EF84AA /* FavoritesViewController.swift */; };
 		F844159C27F9EF8800EF84AA /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844159B27F9EF8800EF84AA /* TeamViewController.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +77,7 @@
 		2662180F27F24A04008A8B48 /* GitStarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitStarsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2662182927F24C0A008A8B48 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		26AB8F0127F3BC99005F1275 /* ReusableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTableViewCell.swift; sourceTree = "<group>"; };
+		26D3037327FA187700EC561C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4CF2C22227F3A6F800ABB8E7 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		4CF2C22427F3A81F00ABB8E7 /* GitResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitResponse.swift; sourceTree = "<group>"; };
 		4CF2C22627F3A8CB00ABB8E7 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		F808F62027F75F9600C44D28 /* RepoManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoManagerDelegate.swift; sourceTree = "<group>"; };
 		F808F62227F7655300C44D28 /* UserGetServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetServiceProtocol.swift; sourceTree = "<group>"; };
 		F808F62427F7656000C44D28 /* UserGetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetService.swift; sourceTree = "<group>"; };
-		F808F62927F7A12B00C44D28 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../../../../../../../.Trash/HomeViewController.swift; sourceTree = "<group>"; };
 		F844159927F9EF8100EF84AA /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		F844159B27F9EF8800EF84AA /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -292,9 +292,9 @@
 		F808F61827F75EF000C44D28 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				26D3037327FA187700EC561C /* HomeViewController.swift */,
 				F808F62027F75F9600C44D28 /* RepoManagerDelegate.swift */,
 				F808F61E27F75F8B00C44D28 /* HomeViewModel.swift */,
-				F808F62927F7A12B00C44D28 /* HomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -447,6 +447,7 @@
 			files = (
 				4CF2C22727F3A8CB00ABB8E7 /* Repo.swift in Sources */,
 				F808F62327F7655300C44D28 /* UserGetServiceProtocol.swift in Sources */,
+				26D3037427FA187700EC561C /* HomeViewController.swift in Sources */,
 				F808F62527F7656000C44D28 /* UserGetService.swift in Sources */,
 				F808F61F27F75F8B00C44D28 /* HomeViewModel.swift in Sources */,
 				26350F6527F8EC56001CE8F6 /* ErrorView.swift in Sources */,
@@ -458,7 +459,6 @@
 				26350F6B27F908E1001CE8F6 /* TriStateViewController.swift in Sources */,
 				266217F027F24A03008A8B48 /* AppDelegate.swift in Sources */,
 				4CF2C22927F3A90000ABB8E7 /* Author.swift in Sources */,
-				F808F62A27F7A12B00C44D28 /* HomeViewController.swift in Sources */,
 				F844159C27F9EF8800EF84AA /* TeamViewController.swift in Sources */,
 				F808F62127F75F9600C44D28 /* RepoManagerDelegate.swift in Sources */,
 				F808F60D27F74EB800C44D28 /* HomeRequest.swift in Sources */,

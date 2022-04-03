@@ -24,7 +24,12 @@ class MainTabBarController: UITabBarController {
     }()
     
     lazy var favoritesNavigationController: UINavigationController! = {
-        let navigationController = UINavigationController(rootViewController: FavoritesViewController())
+        let searchRepoService = SearchRepoCoreDataService()
+        let favoriteViewModel = FavoritesViewModel(searchRepoServices: searchRepoService)
+        let rootViewController = FavoritesViewController()
+        rootViewController.viewModel = favoriteViewModel
+        
+        let navigationController = UINavigationController(rootViewController: rootViewController)
         
         let itemBar = UITabBarItem(title: "Favoritos", image: UIImage(systemName: "star.fill"), tag: 1)
         navigationController.tabBarItem = itemBar

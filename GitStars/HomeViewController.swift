@@ -218,7 +218,7 @@ extension HomeViewController: UITextFieldDelegate {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 85
     }
 }
 
@@ -228,15 +228,26 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: ReusableTableViewCell.identifier, for: indexPath) as? RepositoryTableViewCell {
-            cell.sizeToFit()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: ReusableTableViewCell.identifier, for: indexPath) as? ReusableTableViewCell {
+            
+            let image = UIImage(named: "seta-direita.png")
+            let imageView = UIImageView(image: image)
+            cell.accessoryView = imageView
+            
             cell.setupConstraints()
             cell.setupViews()
+            
+            
             return cell
         }
+        
         
         return UITableViewCell(style: .subtitle, reuseIdentifier: "CELL")
     }
     
+//    extension HomeViewController: UITableViewCell
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//            return 85
+//        }
     
 }

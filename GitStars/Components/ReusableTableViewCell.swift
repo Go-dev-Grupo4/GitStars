@@ -8,7 +8,7 @@
 import UIKit
 
 class ReusableTableViewCell: UITableViewCell {
-
+    
     static let identifier = "ReusableTableViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -17,15 +17,14 @@ class ReusableTableViewCell: UITableViewCell {
         addSubview(descriptionStackView)
         addSubview(titleLabel)
         addSubview(descriptionLabel)
+        addSubview(seeRepositoryButton)
     }
-    
     
     
     lazy var mainImageView: UIImageView = {
         let view = UIImageView(image: UIImage(systemName: "photo.circle.fill"))
-        
         view.translatesAutoresizingMaskIntoConstraints = false
-                
+        // view.autoSetDimensions(to: CGSize(width: 85, height: 85))
         return view
     }()
     
@@ -42,36 +41,83 @@ class ReusableTableViewCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let view = UILabel(frame: .zero)
-        
-        view.font = UIFont(name: "Abel", size: 17)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.numberOfLines = 0
+        view.adjustsFontSizeToFitWidth = true
         
         return view
     }()
     
     
     lazy var descriptionLabel: UILabel = {
-        let view = UILabel(frame: .zero)
+        let label = UILabel(frame: .zero)
+        label.font = UIFont(name: "Abel", size: 13)
+        label.numberOfLines = 3
+        label.sizeToFit()
+        label.translatesAutoresizingMaskIntoConstraints = false
         
-        view.font = UIFont(name: "Abel", size: 14)
-        view.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var seeRepositoryButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "arrow.left")?.withTintColor(.white), for: .normal)
         
-        return view
+        return button
     }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     init() {
         super.init(style: .default, reuseIdentifier: nil)
-    }
+        addSubview()
+        setupConstraints()    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func addSubview() {
+        self.addSubview(mainImageView)
+        self.addSubview(descriptionLabel)
+    }
+    
+    public func setupConstraints() {
+        let padding: CGFloat = 10
+        NSLayoutConstraint.activate([
+            mainImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            mainImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            mainImageView.heightAnchor.constraint(equalToConstant: 85),
+            mainImageView.widthAnchor.constraint(equalToConstant: 85),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: padding),
+            titleLabel.topAnchor.constraint(equalTo: mainImageView.topAnchor),
+            
+            seeRepositoryButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: padding * -1),
+            seeRepositoryButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            seeRepositoryButton.widthAnchor.constraint(equalToConstant: 30),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
+            descriptionLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: padding),
+            descriptionLabel.trailingAnchor.constraint(equalTo: seeRepositoryButton.leadingAnchor, constant: padding * -1),
+            descriptionLabel.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor),
+            
+        ])
+        
+    }
+    
+    func setupViews(){
+        mainImageView.center = self.center
+        titleLabel.text = "Title"
+        descriptionLabel.text = "Description Description Description Description Description Description Description Description Description Description Description"
+        
+    }
 }
+

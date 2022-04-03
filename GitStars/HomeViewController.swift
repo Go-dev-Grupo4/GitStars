@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
         
         return searchController
     }()
-   
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         
@@ -55,8 +55,8 @@ class HomeViewController: UIViewController {
         view.addSubview(tableView)
         
         
-//        let constraint = NSLayoutConstraint.init(item: tableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 200)
-//        constraint.isActive = true
+        //        let constraint = NSLayoutConstraint.init(item: tableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 200)
+        //        constraint.isActive = true
         
         // Nativo usando o NSLayoutConstraint.activate
         NSLayoutConstraint.activate([
@@ -70,7 +70,7 @@ class HomeViewController: UIViewController {
         tableView
             .topAnchorToTopAnchor(0)
             .end()
-           
+        
         // Extension 2
         tableView
             .anchored(.top, to: .top, by: 0)
@@ -99,12 +99,12 @@ class HomeViewController: UIViewController {
         
         
         
-//        NSLayoutConstraint.activate([
-//            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-//            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-//            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-//            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-//        ])
+        //        NSLayoutConstraint.activate([
+        //            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+        //            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+        //            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+        //            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+        //        ])
         
         tableView.register(RepositoryTableViewCell.self, forCellReuseIdentifier: ReusableTableViewCell.identifier)
         tableView.showsVerticalScrollIndicator = false
@@ -117,7 +117,7 @@ class HomeViewController: UIViewController {
         
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
-
+        
         navigationItem.rightBarButtonItem = barButtonItem
         navigationItem.rightBarButtonItem?.tintColor = .label
         navigationController?.navigationBar.topItem?.hidesSearchBarWhenScrolling = false
@@ -135,7 +135,7 @@ class HomeViewController: UIViewController {
     private func configSearchBar() {
         
         self.navigationItem.searchController = searchController
-       
+        
     }
     
     private func setupDelegates() {
@@ -154,11 +154,11 @@ class HomeViewController: UIViewController {
             
             searchController.searchBar.setShowsScope(true, animated: true)
             navigationController?.navigationBar.sizeToFit()
-
+            
         } else {
             searchController.searchBar.setShowsScope(false, animated: true)
             navigationController?.navigationBar.sizeToFit()
-
+            
         }
         toogle = !toogle
     }
@@ -169,24 +169,24 @@ extension HomeViewController: UISearchBarDelegate {
         searchBar.setShowsCancelButton(true, animated: true)
         //navigationController?.navigationBar.sizeToFit()
     }
-
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         searchBar.setShowsCancelButton(false, animated: true)
         
     }
-
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.searchTextField.text = ""
     }
-
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
     }
 }
 
 extension HomeViewController: UISearchControllerDelegate {
- 
+    
     func willPresentSearchController(_ searchController: UISearchController) {
     }
     
@@ -197,7 +197,7 @@ extension HomeViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
     }
     
-
+    
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         //searchBar.setShowsScope(false, animated: true)
@@ -207,7 +207,7 @@ extension HomeViewController: UISearchControllerDelegate {
 
 extension HomeViewController: UITextFieldDelegate {
     
-  
+    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         //searchController.searchBar.showsScopeBar = false

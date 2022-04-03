@@ -11,5 +11,13 @@ import Foundation
 struct Author: Codable {
     let login: String
     let id: Int
-    let name: String
+    let name: String?
+    let avatarUrl: String
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case login, id
+        case name
+        case avatarUrl = "avatar_url"
+    }
 }

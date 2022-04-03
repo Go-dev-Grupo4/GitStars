@@ -11,14 +11,15 @@ struct Repo: Codable {
     let id: Int
     let name: String
     let author: Author
-    let repoDescription: String
+    let repoDescription: String?
     let url: String
-    let createdAt: Date
-    let license: License
+    let createdAt: String
+    let license: License?
     let watchers: Int
 
     enum CodingKeys: String, CodingKey {
-        case id, name, author
+        case id, name
+        case author = "owner"
         case repoDescription = "description"
         case url
         case createdAt = "created_at"

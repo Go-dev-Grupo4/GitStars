@@ -17,6 +17,6 @@ struct GitResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
         case incompleteResults = "incomplete_results"
-        case repos
+        case repos = "items"
     }
 }

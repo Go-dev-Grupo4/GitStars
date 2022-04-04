@@ -12,18 +12,18 @@ internal typealias Completion = (Result<GitResponse, RepoError>) -> Void
 class SearchRepoService: SearchRepoServiceProtocol {
     var session = URLSession.shared
     
-    func execute(language: String, handler: @escaping Completion) {
+    func execute(language: String, page: Int = 1, handler: @escaping Completion) {
         session.configuration.waitsForConnectivity = false
         
-        let request: HomeRequest = .searchAllRepoByLanguage(language)
+        let request: HomeRequest = .searchAllRepoByLanguage(language: language, page: page)
         
         
-        if var baseUrl = URLComponents(string: "\(request.baseURL)/\(request.path)") {
+        if var baseUrl = URLComponents(string: request.baseURL) {
             baseUrl.query = request.queryParams
             
             guard let url = baseUrl.url else { return }
             
-            var requestUrl = URLRequest(url: url)
+            var requestUrl = URLRequest(url: url.appendingPathComponent(request.path))
             requestUrl.httpMethod = request.method.name
             
             let dataTask = session.dataTask(with: requestUrl) { data, response, _ in

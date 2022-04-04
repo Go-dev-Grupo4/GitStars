@@ -8,6 +8,10 @@
 import UIKit
 
 class TeamDetailsViewController: UIViewController {
+    
+    // MARK: - Variables
+    
+    var dev: Desenvolvedor?
 
     lazy var devImage: UIImageView = {
         let image = UIImageView()
@@ -35,7 +39,9 @@ class TeamDetailsViewController: UIViewController {
     }()
 
     lazy var telefoneLabel: UILabel = {
-        let label = generateLabel(prefix: "Telefone", text: "(00)0000-0000")
+        let label = UILabel()
+        label.attributedText = generateLabelText(prefix: "Telefone", text: "(00)0000-0000")
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -49,7 +55,9 @@ class TeamDetailsViewController: UIViewController {
     }()
 
     lazy var emailLabel: UILabel = {
-        let label = generateLabel(prefix: "Email", text: "fulano@fulano.com.br")
+        let label = UILabel()
+        label.attributedText = generateLabelText(prefix: "Email", text: "fulano@fulano.com.br")
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -63,7 +71,9 @@ class TeamDetailsViewController: UIViewController {
     }()
 
     lazy var linkedinLabel: UILabel = {
-        let label = generateLabel(prefix: "Linkedin", text: "url")
+        let label = UILabel()
+        label.attributedText = generateLabelText(prefix: "Linkedin", text: "url")
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -77,7 +87,9 @@ class TeamDetailsViewController: UIViewController {
     }()
 
     lazy var githubLabel: UILabel = {
-        let label = generateLabel(prefix: "Github", text: "url (Opcional)")
+        let label = UILabel()
+        label.attributedText = generateLabelText(prefix: "Github", text: "url (Opcional)")
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -94,6 +106,17 @@ class TeamDetailsViewController: UIViewController {
         view.backgroundColor = .white
         
         addAndConfigureElements()
+        
+        if let dev = dev {
+            title = dev.nome
+            
+            devDescriptionLabel.text = dev.descricao
+            devImage.image = dev.image
+            telefoneLabel.attributedText = generateLabelText(prefix: "Telefone", text: dev.telefone)
+            emailLabel.attributedText = generateLabelText(prefix: "Email", text: dev.email)
+            linkedinLabel.attributedText = generateLabelText(prefix: "Linkedin", text: dev.linkedin)
+            githubLabel.attributedText = generateLabelText(prefix: "Github", text: dev.github)
+        }
     }
     
     private func addAndConfigureElements() {
@@ -177,10 +200,9 @@ class TeamDetailsViewController: UIViewController {
         ])
     }
     
-    // CREATES A CUSTOM UILabel WITH A BOLD FONT PREFIX AND A REGULAR FONT CONTENT
-    private func generateLabel(prefix: String, text: String) -> UILabel {
+    // CREATES A CUSTOM NSMutableAttributedString WITH A BOLD FONT PREFIX AND A REGULAR FONT CONTENT
+    private func generateLabelText(prefix: String, text: String) -> NSMutableAttributedString {
         
-        let label = UILabel()
         let boldAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .bold)]
         let regularAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
         let boldText = NSAttributedString(string: prefix, attributes: boldAttribute)
@@ -190,10 +212,7 @@ class TeamDetailsViewController: UIViewController {
         newString.append(boldText)
         newString.append(boldSeparator)
         newString.append(regularText)
-        label.attributedText = newString
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-        
+        return newString
     }
 
 }

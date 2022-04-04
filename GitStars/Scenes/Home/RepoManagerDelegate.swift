@@ -8,6 +8,6 @@
 import Foundation
 
 protocol RepoManagerDelegate: AnyObject {
-    func fetchRepoWithSuccess()
+    func fetchRepoWithSuccess(with newIndexPathsToReload: [IndexPath]?)
     func errorToFetchRepo(_ error: String)
 }

@@ -10,7 +10,7 @@ import Foundation
 class UserGetService: UserGetServiceProtocol {
     let session = URLSession.shared
     func execute(login: String, handler: @escaping (Result<Author, UserError>) -> Void) {
-        let request: HomeRequest = .getUser(login)
+        let request: HomeRequest = .getUser(login: login)
         
         if var baseUrl = URLComponents(string: "\(request.baseURL)/\(request.path)") {
             baseUrl.query = request.queryParams

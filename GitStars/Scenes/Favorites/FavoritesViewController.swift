@@ -37,6 +37,7 @@ class FavoritesViewController: TriStateViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         
+        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView

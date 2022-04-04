@@ -232,7 +232,7 @@ class RepositoryDetailsViewController: UIViewController {
         
     }
     
-    // CREATES A CUSTOM UILabel WITH A BOLD FONT PREFIX AND A REGULAR FONT CONTENT
+    // CREATES A CUSTOM NSMutableAttributedString WITH A BOLD FONT PREFIX AND A REGULAR FONT CONTENT
     private func generateLabelText(prefix: String, text: String) -> NSMutableAttributedString {
         let boldAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .bold)]
         let regularAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]

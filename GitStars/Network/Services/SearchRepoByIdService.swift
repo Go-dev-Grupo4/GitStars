@@ -23,7 +23,7 @@ class SearchRepoByIdService: SearchRepoByIdServiceProtocol {
     }
     
     private func getFromApi(id: Int, handler: @escaping CompletionRepository) {
-        let request: HomeRequest = .searchRepoById(id)
+        let request: HomeRequest = .searchRepoById(id: id)
         
         if var baseUrl = URLComponents(string: "\(request.baseURL)/\(request.path)/\(id)") {
             baseUrl.query = request.queryParams

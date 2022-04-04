@@ -8,11 +8,15 @@
 import Foundation
 import UIKit
 
-struct DataSource{
+struct DataSource {
     
     static let desenvolvedores: [Desenvolvedor] = [
     
-//        Desenvolvedor(nome: <#String#>, image: <#UIImage#>, descricao: <#String#>, telefone: <#Int#>, email: <#String#>, linkedin: <#String#>, github: <#String#>),
+        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
 //        Desenvolvedor(nome: <#String#>, image: <#UIImage#>, descricao: <#String#>, telefone: <#Int#>, email: <#String#>, linkedin: <#String#>, github: <#String#>),
 //        Desenvolvedor(nome: <#String#>, image: <#UIImage#>, descricao: <#String#>, telefone: <#Int#>, email: <#String#>, linkedin: <#String#>, github: <#String#>),
 //        Desenvolvedor(nome: <#String#>, image: <#UIImage#>, descricao: <#String#>, telefone: <#Int#>, email: <#String#>, linkedin: <#String#>, github: <#String#>),
@@ -21,13 +25,3 @@ struct DataSource{
   ]
 }
 
-struct Desenvolvedor {
-    
-    let nome : String
-    let image : UIImage
-    let descricao: String
-    let telefone: String
-    let email: String
-    let linkedin: String
-    let github: String
-}

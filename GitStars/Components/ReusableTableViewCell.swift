@@ -143,7 +143,7 @@ class ReusableTableViewCell: UITableViewCell {
         }
         
         if let dev = model as? Desenvolvedor {
-            mainImageView.image = UIImage(systemName: "swift")//repo.author.avatarUrl
+            mainImageView.image = dev.image
             titleLabel.text = dev.nome
             descriptionLabel.text = dev.descricao
         }

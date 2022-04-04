@@ -9,9 +9,9 @@ import Foundation
 
 enum HomeRequest : URLRequestProtocol {
     
-    case searchAllRepoByLanguage(String)
-    case searchRepoById(Int)
-    case getUser(String)
+    case searchAllRepoByLanguage(language: String, page: Int)
+    case searchRepoById(id: Int)
+    case getUser(login: String)
     
     /// The API's base url
     var baseURL: String {
@@ -33,11 +33,10 @@ enum HomeRequest : URLRequestProtocol {
     /// The API's query params
     var queryParams: String {
         switch self {
-        case .searchAllRepoByLanguage(let language):
+        case .searchAllRepoByLanguage(let language, let page):
             let acceptQueryParam = "accept=application/vnd.github.v3+json"
             let order = "desc"
             let perPage = "30"
-            let page = "1"
             return "\(acceptQueryParam)&q=language:\(language)&order=\(order)&perPage=\(perPage)&page=\(page)"
         case .searchRepoById:
             return ""

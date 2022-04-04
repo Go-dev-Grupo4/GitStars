@@ -9,12 +9,12 @@ import UIKit
 
 class RepositoryDetailsViewController: UIViewController {
     
-    var repository: Any?
+    // MARK: - Variables
     
-    var repoCoreDataService: SearchRepoCoreDataService = SearchRepoCoreDataService()
-    
-    var searchRepoByIdService = SearchRepoByIdService()
+    var viewmodel: RepositoryDetailsViewModel?
 
+    // MARK: - UI Elements
+    
     lazy var repoImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "photo.artframe")
@@ -113,68 +113,21 @@ class RepositoryDetailsViewController: UIViewController {
         button.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
         return button
     }()
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupDelegates()
         configUI()
         setupData()
     }
     
-    private func setupData() {
-        if let repositoryFromHome = repository as? Repo {
-            searchRepoByIdService.execute(id: repositoryFromHome.id, datasource: .coreData) { result in
-                switch result {
-                case .success(let repo):
-                    guard let repo = repo as? Repository else { return }
-                    if repo.isFavorite {
-                        DispatchQueue.main.async {
-                            self.favoriteButton.setTitle("Desfavoritar", for: .normal)
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
-            title = repositoryFromHome.name
-            
-            if let url = URL(string: repositoryFromHome.author.avatarUrl) {
-                repoImage.kf.setImage(with: url)
-            }
-            repoDescriptionLabel.text = repositoryFromHome.repoDescription
-            autorLabel.attributedText = generateLabelText(prefix: "Autor", text: repositoryFromHome.author.login)
-            observadoresLabel.attributedText = generateLabelText(prefix: "Contagem de observadores", text: "\(repositoryFromHome.watchers)")
-            dataCriacaoLabel.attributedText = generateLabelText(prefix: "Data de criação", text: repositoryFromHome.createdAt)
-            licencaLabel.attributedText = generateLabelText(prefix: "Licença", text: repositoryFromHome.license?.name ?? "Sem licença")
-            return
-        }
-        
-        if let repositoryFromFavorites = repository as? Repository {
-            searchRepoByIdService.execute(id: repositoryFromFavorites.id, datasource: .api) { result in
-                switch result {
-                case .success(let repo):
-                    guard let repo = repo as? Repo else { return }
-                    
-                    DispatchQueue.main.async {
-                        self.title = repo.name
-                        if let url = URL(string: repo.author.avatarUrl) {
-                            self.repoImage.kf.setImage(with: url)
-                        }
-                        self.repoDescriptionLabel.text = repo.repoDescription
-                        self.autorLabel.attributedText = self.generateLabelText(prefix: "Autor", text: repo.author.login)
-                        self.observadoresLabel.attributedText = self.generateLabelText(prefix: "Contagem de observadores", text: "\(repo.watchers)")
-                        self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: "Data de criação", text: repo.createdAt)
-                        self.licencaLabel.attributedText = self.generateLabelText(prefix: "Licença", text: repo.license?.name ?? "Sem licença")
-                        if repositoryFromFavorites.isFavorite {
-                            self.favoriteButton.setTitle("Desfavoritar", for: .normal)
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
-           
-        }
+    // MARK: - Private Functions
+    
+    private func setupDelegates() {
+        viewmodel?.delegate = self
     }
 
     private func configUI() {
@@ -293,44 +246,106 @@ class RepositoryDetailsViewController: UIViewController {
         return newString
     }
     
+    private func setupData() {
+        guard let viewmodel = viewmodel else {
+            return
+        }
+        
+        // Se o repositório vier da API, precisamos verificar se o mesmo está nos favoritos do CoreData
+        if let repositoryFromHome = viewmodel.apiRepository {
+            viewmodel.fetchRepositoryCoreData()
+            if let url = URL(string: repositoryFromHome.author.avatarUrl) {
+                repoImage.kf.setImage(with: url)
+            }
+            repoDescriptionLabel.text = repositoryFromHome.repoDescription
+            autorLabel.attributedText = generateLabelText(prefix: "Autor", text: repositoryFromHome.author.login)
+            observadoresLabel.attributedText = generateLabelText(prefix: "Contagem de observadores", text: "\(repositoryFromHome.watchers)")
+            dataCriacaoLabel.attributedText = generateLabelText(prefix: "Data de criação", text: repositoryFromHome.createdAt)
+            licencaLabel.attributedText = generateLabelText(prefix: "Licença", text: repositoryFromHome.license?.name ?? "Sem licença")
+            title = repositoryFromHome.name
+            return
+        }
+        
+        // Se o repositório vier do CoreData, precisamos pegar seus detalhes na API
+        if let repositoryFromCoreData = viewmodel.coreDataRepository {
+            viewmodel.fetchRepositoryApi()
+            changeFavoriteButtonTitle(isFavorite: repositoryFromCoreData.isFavorite)
+        }
+    }
+    
     @objc private func favoriteButtonPressed() {
-        repoCoreDataService.execute { result in
-            switch result {
-            case .success(let repositories):
-                if repositories.count > 0 {
-                    if let repo = self.repository as? Repo {
-                        ManagedObjectContext.shared.delete(id: repo.id) { error in
-                            print(error)
-                        }
-                    } else if let repo = self.repository as? Repository {
-                        ManagedObjectContext.shared.delete(id: repo.id) { error in
-                            print(error)
-                        }
-                    }
-                } else {
-                    if let repo = self.repository as? Repo {
-                        let newRepo = Repository(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? "Sem descrição", avatarURL: repo.author.avatarUrl, isFavorite: true)
-                        ManagedObjectContext.shared.save(repository: newRepo) { error in
-                            print(error)
-                        }
-                    } else if let repo = self.repository as? Repository {
-                        ManagedObjectContext.shared.save(repository: repo) { error in
-                            print(error)
-                        }
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
+        guard let viewmodel = viewmodel else {
+            return
+        }
+        viewmodel.changeRepositoryFavoriteStatus()
+    }
+    
+    private func changeFavoriteButtonTitle(isFavorite: Bool) {
+        DispatchQueue.main.async {
+            if isFavorite {
+                self.favoriteButton.setTitle("Desfavoritar", for: .normal)
+            } else {
+                self.favoriteButton.setTitle("Favoritar", for: .normal)
             }
         }
     }
     
-    private func addFavoriteRepo() {
+    private func showAlertError(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default))
+    }
+}
+
+// MARK: - RepositoryDetailsManagerDelegate
+
+extension RepositoryDetailsViewController: RepositoryDetailsManagerDelegate {
+    func fetchRepoWithSuccessApi() {
+        guard let apiRepo = viewmodel?.apiRepository else { return }
         
+        DispatchQueue.main.async {
+            self.title = apiRepo.name
+            if let url = URL(string: apiRepo.author.avatarUrl) {
+                self.repoImage.kf.setImage(with: url)
+            }
+            self.repoDescriptionLabel.text = apiRepo.repoDescription
+            self.autorLabel.attributedText = self.generateLabelText(prefix: "Autor", text: apiRepo.author.login)
+            self.observadoresLabel.attributedText = self.generateLabelText(prefix: "Contagem de observadores", text: "\(apiRepo.watchers)")
+            self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: "Data de criação", text: apiRepo.createdAt)
+            self.licencaLabel.attributedText = self.generateLabelText(prefix: "Licença", text: apiRepo.license?.name ?? "Sem licença")
+        }
     }
     
-    private func removeFavoriteRepo() {
-        
+    func errorToFetchRepoApi(_ error: String) {
+        print(error)
     }
-
+    
+    func fetchRepoWithSuccessCoreData() {
+        if let coreDataRepo = viewmodel?.coreDataRepository {
+            if coreDataRepo.isFavorite {
+                changeFavoriteButtonTitle(isFavorite: true)
+            }
+        }
+        title = viewmodel?.coreDataRepository?.repoName
+    }
+    
+    func errorToFetchRepoCoreData(_ error: String) {
+        self.showAlertError(message: error)
+    }
+    
+    func favoritedRepoSuccess() {
+        changeFavoriteButtonTitle(isFavorite: true)
+    }
+    
+    func favoritedRepoError(_ error: String) {
+        self.showAlertError(message: error)
+    }
+    
+    func unfavoritedRepoSuccess() {
+        changeFavoriteButtonTitle(isFavorite: false)
+    }
+    
+    func unfavoritedRepoError(_ error: String) {
+        self.showAlertError(message: error)
+    }
+    
 }

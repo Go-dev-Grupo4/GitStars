@@ -48,6 +48,8 @@
 		F808F62127F75F9600C44D28 /* RepoManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62027F75F9600C44D28 /* RepoManagerDelegate.swift */; };
 		F808F62327F7655300C44D28 /* UserGetServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62227F7655300C44D28 /* UserGetServiceProtocol.swift */; };
 		F808F62527F7656000C44D28 /* UserGetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808F62427F7656000C44D28 /* UserGetService.swift */; };
+		F83DFEAE27FB2C6700875FB1 /* RepositoryDetailsManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83DFEAD27FB2C6700875FB1 /* RepositoryDetailsManagerDelegate.swift */; };
+		F83DFEB027FB2C7000875FB1 /* RepositoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83DFEAF27FB2C7000875FB1 /* RepositoryDetailsViewModel.swift */; };
 		F844159A27F9EF8100EF84AA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844159927F9EF8100EF84AA /* FavoritesViewController.swift */; };
 		F844159C27F9EF8800EF84AA /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844159B27F9EF8800EF84AA /* TeamViewController.swift */; };
 		F844159F27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844159E27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift */; };
@@ -123,6 +125,8 @@
 		F808F62027F75F9600C44D28 /* RepoManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoManagerDelegate.swift; sourceTree = "<group>"; };
 		F808F62227F7655300C44D28 /* UserGetServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetServiceProtocol.swift; sourceTree = "<group>"; };
 		F808F62427F7656000C44D28 /* UserGetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGetService.swift; sourceTree = "<group>"; };
+		F83DFEAD27FB2C6700875FB1 /* RepositoryDetailsManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsManagerDelegate.swift; sourceTree = "<group>"; };
+		F83DFEAF27FB2C7000875FB1 /* RepositoryDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewModel.swift; sourceTree = "<group>"; };
 		F844159927F9EF8100EF84AA /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		F844159B27F9EF8800EF84AA /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		F844159E27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				F844159E27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift */,
+				F83DFEAD27FB2C6700875FB1 /* RepositoryDetailsManagerDelegate.swift */,
+				F83DFEAF27FB2C7000875FB1 /* RepositoryDetailsViewModel.swift */,
 			);
 			path = RepositoryDetails;
 			sourceTree = "<group>";
@@ -644,6 +650,7 @@
 				266217F027F24A03008A8B48 /* AppDelegate.swift in Sources */,
 				4CF2C22927F3A90000ABB8E7 /* Author.swift in Sources */,
 				F844159C27F9EF8800EF84AA /* TeamViewController.swift in Sources */,
+				F83DFEB027FB2C7000875FB1 /* RepositoryDetailsViewModel.swift in Sources */,
 				F808F62127F75F9600C44D28 /* RepoManagerDelegate.swift in Sources */,
 				F808F60D27F74EB800C44D28 /* HomeRequest.swift in Sources */,
 				4CF2C22C27F4BC6E00ABB8E7 /* DataSource.swift in Sources */,
@@ -654,6 +661,7 @@
 				519F2EB227F518D100CE7717 /* ManagedObjectContext.swift in Sources */,
 				266217FA27F24A03008A8B48 /* GitStars.xcdatamodeld in Sources */,
 				F84415A227FA508900EF84AA /* TeamDetailsViewController.swift in Sources */,
+				F83DFEAE27FB2C6700875FB1 /* RepositoryDetailsManagerDelegate.swift in Sources */,
 				26AB8F0227F3BC99005F1275 /* ReusableTableViewCell.swift in Sources */,
 				26D3037827FA325400EC561C /* SearchRepoByIdService.swift in Sources */,
 				F808F60B27F74EA200C44D28 /* HTTPMethod.swift in Sources */,

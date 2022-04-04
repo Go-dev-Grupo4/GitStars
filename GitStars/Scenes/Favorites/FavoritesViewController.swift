@@ -106,7 +106,9 @@ extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let repositoryDetailsViewController = RepositoryDetailsViewController()
-        repositoryDetailsViewController.repository = viewModel?.repositories?[indexPath.row]
+        let repositoryDetailsViewModel = RepositoryDetailsViewModel(searchRepoByIdServices: SearchRepoByIdService())
+        repositoryDetailsViewModel.coreDataRepository = viewModel?.repositories?[indexPath.row]
+        repositoryDetailsViewController.viewmodel = repositoryDetailsViewModel
         
         navigationController?.pushViewController(repositoryDetailsViewController, animated: true)
     }

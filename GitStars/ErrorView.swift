@@ -102,22 +102,18 @@ class ErrorView: UIView {
             errorImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             contentStackView.topAnchor.constraint(equalTo: errorImageView.bottomAnchor, constant: 15),
-            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            contentStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15)
         ])
         
         addSubview(callbackButton)
 
         NSLayoutConstraint.activate([
             callbackButton.heightAnchor.constraint(equalToConstant: 40),
-            callbackButton.widthAnchor.constraint(equalToConstant: 100),
+            callbackButton.widthAnchor.constraint(equalToConstant: 150),
             callbackButton.topAnchor.constraint(equalTo: contentStackView.bottomAnchor, constant: 15),
             callbackButton.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 200, height: 255)
     }
     
     @objc private func sendNoticicationCallback() {

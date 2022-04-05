@@ -15,7 +15,7 @@
 "reloadTitle" = "Recarregar";
 
 // MARK: titles for views
-"homeTitle" = "Lista";
+"homeTitle" = "Repositórios";
 "favoriteTitle" = "Favoritos";
 "teamTitle" = "Time";
 "repositoryDetailTitle" = "Nome do repositório";
@@ -23,7 +23,7 @@
 "teamDetailTitle" = "Nome";
 
 // MARK: titles for tab bar
-"homeTabBarTitle" = "Repo";
+"homeTabBarTitle" = "Repositórios";
 "favoriteTabBarTitle" = "Favoritos";
 "teamTabBarTitle" = "Time";
 
@@ -48,4 +48,4 @@
 // MARK: messages and texts
 "errorMessageTitle" = "Opa... 👀";
 "errorMessageDescription" = "Desculpe, o serviço não pode ser executado.
-    \nTente novamente mais tarde.";
+Tente novamente mais tarde.";

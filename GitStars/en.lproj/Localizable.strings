@@ -15,7 +15,7 @@
 "reloadTitle" = "Reload";
 
 // MARK: titles for views
-"homeTitle" = "List";
+"homeTitle" = "Repositories";
 "favoriteTitle" = "Favorites";
 "teamTitle" = "Team";
 "repositoryDetailTitle" = "Name of repository";
@@ -23,7 +23,7 @@
 "teamDetailTitle" = "Name";
 
 // MARK: titles for tab bar
-"homeTabBarTitle" = "Home";
+"homeTabBarTitle" = "Repositories";
 "favoriteTabBarTitle" = "Favorites";
 "teamTabBarTitle" = "Team";
 
@@ -48,4 +48,4 @@
 // MARK: messages and texts
 "errorMessageTitle" = "Oops... 👀";
 "errorMessageDescription" = "Sorry, the service cannot be run.
-    \nTry again later.";
+Try again later.";

@@ -7,45 +7,45 @@
 */
 
 // MARK: texts for buttons
-"ascendingTitle" = "Ascending";
-"descendingTitle" = "Descending";
-"repositoryLinkTitle" = "Link of repository";
-"makeFavoriteTitle" = "Make a favorite";
-"undoFavoriteTitle" = "Undo favorite";
-"reloadTitle" = "Reload";
+"ascendingTitle" = "Ascendente";
+"descendingTitle" = "Descendente";
+"repositoryLinkTitle" = "Enlace del Repositorio";
+"makeFavoriteTitle" = "Favorito";
+"undoFavoriteTitle" = "Desfavorecer";
+"reloadTitle" = "Recargar";
 
 // MARK: titles for views
-"homeTitle" = "List";
-"favoriteTitle" = "Favorites";
-"teamTitle" = "Team";
-"repositoryDetailTitle" = "Name of repository";
+"homeTitle" = "Repositorios";
+"favoriteTitle" = "Favoritos";
+"teamTitle" = "Equipo";
+"repositoryDetailTitle" = "Nombre del Repositorio";
 "errorAlertTitle" = "Error";
-"teamDetailTitle" = "Name";
+"teamDetailTitle" = "Nombre";
 
 // MARK: titles for tab bar
-"homeTabBarTitle" = "Home";
-"favoriteTabBarTitle" = "Favorites";
-"teamTabBarTitle" = "Team";
+"homeTabBarTitle" = "Repositorios";
+"favoriteTabBarTitle" = "Favoritos";
+"teamTabBarTitle" = "Equipo";
 
 // MARK: default prefixes and texts for labels
-"defaultDescriptionText" = "No description";
-"authorPrefix" = "Author";
-"defaultAuthorText" = "Name of the author";
-"watchersPrefix" = "Count of watchers";
-"creationDatePrefix" = "Date of creation";
-"licensePrefix" = "License";
-"defaultLicenseText" = "MIT License";
-"defaultNoLicenseText" = "No License";
-"defaultDeveloperAboutText" = "Tell us about you.";
-"phonePrefix" = "Phone";
+"defaultDescriptionText" = "No hay una descripción";
+"authorPrefix" = "Autor";
+"defaultAuthorText" = "Nombre del Autor";
+"watchersPrefix" = "Conteo de Observadores";
+"creationDatePrefix" = "Fecha de Creación";
+"licensePrefix" = "Licencia";
+"defaultLicenseText" = "Licencia MIT";
+"defaultNoLicenseText" = "No Licenciado";
+"defaultDeveloperAboutText" = "Cuéntanos acerca de ti.";
+"phonePrefix" = "Teléfono";
 "emailPrefix" = "Email";
-"defaultEmailText" = "steva.jobs@apple.com.br";
+"defaultEmailText" = "antonio.banderas@oscar.com.br";
 "linkedinPrefix" = "Linkedin";
 "defaultLinkedinText" = "linkedin.com/in/";
 "githubPrefix" = "Github";
 "defaultGithubText" = "github.com/";
 
 // MARK: messages and texts
-"errorMessageTitle" = "Oops... 👀";
-"errorMessageDescription" = "Sorry, the service cannot be run.
-    \nTry again later.";
+"errorMessageTitle" = "Ups... 👀";
+"errorMessageDescription" = "Lo sentimos, el servicio no puede ejecutarse.
+Vuelva a intentarlo más tarde.";

@@ -71,8 +71,8 @@ class ErrorView: UIView {
         button.layer.borderColor = UIColor.label.cgColor
         button.layer.borderWidth = 2
         button.setTitleShadowColor(.label, for: .normal)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(sendNoticicationCallback), for: .touchUpInside)
         
         return button
     }()
@@ -81,6 +81,7 @@ class ErrorView: UIView {
         super.init(frame: .zero)
         
         configView()
+        NotificationCenter.default.post(name: .reloadCallback, object: callbackButton)
     }
     
     required init?(coder: NSCoder) {
@@ -121,27 +122,8 @@ class ErrorView: UIView {
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 200, height: 255)
     }
+    
+    @objc private func sendNoticicationCallback() {
+        NotificationCenter.default.post(name: .reloadCallback, object: nil)
+    }
 }
-//
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//struct ErrorViewViewRepresentable: UIViewRepresentable {
-//    func makeUIView(context: Context) -> UIView {
-//        return ErrorView()
-//    }
-//
-//    func updateUIView(_ view: UIView, context: Context) {
-//
-//    }
-//}
-//
-//@available(iOS 13.0, *)
-//struct ErrorViewViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        ErrorViewViewRepresentable()
-//            .preferredColorScheme(.light)
-//            .previewLayout(.device)
-//            .previewDevice("iPhone 11")
-//    }
-//}
-//#endif

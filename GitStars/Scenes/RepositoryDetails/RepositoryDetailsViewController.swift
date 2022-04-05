@@ -11,7 +11,7 @@ class RepositoryDetailsViewController: UIViewController {
     
     // MARK: - Variables
     
-    var viewmodel: RepositoryDetailsViewModel?
+    var viewModel: RepositoryDetailsViewModel?
 
     // MARK: - UI Elements
     
@@ -127,7 +127,7 @@ class RepositoryDetailsViewController: UIViewController {
     // MARK: - Private Functions
     
     private func setupDelegates() {
-        viewmodel?.delegate = self
+        viewModel?.delegate = self
     }
 
     private func configUI() {
@@ -247,7 +247,7 @@ class RepositoryDetailsViewController: UIViewController {
     }
     
     private func setupData() {
-        guard let viewmodel = viewmodel else {
+        guard let viewmodel = viewModel else {
             return
         }
         
@@ -274,7 +274,7 @@ class RepositoryDetailsViewController: UIViewController {
     }
     
     @objc private func favoriteButtonPressed() {
-        guard let viewmodel = viewmodel else {
+        guard let viewmodel = viewModel else {
             return
         }
         viewmodel.changeRepositoryFavoriteStatus()
@@ -309,7 +309,7 @@ class RepositoryDetailsViewController: UIViewController {
 
 extension RepositoryDetailsViewController: RepositoryDetailsManagerDelegate {
     func fetchRepoWithSuccessApi() {
-        guard let apiRepo = viewmodel?.apiRepository else { return }
+        guard let apiRepo = viewModel?.apiRepository else { return }
         
         DispatchQueue.main.async {
             self.title = apiRepo.name
@@ -329,12 +329,12 @@ extension RepositoryDetailsViewController: RepositoryDetailsManagerDelegate {
     }
     
     func fetchRepoWithSuccessCoreData() {
-        if let coreDataRepo = viewmodel?.coreDataRepository {
+        if let coreDataRepo = viewModel?.coreDataRepository {
             if coreDataRepo.isFavorite {
                 changeFavoriteButtonTitle(isFavorite: true)
             }
         }
-        title = viewmodel?.coreDataRepository?.repoName
+        title = viewModel?.coreDataRepository?.repoName
     }
     
     func errorToFetchRepoCoreData(_ error: String) {

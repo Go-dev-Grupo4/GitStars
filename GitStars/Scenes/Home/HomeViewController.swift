@@ -73,6 +73,9 @@ class HomeViewController: TriStateViewController {
     
     private func configUI() {
         title = NSLocalizedString("homeTitle", comment: "")
+        
+        navigationController?.title = NSLocalizedString("homeTabBarTitle", comment: "")
+        
         view.backgroundColor = .systemBackground
         
         configNavigationBar()
@@ -93,6 +96,7 @@ class HomeViewController: TriStateViewController {
     private func configNavigationBar() {
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
+        
         
         navigationItem.rightBarButtonItem = barButtonItem
         navigationItem.rightBarButtonItem?.tintColor = .label

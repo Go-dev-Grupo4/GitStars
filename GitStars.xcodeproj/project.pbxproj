@@ -81,6 +81,9 @@
 		1EF63981DA6F25329E475CA2 /* Pods-GitStars.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitStars.debug.xcconfig"; path = "Target Support Files/Pods-GitStars/Pods-GitStars.debug.xcconfig"; sourceTree = "<group>"; };
 		2623BC7B27FBD86100AE0AD3 /* NSNotification+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+extensions.swift"; sourceTree = "<group>"; };
 		2623BC8027FBE04C00AE0AD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		26312BAD27FC68E6009BC2AF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		26312BAE27FC68F0009BC2AF /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		26312BAF27FC693A009BC2AF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		26350F6227F8EC46001CE8F6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		26350F6427F8EC56001CE8F6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		26350F6627F9066C001CE8F6 /* TriStateViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriStateViewProtocol.swift; sourceTree = "<group>"; };
@@ -496,6 +499,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
+				es,
+				fr,
 			);
 			mainGroup = 266217E327F24A03008A8B48;
 			productRefGroup = 266217ED27F24A03008A8B48 /* Products */;
@@ -725,6 +731,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				2623BC8027FBE04C00AE0AD3 /* en */,
+				26312BAD27FC68E6009BC2AF /* es */,
+				26312BAE27FC68F0009BC2AF /* pt-BR */,
+				26312BAF27FC693A009BC2AF /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -54,6 +54,8 @@ class FavoritesViewController: TriStateViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         state = .loading
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCallback), name: .reloadCallback, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,6 +86,13 @@ class FavoritesViewController: TriStateViewController {
 
     }
     
+    @objc private func reloadCallback() {
+        fetchRepositories()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .reloadCallback, object: nil)
+    }
 }
 
 extension FavoritesViewController: FavoriteManagerDelegate {

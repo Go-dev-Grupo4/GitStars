@@ -69,8 +69,6 @@ class HomeViewController: TriStateViewController {
         setupDelegates()
         
         fetchRepositories(language: searchLanguage)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadCallback), name: .reloadCallback, object: nil)
     }
     
     private func configUI() {
@@ -143,6 +141,14 @@ class HomeViewController: TriStateViewController {
     
     @objc private func reloadCallback() {
         fetchRepositories(language: searchLanguage)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCallback), name: .reloadCallback, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .reloadCallback, object: nil)
     }
 }
 

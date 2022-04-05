@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeViewController: TriStateViewController {
     
@@ -41,7 +42,7 @@ class HomeViewController: TriStateViewController {
     lazy var searchController: UISearchController = {
         
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.scopeButtonTitles = ["Ascending", "Descending"]
+        searchController.searchBar.scopeButtonTitles = [NSLocalizedString("ascendingText", comment: "") , NSLocalizedString("descending", comment: "")]
         searchController.searchBar.selectedScopeButtonIndex = 0
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsScopeBar = false

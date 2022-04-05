@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  GitStars
+
+  Created by Idwall Go Dev 003 on 04/04/22.
+  
+*/
+
+"ascendingText" = "Ascending";
+"aescendingText" = "Descending";
+
+

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2623BC7C27FBD86100AE0AD3 /* NSNotification+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623BC7B27FBD86100AE0AD3 /* NSNotification+extensions.swift */; };
+		2623BC7F27FBE04C00AE0AD3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2623BC8127FBE04C00AE0AD3 /* Localizable.strings */; };
+		2623BC8727FBE32800AE0AD3 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623BC8627FBE32800AE0AD3 /* Strings.swift */; };
 		26350F6327F8EC46001CE8F6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26350F6227F8EC46001CE8F6 /* LoadingView.swift */; };
 		26350F6527F8EC56001CE8F6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26350F6427F8EC56001CE8F6 /* ErrorView.swift */; };
 		26350F6727F9066C001CE8F6 /* TriStateViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26350F6627F9066C001CE8F6 /* TriStateViewProtocol.swift */; };
@@ -78,6 +80,8 @@
 /* Begin PBXFileReference section */
 		1EF63981DA6F25329E475CA2 /* Pods-GitStars.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitStars.debug.xcconfig"; path = "Target Support Files/Pods-GitStars/Pods-GitStars.debug.xcconfig"; sourceTree = "<group>"; };
 		2623BC7B27FBD86100AE0AD3 /* NSNotification+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+extensions.swift"; sourceTree = "<group>"; };
+		2623BC8027FBE04C00AE0AD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2623BC8627FBE32800AE0AD3 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		26350F6227F8EC46001CE8F6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		26350F6427F8EC56001CE8F6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		26350F6627F9066C001CE8F6 /* TriStateViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriStateViewProtocol.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 		2643FB0327F68EFE008EA2C7 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				2623BC8627FBE32800AE0AD3 /* Strings.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 				26350F6427F8EC56001CE8F6 /* ErrorView.swift */,
 				26350F6627F9066C001CE8F6 /* TriStateViewProtocol.swift */,
 				26350F6A27F908E1001CE8F6 /* TriStateViewController.swift */,
+				2623BC8127FBE04C00AE0AD3 /* Localizable.strings */,
 			);
 			path = GitStars;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				266217FF27F24A03008A8B48 /* LaunchScreen.storyboard in Resources */,
+				2623BC7F27FBE04C00AE0AD3 /* Localizable.strings in Resources */,
 				266217FC27F24A03008A8B48 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,6 +666,7 @@
 				4CF2C22927F3A90000ABB8E7 /* Author.swift in Sources */,
 				F844159C27F9EF8800EF84AA /* TeamViewController.swift in Sources */,
 				F83DFEB027FB2C7000875FB1 /* RepositoryDetailsViewModel.swift in Sources */,
+				2623BC8727FBE32800AE0AD3 /* Strings.swift in Sources */,
 				F808F62127F75F9600C44D28 /* RepoManagerDelegate.swift in Sources */,
 				F808F60D27F74EB800C44D28 /* HomeRequest.swift in Sources */,
 				4CF2C22C27F4BC6E00ABB8E7 /* DataSource.swift in Sources */,
@@ -713,6 +721,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2623BC8127FBE04C00AE0AD3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2623BC8027FBE04C00AE0AD3 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		266217FD27F24A03008A8B48 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -728,6 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -789,6 +806,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

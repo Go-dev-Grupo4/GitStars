@@ -22,14 +22,11 @@ class FavoritesViewController: TriStateViewController {
     private func setupView() {
         switch state {
         case .loading:
-            print("loading")
             self.setupLoadingState()
         case .normal:
-            print("normal")
             self.setupNormalState()
             self.tableView.reloadData()
         case .error:
-            print("error")
             setupErrorState()
         }
     }
@@ -47,13 +44,13 @@ class FavoritesViewController: TriStateViewController {
         super.viewDidLoad()
         
         configUI()
-        
         setupDelegates()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         state = .loading
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCallback), name: .reloadCallback, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,7 +58,7 @@ class FavoritesViewController: TriStateViewController {
     }
     
     private func configUI() {
-        title = "Favorites"
+        title = NSLocalizedString("favoriteTitle", comment: "")
         view.backgroundColor = .systemBackground
         
         tableView.register(ReusableTableViewCell.self, forCellReuseIdentifier: ReusableTableViewCell.identifier)
@@ -84,6 +81,13 @@ class FavoritesViewController: TriStateViewController {
 
     }
     
+    @objc private func reloadCallback() {
+        fetchRepositories()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .reloadCallback, object: nil)
+    }
 }
 
 extension FavoritesViewController: FavoriteManagerDelegate {

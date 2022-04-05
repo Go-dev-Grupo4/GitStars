@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeViewController: TriStateViewController {
     
@@ -27,21 +28,20 @@ class HomeViewController: TriStateViewController {
     private func setupView() {
         switch state {
         case .loading:
-            print("loading")
             self.setupLoadingState()
         case .normal:
-            print("normal")
             self.setupNormalState()
         case .error:
-            print("error")
             setupErrorState()
         }
     }
 
     lazy var searchController: UISearchController = {
-        
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.scopeButtonTitles = ["Ascending", "Descending"]
+        
+        searchController.searchBar.scopeButtonTitles = [
+            NSLocalizedString("ascendingTitle", comment: ""),
+            NSLocalizedString("descendingTitle", comment: "")]
         searchController.searchBar.selectedScopeButtonIndex = 0
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsScopeBar = false
@@ -72,7 +72,10 @@ class HomeViewController: TriStateViewController {
     }
     
     private func configUI() {
-        title = "List"
+        title = NSLocalizedString("homeTitle", comment: "")
+        
+        navigationController?.title = NSLocalizedString("homeTabBarTitle", comment: "")
+        
         view.backgroundColor = .systemBackground
         
         configNavigationBar()
@@ -93,6 +96,7 @@ class HomeViewController: TriStateViewController {
     private func configNavigationBar() {
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
+        
         
         navigationItem.rightBarButtonItem = barButtonItem
         navigationItem.rightBarButtonItem?.tintColor = .label
@@ -215,7 +219,6 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
 
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
     if indexPaths.contains(where: isLoadingCell) {
-        print("Deu fetch pelo prefetch")
       viewModel?.fetchRepositories(language: searchLanguage)
     }
   }

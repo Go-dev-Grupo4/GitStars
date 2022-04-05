@@ -130,9 +130,7 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
             onCompletionHandler("Delete Success")
             
         } catch let error as NSError {
-            
             print("Fetch failed \(error.localizedDescription)")
-            
         }
     }
 
@@ -148,8 +146,6 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
         do {
             guard let entityReult = try getContext().fetch(fetchRequest).first as? NSManagedObject else { return repo }
             
-            
-            
             if let id = entityReult.value(forKey: "id") as? Int,
                let repoName = entityReult.value(forKey: "repoName") as? String,
                let repoDescription = entityReult.value(forKey: "repoDescription") as? String,
@@ -160,9 +156,7 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
             }
 
         } catch let error as NSError {
-            
             print("Fetch failed \(error.localizedDescription)")
-            
         }
         
         return repo

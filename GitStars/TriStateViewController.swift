@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TriStateViewController: UIViewController {
     
@@ -79,26 +80,21 @@ class TriStateViewController: UIViewController {
 extension TriStateViewController: TriStateViewProtocol {
     
     func setupLoadingState() {
-    
         contentView.isHidden = true
-        
         errorView.removeFromSuperview()
-        
         setupLoadingView()
     }
     
     func setupErrorState() {
         loadingView.removeFromSuperview()
         contentView.isHidden = true
-        
         setupErrorView()
     }
     
     func setupNormalState() {
-     
         loadingView.removeFromSuperview()
         errorView.removeFromSuperview()
-        
         contentView.isHidden = false
     }
+
 }

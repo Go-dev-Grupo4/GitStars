@@ -11,12 +11,11 @@ import UIKit
 struct DataSource {
     
     static let developers: [Developer] = [
-    
-        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Description", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Description", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Description", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Description", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Description", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 27 999405527", email: "email@email.com", linkedin: "https://www.linkedin.com/in/matheus-lenke-coutinho-492a4b15a/", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 27 999405527", email: "email@email.com", linkedin: "https://www.linkedin.com/in/matheus-lenke-coutinho-492a4b15a/", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 27 999405527", email: "email@email.com", linkedin: "https://www.linkedin.com/in/matheus-lenke-coutinho-492a4b15a/", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 27 999405527", email: "email@email.com", linkedin: "https://www.linkedin.com/in/matheus-lenke-coutinho-492a4b15a/", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 27 999405527", email: "email@email.com", linkedin: "https://www.linkedin.com/in/matheus-lenke-coutinho-492a4b15a/", github: "github.com"),
         
   ]
 }

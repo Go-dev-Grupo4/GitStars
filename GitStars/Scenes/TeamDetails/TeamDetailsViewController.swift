@@ -11,7 +11,7 @@ class TeamDetailsViewController: UIViewController {
     
     // MARK: - Variables
     
-    var dev: Desenvolvedor?
+    var dev: Developer?
 
     lazy var devImage: UIImageView = {
         let image = UIImageView()
@@ -22,7 +22,7 @@ class TeamDetailsViewController: UIViewController {
         
     lazy var devDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Fale um pouco sobre você."
+        label.text = "Tell us about you."
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class TeamDetailsViewController: UIViewController {
 
     lazy var telefoneLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Telefone", text: "(00)0000-0000")
+        label.attributedText = generateLabelText(prefix: "Phone", text: "(00)0000-0000")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -88,7 +88,7 @@ class TeamDetailsViewController: UIViewController {
 
     lazy var githubLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Github", text: "url (Opcional)")
+        label.attributedText = generateLabelText(prefix: "Github", text: "url (Optional)")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -102,17 +102,17 @@ class TeamDetailsViewController: UIViewController {
 
     private func configUI() {
         
-        title = "Nome"
+        title = "Name"
         view.backgroundColor = .white
         
         addAndConfigureElements()
         
         if let dev = dev {
-            title = dev.nome
+            title = dev.name
             
-            devDescriptionLabel.text = dev.descricao
+            devDescriptionLabel.text = dev.description
             devImage.image = dev.image
-            telefoneLabel.attributedText = generateLabelText(prefix: "Telefone", text: dev.telefone)
+            telefoneLabel.attributedText = generateLabelText(prefix: "Phone", text: dev.phone)
             emailLabel.attributedText = generateLabelText(prefix: "Email", text: dev.email)
             linkedinLabel.attributedText = generateLabelText(prefix: "Linkedin", text: dev.linkedin)
             githubLabel.attributedText = generateLabelText(prefix: "Github", text: dev.github)

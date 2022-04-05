@@ -25,7 +25,7 @@ class RepositoryDetailsViewController: UIViewController {
         
     lazy var repoDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "A curated list of awesome iOS ecosystem, including Objective-C and Swift Projects"
+        label.text = "Repo`s description"
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +99,7 @@ class RepositoryDetailsViewController: UIViewController {
     lazy var linkRepoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(UIColor.label, for: .normal)
-        button.setTitle("Link do Repositório", for: .normal)
+        button.setTitle("Link of repository", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
 //        button.addTarget(self, action: #selector(fazerNavegacao), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -108,7 +108,7 @@ class RepositoryDetailsViewController: UIViewController {
     
     lazy var favoriteButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Favoritar", for: .normal)
+        button.setTitle("Make a favorite", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
         return button
@@ -132,7 +132,7 @@ class RepositoryDetailsViewController: UIViewController {
 
     private func configUI() {
         
-        title = "Nome do repositório"
+        title = "Name of repository"
         view.backgroundColor = .systemBackground
         
         addAndConfigureElements()
@@ -258,10 +258,10 @@ class RepositoryDetailsViewController: UIViewController {
                 repoImage.kf.setImage(with: url)
             }
             repoDescriptionLabel.text = repositoryFromHome.repoDescription
-            autorLabel.attributedText = generateLabelText(prefix: "Autor", text: repositoryFromHome.author.login)
-            observadoresLabel.attributedText = generateLabelText(prefix: "Contagem de observadores", text: "\(repositoryFromHome.watchers)")
-            dataCriacaoLabel.attributedText = generateLabelText(prefix: "Data de criação", text: repositoryFromHome.createdAt)
-            licencaLabel.attributedText = generateLabelText(prefix: "Licença", text: repositoryFromHome.license?.name ?? "Sem licença")
+            autorLabel.attributedText = generateLabelText(prefix: "Author", text: repositoryFromHome.author.login)
+            observadoresLabel.attributedText = generateLabelText(prefix: "Count of watchers", text: "\(repositoryFromHome.watchers)")
+            dataCriacaoLabel.attributedText = generateLabelText(prefix: "Creation date", text: repositoryFromHome.createdAt)
+            licencaLabel.attributedText = generateLabelText(prefix: "License", text: repositoryFromHome.license?.name ?? "No License")
             title = repositoryFromHome.name
             return
         }
@@ -283,9 +283,9 @@ class RepositoryDetailsViewController: UIViewController {
     private func changeFavoriteButtonTitle(isFavorite: Bool) {
         DispatchQueue.main.async {
             if isFavorite {
-                self.favoriteButton.setTitle("Desfavoritar", for: .normal)
+                self.favoriteButton.setTitle("Undo favorite", for: .normal)
             } else {
-                self.favoriteButton.setTitle("Favoritar", for: .normal)
+                self.favoriteButton.setTitle("Make favorite", for: .normal)
             }
         }
     }
@@ -308,10 +308,10 @@ extension RepositoryDetailsViewController: RepositoryDetailsManagerDelegate {
                 self.repoImage.kf.setImage(with: url)
             }
             self.repoDescriptionLabel.text = apiRepo.repoDescription
-            self.autorLabel.attributedText = self.generateLabelText(prefix: "Autor", text: apiRepo.author.login)
-            self.observadoresLabel.attributedText = self.generateLabelText(prefix: "Contagem de observadores", text: "\(apiRepo.watchers)")
-            self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: "Data de criação", text: apiRepo.createdAt)
-            self.licencaLabel.attributedText = self.generateLabelText(prefix: "Licença", text: apiRepo.license?.name ?? "Sem licença")
+            self.autorLabel.attributedText = self.generateLabelText(prefix: "Author", text: apiRepo.author.login)
+            self.observadoresLabel.attributedText = self.generateLabelText(prefix: "Count of watchers", text: "\(apiRepo.watchers)")
+            self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: "Creation date", text: apiRepo.createdAt)
+            self.licencaLabel.attributedText = self.generateLabelText(prefix: "License", text: apiRepo.license?.name ?? "No License")
         }
     }
     

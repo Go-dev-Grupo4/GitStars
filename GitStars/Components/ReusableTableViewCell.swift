@@ -118,8 +118,6 @@ class ReusableTableViewCell: UITableViewCell {
             horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -13),
         ])
         
-//        mainImageView.layer.cornerRadius = mainImageView.frame.size.height / 2
-//        mainImageView.clipsToBounds = true
     }
     
     func setupView(with model: Any){
@@ -142,10 +140,10 @@ class ReusableTableViewCell: UITableViewCell {
             descriptionLabel.text = repo.repoDescription
         }
         
-        if let dev = model as? Desenvolvedor {
+        if let dev = model as? Developer {
             mainImageView.image = dev.image
-            titleLabel.text = dev.nome
-            descriptionLabel.text = dev.descricao
+            titleLabel.text = dev.name
+            descriptionLabel.text = dev.description
         }
     }
 }

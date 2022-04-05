@@ -10,17 +10,13 @@ import UIKit
 
 struct DataSource {
     
-    static let desenvolvedores: [Desenvolvedor] = [
+    static let developers: [Developer] = [
     
-        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-        Desenvolvedor(nome: "Nome", image: UIImage(systemName: "person")!, descricao: "Descrição", telefone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
-//        Desenvolvedor(nome: <#String#>, image: <#UIImage#>, descricao: <#String#>, telefone: <#Int#>, email: <#String#>, linkedin: <#String#>, github: <#String#>),
-//        Desenvolvedor(nome: <#String#>, image: <#UIImage#>, descricao: <#String#>, telefone: <#Int#>, email: <#String#>, linkedin: <#String#>, github: <#String#>),
-//        Desenvolvedor(nome: <#String#>, image: <#UIImage#>, descricao: <#String#>, telefone: <#Int#>, email: <#String#>, linkedin: <#String#>, github: <#String#>),
-//        Desenvolvedor(nome: <#String#>, image: <#UIImage#>, descricao: <#String#>, telefone: <#Int#>, email: <#String#>, linkedin: <#String#>, github: <#String#>)
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
+        Developer(name: "Name", image: UIImage(systemName: "person")!, description: "Descritpion", phone: "+55 99 99999-9999", email: "email@email.com", linkedin: "linkedin.com", github: "github.com"),
         
   ]
 }

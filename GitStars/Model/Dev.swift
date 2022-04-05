@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 
-struct Desenvolvedor {
+struct Developer {
     
-    let nome : String
+    let name : String
     let image : UIImage
-    let descricao: String
-    let telefone: String
+    let description: String
+    let phone: String
     let email: String
     let linkedin: String
     let github: String

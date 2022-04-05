@@ -13,7 +13,7 @@ class TeamViewController: UIViewController {
     
     var safeArea: UILayoutGuide!
     
-    var developers: [Desenvolvedor] = []
+    var developers: [Developer] = []
     
     // MARK: - UI Components
     
@@ -39,7 +39,7 @@ class TeamViewController: UIViewController {
     // MARK: - Private functions
     
     private func configUI() {
-        title = "Time"
+        title = "Team"
         view.backgroundColor = .systemBackground
         
         tableView.register(ReusableTableViewCell.self, forCellReuseIdentifier: ReusableTableViewCell.identifier)
@@ -56,7 +56,7 @@ class TeamViewController: UIViewController {
     }
     
     private func getDataMock() {
-        developers = DataSource.desenvolvedores
+        developers = DataSource.developers
     }
     
     private func setupDelegates() {

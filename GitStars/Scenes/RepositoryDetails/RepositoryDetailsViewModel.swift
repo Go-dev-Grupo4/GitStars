@@ -24,7 +24,7 @@ class RepositoryDetailsViewModel {
     
     func fetchRepositoryApi() {
         guard let coreDataRepository = coreDataRepository else {
-            self.errorApi(error: "Repositório não encontrado ")
+            self.errorApi(error: "Repository not found")
             return
         }
         
@@ -42,7 +42,7 @@ class RepositoryDetailsViewModel {
     
     func fetchRepositoryCoreData() {
         guard let apiRepository = apiRepository else {
-            self.errorApi(error: "Repositório não encontrado ")
+            self.errorApi(error: "Repository not found")
             return
         }
         
@@ -89,7 +89,7 @@ class RepositoryDetailsViewModel {
     
     private func addFavoriteRepo() {
         if let repo = self.apiRepository {
-            let newRepo = Repository(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? "Sem descrição", avatarURL: repo.author.avatarUrl, isFavorite: true)
+            let newRepo = Repository(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? "No description", avatarURL: repo.author.avatarUrl, isFavorite: true)
             ManagedObjectContext.shared.save(repository: newRepo) { error in
                 print(error)
                 delegate?.favoritedRepoError(error)

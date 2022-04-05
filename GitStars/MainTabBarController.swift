@@ -40,7 +40,7 @@ class MainTabBarController: UITabBarController {
     lazy var teamNavigationController: UINavigationController! = {
         let navigationController = UINavigationController(rootViewController: TeamViewController())
         
-        let itemBar = UITabBarItem(title: "Time", image: UIImage(systemName: "person.3.fill"), tag: 2)
+        let itemBar = UITabBarItem(title: "Team", image: UIImage(systemName: "person.3.fill"), tag: 2)
         navigationController.tabBarItem = itemBar
         
         return navigationController

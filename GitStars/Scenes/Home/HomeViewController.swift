@@ -221,7 +221,7 @@ extension HomeViewController: UITableViewDataSource {
         if isLoadingCell(for: indexPath) {
 //            cell.configure(with: .none)
         } else {
-            if let repo = viewModel?.repositories[indexPath.row] as? Repo {
+            if let repo = viewModel?.repositories[indexPath.row] {
                 cell.setupView(with: repo)
             }
         }
@@ -242,18 +242,10 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
 extension HomeViewController: RepoManagerDelegate {
     func fetchRepoWithSuccess(with newIndexPathsToReload: [IndexPath]?) {
         self.state = .normal
-        
-//        guard let newIndexPathsToReload = newIndexPathsToReload else {
-            tableView.reloadData()
-        print(viewModel?.repositories.count)
-//            return
-//        }
-//        let indexPathsToReload = self.visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
-//        tableView.reloadRows(at: indexPathsToReload, with: .automatic)
+        tableView.reloadData()
     }
     
     func errorToFetchRepo(_ error: String) {
-//        timeoutTimer.
         self.state = .error
     }
 }

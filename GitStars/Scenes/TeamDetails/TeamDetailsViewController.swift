@@ -99,11 +99,15 @@ class TeamDetailsViewController: UIViewController {
         return image
     }()
     
-    lazy var githubLabel: UILabel = {
-        let label = UILabel()
-        label.attributedText = generateLabelText(prefix: NSLocalizedString("githubPrefix", comment: ""), text: NSLocalizedString("defaultGithubText", comment: ""))
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+
+    lazy var githubLabel: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(UIColor.label, for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(pressedGithub), for: .touchUpInside)
+        button.setAttributedTitle(generateLabelText(prefix: NSLocalizedString("githubPrefix", comment: ""), text: NSLocalizedString("defaultGithubText", comment: "")), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     override func viewDidLoad() {
@@ -125,11 +129,10 @@ class TeamDetailsViewController: UIViewController {
             
             devDescriptionLabel.text = dev.description
             devImage.image = dev.image
-
             telefoneButton.setAttributedTitle(generateLabelText(prefix: NSLocalizedString("phonePrefix", comment: ""), text: dev.phone), for: .normal)
             emailButton.setAttributedTitle(generateLabelText(prefix: NSLocalizedString("emailPrefix", comment: ""), text: dev.email), for: .normal)
             linkedinLabel.setAttributedTitle(generateLabelText(prefix: NSLocalizedString("linkedinPrefix", comment: ""), text: dev.linkedin), for: .normal)
-            githubLabel.attributedText = generateLabelText(prefix: NSLocalizedString("githubPrefix", comment: ""), text: dev.github)
+            githubLabel.setAttributedTitle(generateLabelText(prefix: NSLocalizedString("githubPrefix", comment: ""), text: dev.github), for: .normal)
         }
     }
     
@@ -267,10 +270,27 @@ extension TeamDetailsViewController {
     
     @objc private func pressedLinkedin() {
         if let linkedin = dev?.linkedin,
-           let url = URL(string: linkedin){
+           let url = URL(string: linkedin) {
+            let linkedinId = linkedin.replacingOccurrences(of: "https://www.linkedin.com/in/", with: "").replacingOccurrences(of: "/", with: "")
+            let scheme = "linkedin://profile/\(linkedinId)"
+            if let deepLink = URL(string: scheme) {
+                if UIApplication.shared.canOpenURL(deepLink) {
+                    UIApplication.shared.open(deepLink)
+                } else {
+                    webView = WebViewController()
+                    webView?.destinationUrl = linkedin
+                    self.navigationController?.pushViewController(webView!, animated: true)
+                }
+            }
+        }
+    }
+    
+    @objc private func pressedGithub() {
+        if let github = dev?.github,
+           let url = URL(string: github){
             let request = URLRequest(url: url)
             webView = WebViewController()
-            webView?.destinationUrl = linkedin
+            webView?.destinationUrl = github
             self.navigationController?.pushViewController(webView!, animated: true)
         }
     }

@@ -9,11 +9,6 @@
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>com.grupo4.GitStars</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>linkedin</string>
-				<string>github</string>
-			</array>
 		</dict>
 	</array>
 	<key>UIApplicationSceneManifest</key>
@@ -33,5 +28,10 @@
 			</array>
 		</dict>
 	</dict>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>linkedin</string>
+        <string>github</string>
+    </array>
 </dict>
 </plist>

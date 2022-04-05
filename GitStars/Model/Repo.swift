@@ -21,7 +21,7 @@ struct Repo: Codable {
         case id, name
         case author = "owner"
         case repoDescription = "description"
-        case url
+        case url = "html_url"
         case createdAt = "created_at"
         case license, watchers
     }

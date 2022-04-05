@@ -101,7 +101,7 @@ class RepositoryDetailsViewController: UIViewController {
         button.setTitleColor(UIColor.label, for: .normal)
         button.setTitle(NSLocalizedString("repositoryLinkTitle", comment: ""), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-//        button.addTarget(self, action: #selector(fazerNavegacao), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pressedRepositoryLink), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -303,6 +303,17 @@ class RepositoryDetailsViewController: UIViewController {
 //            
 //        }
 //    }
+    
+    @objc private func pressedRepositoryLink() {
+        
+        if let github = viewmodel?.apiRepository?.url,
+           let url = URL(string: github){
+            let webView = WebViewController()
+            webView.destinationUrl = github
+            self.navigationController?.pushViewController(webView, animated: true)
+        }
+        
+    }
 }
 
 // MARK: - RepositoryDetailsManagerDelegate

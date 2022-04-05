@@ -93,6 +93,8 @@ class RepositoryDetailsViewController: UIViewController {
         let label = UILabel()
         label.attributedText = generateLabelText(prefix: "Licença", text: "MIT License")
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
 
@@ -260,7 +262,7 @@ class RepositoryDetailsViewController: UIViewController {
             repoDescriptionLabel.text = repositoryFromHome.repoDescription
             autorLabel.attributedText = generateLabelText(prefix: "Author", text: repositoryFromHome.author.login)
             observadoresLabel.attributedText = generateLabelText(prefix: "Count of watchers", text: "\(repositoryFromHome.watchers)")
-            dataCriacaoLabel.attributedText = generateLabelText(prefix: "Creation date", text: repositoryFromHome.createdAt)
+            dataCriacaoLabel.attributedText = generateLabelText(prefix: "Creation date", text: repositoryFromHome.createdAt.parseISO8601Date())
             licencaLabel.attributedText = generateLabelText(prefix: "License", text: repositoryFromHome.license?.name ?? "No License")
             title = repositoryFromHome.name
             return
@@ -295,14 +297,6 @@ class RepositoryDetailsViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Ok", style: .default))
     }
     
-//    private func parseDate(date: String) -> String? {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//        if let date = dateFormatter.date(from: date) {
-//            
-//        }
-//    }
 }
 
 // MARK: - RepositoryDetailsManagerDelegate
@@ -319,7 +313,7 @@ extension RepositoryDetailsViewController: RepositoryDetailsManagerDelegate {
             self.repoDescriptionLabel.text = apiRepo.repoDescription
             self.autorLabel.attributedText = self.generateLabelText(prefix: "Author", text: apiRepo.author.login)
             self.observadoresLabel.attributedText = self.generateLabelText(prefix: "Count of watchers", text: "\(apiRepo.watchers)")
-            self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: "Creation date", text: apiRepo.createdAt)
+            self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: "Creation date", text: apiRepo.createdAt.parseISO8601Date())
             self.licencaLabel.attributedText = self.generateLabelText(prefix: "License", text: apiRepo.license?.name ?? "No License")
         }
     }

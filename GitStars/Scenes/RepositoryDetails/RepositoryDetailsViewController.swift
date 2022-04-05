@@ -294,6 +294,15 @@ class RepositoryDetailsViewController: UIViewController {
         let alertController = UIAlertController(title: NSLocalizedString("errorAlertTitle", comment: ""), message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default))
     }
+    
+//    private func parseDate(date: String) -> String? {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+//        if let date = dateFormatter.date(from: date) {
+//            
+//        }
+//    }
 }
 
 // MARK: - RepositoryDetailsManagerDelegate

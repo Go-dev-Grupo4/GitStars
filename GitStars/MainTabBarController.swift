@@ -106,6 +106,5 @@ class ViewControllerAnimation: NSObject, UIViewControllerAnimatedTransitioning {
             toVc.transform = .identity
             
         }, completion: {transitionContext.completeTransition($0)})
- 
     }
 }

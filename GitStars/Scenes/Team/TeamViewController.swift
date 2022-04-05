@@ -39,7 +39,7 @@ class TeamViewController: UIViewController {
     // MARK: - Private functions
     
     private func configUI() {
-        title = "Team"
+        title = NSLocalizedString("teamTitle", comment: "")
         view.backgroundColor = .systemBackground
         
         tableView.register(ReusableTableViewCell.self, forCellReuseIdentifier: ReusableTableViewCell.identifier)

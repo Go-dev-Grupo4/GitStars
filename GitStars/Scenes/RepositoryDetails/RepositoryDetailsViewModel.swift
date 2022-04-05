@@ -89,7 +89,7 @@ class RepositoryDetailsViewModel {
     
     private func addFavoriteRepo() {
         if let repo = self.apiRepository {
-            let newRepo = Repository(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? "No description", avatarURL: repo.author.avatarUrl, isFavorite: true)
+            let newRepo = Repository(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? NSLocalizedString("defaultDescriptionText", comment: ""), avatarURL: repo.author.avatarUrl, isFavorite: true)
             ManagedObjectContext.shared.save(repository: newRepo) { error in
                 print(error)
                 delegate?.favoritedRepoError(error)

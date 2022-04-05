@@ -22,7 +22,7 @@ class TeamDetailsViewController: UIViewController {
         
     lazy var devDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tell us about you."
+        label.text = NSLocalizedString("defaultDeveloperAboutText", comment: "")
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class TeamDetailsViewController: UIViewController {
 
     lazy var telefoneLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Phone", text: "(00)0000-0000")
+        label.attributedText = generateLabelText(prefix: NSLocalizedString("phonePrefix", comment: ""), text: "(00)0000-0000")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -56,7 +56,7 @@ class TeamDetailsViewController: UIViewController {
 
     lazy var emailLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Email", text: "fulano@fulano.com.br")
+        label.attributedText = generateLabelText(prefix: NSLocalizedString("emailPrefix", comment: ""), text: NSLocalizedString("defaultEmailText", comment: ""))
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -72,7 +72,7 @@ class TeamDetailsViewController: UIViewController {
 
     lazy var linkedinLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Linkedin", text: "url")
+        label.attributedText = generateLabelText(prefix: NSLocalizedString("linkedinPrefix", comment: ""), text: NSLocalizedString("defaultLinkedinText", comment: ""))
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -88,7 +88,7 @@ class TeamDetailsViewController: UIViewController {
 
     lazy var githubLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Github", text: "url (Optional)")
+        label.attributedText = generateLabelText(prefix: NSLocalizedString("githubPrefix", comment: ""), text: NSLocalizedString("defaultGithubText", comment: ""))
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -102,7 +102,7 @@ class TeamDetailsViewController: UIViewController {
 
     private func configUI() {
         
-        title = "Name"
+        title = NSLocalizedString("teamDetailTitle", comment: "")
         view.backgroundColor = .white
         
         addAndConfigureElements()
@@ -112,10 +112,10 @@ class TeamDetailsViewController: UIViewController {
             
             devDescriptionLabel.text = dev.description
             devImage.image = dev.image
-            telefoneLabel.attributedText = generateLabelText(prefix: "Phone", text: dev.phone)
-            emailLabel.attributedText = generateLabelText(prefix: "Email", text: dev.email)
-            linkedinLabel.attributedText = generateLabelText(prefix: "Linkedin", text: dev.linkedin)
-            githubLabel.attributedText = generateLabelText(prefix: "Github", text: dev.github)
+            telefoneLabel.attributedText = generateLabelText(prefix: NSLocalizedString("phonePrefix", comment: ""), text: dev.phone)
+            emailLabel.attributedText = generateLabelText(prefix: NSLocalizedString("emailPrefix", comment: ""), text: dev.email)
+            linkedinLabel.attributedText = generateLabelText(prefix: NSLocalizedString("linkedinPrefix", comment: ""), text: dev.linkedin)
+            githubLabel.attributedText = generateLabelText(prefix: NSLocalizedString("githubPrefix", comment: ""), text: dev.github)
         }
     }
     

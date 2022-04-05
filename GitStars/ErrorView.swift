@@ -34,7 +34,7 @@ class ErrorView: UIView {
     lazy var errorTitle: UILabel = {
         let label = UILabel()
         
-        label.text = "Oops... 👀"
+        label.text = NSLocalizedString("errorMessageTitle", comment: "")
         label.textColor = .label
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
@@ -46,10 +46,7 @@ class ErrorView: UIView {
     lazy var errorDescription: UILabel = {
         let label = UILabel()
         
-        label.text = """
-        Sorry, the service cannot be run.
-            Try again later
-        """
+        label.text = NSLocalizedString("errorMessageDescription", comment: "")
         label.textColor = .label
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -62,7 +59,7 @@ class ErrorView: UIView {
     lazy var callbackButton: UIButton = {
         let button = UIButton(type: .system)
         
-        button.setTitle("Reload", for: .normal)
+        button.setTitle(NSLocalizedString("reloadTitle", comment: ""), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.tintColor = .label
         button.setImage(UIImage(systemName: "arrow.counterclockwise"), for: .normal)

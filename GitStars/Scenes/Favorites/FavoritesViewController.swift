@@ -22,14 +22,11 @@ class FavoritesViewController: TriStateViewController {
     private func setupView() {
         switch state {
         case .loading:
-            print("loading")
             self.setupLoadingState()
         case .normal:
-            print("normal")
             self.setupNormalState()
             self.tableView.reloadData()
         case .error:
-            print("error")
             setupErrorState()
         }
     }
@@ -47,9 +44,7 @@ class FavoritesViewController: TriStateViewController {
         super.viewDidLoad()
         
         configUI()
-        
         setupDelegates()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +58,7 @@ class FavoritesViewController: TriStateViewController {
     }
     
     private func configUI() {
-        title = "Favorites"
+        title = NSLocalizedString("favoriteTitle", comment: "")
         view.backgroundColor = .systemBackground
         
         tableView.register(ReusableTableViewCell.self, forCellReuseIdentifier: ReusableTableViewCell.identifier)

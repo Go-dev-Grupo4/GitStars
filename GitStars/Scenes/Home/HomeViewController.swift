@@ -28,21 +28,20 @@ class HomeViewController: TriStateViewController {
     private func setupView() {
         switch state {
         case .loading:
-            print("loading")
             self.setupLoadingState()
         case .normal:
-            print("normal")
             self.setupNormalState()
         case .error:
-            print("error")
             setupErrorState()
         }
     }
 
     lazy var searchController: UISearchController = {
-        
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.scopeButtonTitles = [NSLocalizedString("ascendingText", comment: "") , NSLocalizedString("descending", comment: "")]
+        
+        searchController.searchBar.scopeButtonTitles = [
+            NSLocalizedString("ascendingTitle", comment: ""),
+            NSLocalizedString("descendingTitle", comment: "")]
         searchController.searchBar.selectedScopeButtonIndex = 0
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsScopeBar = false
@@ -73,7 +72,7 @@ class HomeViewController: TriStateViewController {
     }
     
     private func configUI() {
-        title = "List"
+        title = NSLocalizedString("homeTitle", comment: "")
         view.backgroundColor = .systemBackground
         
         configNavigationBar()
@@ -216,7 +215,6 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
 
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
     if indexPaths.contains(where: isLoadingCell) {
-        print("Deu fetch pelo prefetch")
       viewModel?.fetchRepositories(language: searchLanguage)
     }
   }

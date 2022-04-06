@@ -64,6 +64,7 @@
 		F844159F27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844159E27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift */; };
 		F84415A227FA508900EF84AA /* TeamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84415A127FA508900EF84AA /* TeamDetailsViewController.swift */; };
 		F8D0609427FDD93800D8252E /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0609327FDD93800D8252E /* AlertDisplayer.swift */; };
+		F8D0609727FE11F200D8252E /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0609627FE11F200D8252E /* OnboardingViewController.swift */; };
 		F8E7FD4927FCC08B00293937 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FD4827FCC08B00293937 /* Coordinator.swift */; };
 		F8E7FD4B27FCC19800293937 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FD4A27FCC19800293937 /* AppCoordinator.swift */; };
 		F8E7FD4D27FCC22800293937 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FD4C27FCC22800293937 /* HomeCoordinator.swift */; };
@@ -165,6 +166,7 @@
 		F844159E27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
 		F84415A127FA508900EF84AA /* TeamDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewController.swift; sourceTree = "<group>"; };
 		F8D0609327FDD93800D8252E /* AlertDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayer.swift; sourceTree = "<group>"; };
+		F8D0609627FE11F200D8252E /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F8E7FD4827FCC08B00293937 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F8E7FD4A27FCC19800293937 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F8E7FD4C27FCC22800293937 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 		F808F61727F75EEB00C44D28 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F8D0609527FE11DB00D8252E /* Onboarding */,
 				F83DFF0A27FBD19E00875FB1 /* WebView */,
 				F84415A027FA507C00EF84AA /* TeamDetails */,
 				F844159D27FA4FE900EF84AA /* RepositoryDetails */,
@@ -457,6 +460,14 @@
 				F83DFEB127FB59C500875FB1 /* TeamDetailsModel.swift */,
 			);
 			path = TeamDetails;
+			sourceTree = "<group>";
+		};
+		F8D0609527FE11DB00D8252E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F8D0609627FE11F200D8252E /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		F8E7FD4527FCC06900293937 /* TriStateView */ = {
@@ -788,6 +799,7 @@
 				F844159F27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift in Sources */,
 				4CF2C22327F3A6F800ABB8E7 /* License.swift in Sources */,
 				2623BC7C27FBD86100AE0AD3 /* NSNotification+extensions.swift in Sources */,
+				F8D0609727FE11F200D8252E /* OnboardingViewController.swift in Sources */,
 				F808F61627F7578400C44D28 /* SearchRepoService.swift in Sources */,
 				F8E7FD4927FCC08B00293937 /* Coordinator.swift in Sources */,
 				2648C58427FD381C000EB239 /* TeamManagerDelegate.swift in Sources */,

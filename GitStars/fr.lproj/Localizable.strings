@@ -49,3 +49,9 @@
 "errorMessageTitle" = "Oups... 👀";
 "errorMessageDescription" = "Désolé, le service ne peut pas fonctionner.
 Réessayez plus tard.";
+
+// MARK: Onboarding
+"onboardingTitle" = "Bienvenue sur Gitstars 🌟";
+"githubLabel" = "Explorez les référentiels les plus préférés pour vos langues préférées";
+"favoritesLabel" = "Favorisez les référentiels que vous aimez le plus pour les suivre";
+"orderLabel" = "Rechercher parmi les favoris les plus ou les moins favoris";

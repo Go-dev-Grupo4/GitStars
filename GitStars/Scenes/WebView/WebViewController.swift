@@ -53,14 +53,16 @@ class WebViewController: UIViewController {
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        let forwardBarItem = UIBarButtonItem(image: UIImage.init(systemName: "chevron.right.square.fill"), style: .plain, target: self, action: #selector(forwardAction))
+        let forwardBarItem = UIBarButtonItem(image: UIImage.init(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardAction))
         
-        let backBarItem = UIBarButtonItem(image: UIImage.init(systemName: "chevron.backward.square.fill"), style: .plain, target: self, action: #selector(backAction))
+        let backBarItem = UIBarButtonItem(image: UIImage.init(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backAction))
         
-        let reloadBarItem = UIBarButtonItem(image: UIImage.init(systemName: "arrow.uturn.left.circle.fill"), style: .plain, target: self, action: #selector(reloadWebView))
+        let reloadBarItem = UIBarButtonItem(image: UIImage.init(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(reloadWebView))
+        
+        let exitBarItem = UIBarButtonItem(image: UIImage.init(systemName: "xmark"), style: .plain, target: self, action: #selector(exitWebView))
         
         navigationItem.rightBarButtonItems = [forwardBarItem, backBarItem]
-        navigationItem.leftBarButtonItem = reloadBarItem
+        navigationItem.leftBarButtonItems = [exitBarItem, reloadBarItem]
     }
     
     private func configWebView() {
@@ -120,9 +122,12 @@ extension WebViewController {
     
     @objc
     private func reloadWebView() {
-        
         webView.reload()
-        
+    }
+    
+    @objc
+    private func exitWebView() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc

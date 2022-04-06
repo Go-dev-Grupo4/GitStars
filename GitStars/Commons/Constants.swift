@@ -11,5 +11,9 @@ import Foundation
 struct Constants {
     static let baseURL: String = "https://api.github.com"
     
-    static let token: String = "aopf1asf09asf0a"
+    struct UserDefaultsConstants {
+        static let userDidOnboardingKey = "userDidOnboarding"
+    }
 }
+
+

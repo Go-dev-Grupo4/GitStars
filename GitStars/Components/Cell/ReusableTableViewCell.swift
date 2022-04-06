@@ -48,7 +48,8 @@ class ReusableTableViewCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.font = .init(name: "SFProText-Regular", size: 17)
+        label.textColor = .primaryLabelColor
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
@@ -58,7 +59,8 @@ class ReusableTableViewCell: UITableViewCell {
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .init(name: "SFProText-Regular", size: 14)
+        label.textColor = .secondaryLabelColor
         label.numberOfLines = 3
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -112,10 +114,10 @@ class ReusableTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            horizontalStackView.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: 15),
-            horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            horizontalStackView.topAnchor.constraint(equalTo: topAnchor, constant: 13),
-            horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -13),
+            horizontalStackView.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: Metrics.Margin.mainImageTrailing),
+            horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Metrics.Margin.trailingStackView),
+            horizontalStackView.topAnchor.constraint(equalTo: topAnchor, constant: Metrics.Margin.topStackView),
+            horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Metrics.Margin.bottonStackView),
         ])
         
     }

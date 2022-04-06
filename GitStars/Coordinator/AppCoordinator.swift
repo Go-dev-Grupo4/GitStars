@@ -5,7 +5,6 @@
 //  Created by Matheus Lenke on 05/04/22.
 //
 
-import Foundation
 import UIKit
 
 class AppCoordinator: Coordinator {

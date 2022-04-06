@@ -270,7 +270,7 @@ extension TeamDetailsViewController {
     
     @objc private func pressedLinkedin() {
         if let linkedin = dev?.linkedin,
-           let url = URL(string: linkedin) {
+           let _ = URL(string: linkedin) {
             let linkedinId = linkedin.replacingOccurrences(of: "https://www.linkedin.com/in/", with: "").replacingOccurrences(of: "/", with: "")
             let scheme = "linkedin://profile/\(linkedinId)"
             if let deepLink = URL(string: scheme) {

@@ -68,34 +68,15 @@ class WebViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             webView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 5),
-            webView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
     
     private func loadWebView() {
         
         if let url = destinationUrl {
-            
-            // TRY TO OPEN INSTALLED APPS
-            if url.contains("linkedin") {
-                let scheme = "linkedin://"
-                if let deepLink = URL(string: scheme) {
-                    if UIApplication.shared.canOpenURL(deepLink) {
-                        UIApplication.shared.open(deepLink)
-                    }
-                }
-            }
-            
-            if url.contains("github") {
-                let scheme = "github://" //NAO ENCONTREI O DEEP LINK E CHUTEI ESSE
-                if let deepLink = URL(string: scheme) {
-                    if UIApplication.shared.canOpenURL(deepLink) {
-                        UIApplication.shared.open(deepLink)
-                    }
-                }
-            }
 
             // IF APPS ARE NOT INTALLED, OPENS WEBVIEW NAVIGATION
             let prefix = String("www")

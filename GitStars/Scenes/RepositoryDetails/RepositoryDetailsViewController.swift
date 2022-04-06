@@ -308,7 +308,7 @@ class RepositoryDetailsViewController: UIViewController {
     
     @objc private func pressedRepositoryLink() {
         
-        if let github = viewmodel?.apiRepository?.url,
+        if let github = viewModel?.apiRepository?.url,
            let url = URL(string: github){
             let webView = WebViewController()
             webView.destinationUrl = github

@@ -30,7 +30,13 @@
 		26D3037A27FA369100EC561C /* SearchRepoByIdServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3037927FA369100EC561C /* SearchRepoByIdServiceProtocol.swift */; };
 		26D3037C27FA41C700EC561C /* SearchRepoCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3037B27FA41C700EC561C /* SearchRepoCoreDataService.swift */; };
 		26D3037E27FA422A00EC561C /* SearchRepoCoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3037D27FA422A00EC561C /* SearchRepoCoreDataServiceProtocol.swift */; };
-		26D3038027FA47B100EC561C /* FavoritesManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3037F27FA47B100EC561C /* FavoritesManagerDelegate.swift */; };
+		26D3038027FA47B100EC561C /* FavoriteManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D3037F27FA47B100EC561C /* FavoriteManagerDelegate.swift */; };
+		3A5911D527FBE69D007F89EB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5911D427FBE69D007F89EB /* AppColors.swift */; };
+		3A5911DA27FE1246007F89EB /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5911D927FE1246007F89EB /* Metrics.swift */; };
+		3A5911DD27FE3E94007F89EB /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A5911DC27FE3DD9007F89EB /* SFProText-Regular.ttf */; };
+		3A5911DE27FE3E96007F89EB /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A5911DC27FE3DD9007F89EB /* SFProText-Regular.ttf */; };
+		3A5911DF27FE3E97007F89EB /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A5911DC27FE3DD9007F89EB /* SFProText-Regular.ttf */; };
+
 		47203682C2026FA89E38163F /* Pods_GitStars_GitStarsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37EAE0FE68D0D9D0BA4898A /* Pods_GitStars_GitStarsUITests.framework */; };
 		4CF2C22327F3A6F800ABB8E7 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22227F3A6F800ABB8E7 /* License.swift */; };
 		4CF2C22527F3A81F00ABB8E7 /* GitResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2C22427F3A81F00ABB8E7 /* GitResponse.swift */; };
@@ -126,6 +132,10 @@
 		26D3037927FA369100EC561C /* SearchRepoByIdServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepoByIdServiceProtocol.swift; sourceTree = "<group>"; };
 		26D3037B27FA41C700EC561C /* SearchRepoCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepoCoreDataService.swift; sourceTree = "<group>"; };
 		26D3037D27FA422A00EC561C /* SearchRepoCoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepoCoreDataServiceProtocol.swift; sourceTree = "<group>"; };
+		26D3037F27FA47B100EC561C /* FavoriteManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteManagerDelegate.swift; sourceTree = "<group>"; };
+		3A5911D427FBE69D007F89EB /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		3A5911D927FE1246007F89EB /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
+		3A5911DC27FE3DD9007F89EB /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProText-Regular.ttf"; path = "../../../../../Downloads/SFProText-Regular.ttf"; sourceTree = "<group>"; };
 		26D3037F27FA47B100EC561C /* FavoritesManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManagerDelegate.swift; sourceTree = "<group>"; };
 		3F906B11707FF9D02826ABC2 /* Pods-GitStarsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitStarsTests.debug.xcconfig"; path = "Target Support Files/Pods-GitStarsTests/Pods-GitStarsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4CF2C22227F3A6F800ABB8E7 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
@@ -259,6 +269,7 @@
 		266217EE27F24A03008A8B48 /* GitStars */ = {
 			isa = PBXGroup;
 			children = (
+
 				2648C58C27FD4CD7000EB239 /* DesignSystem */,
 				F8E7FD4727FCC07E00293937 /* Coordinator */,
 				F808F61727F75EEB00C44D28 /* Scenes */,
@@ -304,6 +315,32 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		3A5911D627FD4540007F89EB /* DesignerSystem */ = {
+			isa = PBXGroup;
+			children = (
+				3A5911D427FBE69D007F89EB /* AppColors.swift */,
+				3A5911D927FE1246007F89EB /* Metrics.swift */,
+			);
+			path = DesignerSystem;
+			sourceTree = "<group>";
+		};
+		3A5911DB27FE3D89007F89EB /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3A5911DC27FE3DD9007F89EB /* SFProText-Regular.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		4CF2C22A27F3EBB200ABB8E7 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				4CF2C22B27F4BC6E00ABB8E7 /* DataSource.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+
 		519F2EA927F4F8FF00CE7717 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +412,7 @@
 		F808F60E27F7559500C44D28 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				3A5911DB27FE3D89007F89EB /* fonts */,
 				2643FB0227F68EF2008EA2C7 /* Extensions */,
 				F808F60F27F755A900C44D28 /* Constants.swift */,
 			);
@@ -646,6 +684,7 @@
 				266217FF27F24A03008A8B48 /* LaunchScreen.storyboard in Resources */,
 				2623BC7F27FBE04C00AE0AD3 /* Localizable.strings in Resources */,
 				266217FC27F24A03008A8B48 /* Assets.xcassets in Resources */,
+				3A5911DD27FE3E94007F89EB /* SFProText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5911DE27FE3E96007F89EB /* SFProText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +700,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5911DF27FE3E97007F89EB /* SFProText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +815,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CF2C22727F3A8CB00ABB8E7 /* Repo.swift in Sources */,
+				3A5911DA27FE1246007F89EB /* Metrics.swift in Sources */,
 				2648C59027FD4D16000EB239 /* Colors.swift in Sources */,
 				F8D0609427FDD93800D8252E /* AlertDisplayer.swift in Sources */,
 				F808F62327F7655300C44D28 /* UserGetServiceProtocol.swift in Sources */,

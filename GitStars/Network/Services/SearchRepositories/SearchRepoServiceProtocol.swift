@@ -16,5 +16,5 @@ enum RepoError: Error {
 
 protocol SearchRepoServiceProtocol: AnyObject {
     
-    func execute(language: String, page: Int, handler: @escaping(Result<GitResponse, RepoError>) -> Void)
+    func execute(language: String, order: String, page: Int, handler: @escaping(Result<GitResponse, RepoError>) -> Void)
 }

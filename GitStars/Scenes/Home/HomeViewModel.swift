@@ -30,17 +30,20 @@ class HomeViewModel {
       return repositories.count
     }
     
+    var searchLanguage = "swift"
+    var searchOrder = "desc"
+    
     init(searchRepoServices: SearchRepoServiceProtocol) {
         self.searchRepoServices = searchRepoServices
     }
     
-    func fetchRepositories(language: String) {
+    func fetchRepositories() {
         guard !isFetchInProgress else {
           return
         }
         
         isFetchInProgress = true
-        searchRepoServices.execute(language: language, page: currentPage) { result in
+        searchRepoServices.execute(language: searchLanguage, order: searchOrder, page: currentPage) { result in
             switch result {
             case .success(let gitResponse):
                 self.isFetchInProgress = false

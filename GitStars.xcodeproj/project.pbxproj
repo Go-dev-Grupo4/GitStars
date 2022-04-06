@@ -63,6 +63,7 @@
 		F844159C27F9EF8800EF84AA /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844159B27F9EF8800EF84AA /* TeamViewController.swift */; };
 		F844159F27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844159E27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift */; };
 		F84415A227FA508900EF84AA /* TeamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84415A127FA508900EF84AA /* TeamDetailsViewController.swift */; };
+		F8D0609427FDD93800D8252E /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0609327FDD93800D8252E /* AlertDisplayer.swift */; };
 		F8E7FD4927FCC08B00293937 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FD4827FCC08B00293937 /* Coordinator.swift */; };
 		F8E7FD4B27FCC19800293937 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FD4A27FCC19800293937 /* AppCoordinator.swift */; };
 		F8E7FD4D27FCC22800293937 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E7FD4C27FCC22800293937 /* HomeCoordinator.swift */; };
@@ -163,6 +164,7 @@
 		F844159B27F9EF8800EF84AA /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		F844159E27FA4FFC00EF84AA /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
 		F84415A127FA508900EF84AA /* TeamDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewController.swift; sourceTree = "<group>"; };
+		F8D0609327FDD93800D8252E /* AlertDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayer.swift; sourceTree = "<group>"; };
 		F8E7FD4827FCC08B00293937 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F8E7FD4A27FCC19800293937 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F8E7FD4C27FCC22800293937 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				2643FB0627F69044008EA2C7 /* UIView+extensions.swift */,
 				F83DFEB327FB9E7D00875FB1 /* String+extensions.swift */,
 				2623BC7B27FBD86100AE0AD3 /* NSNotification+extensions.swift */,
+				F8D0609327FDD93800D8252E /* AlertDisplayer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 			files = (
 				4CF2C22727F3A8CB00ABB8E7 /* Repo.swift in Sources */,
 				2648C59027FD4D16000EB239 /* Colors.swift in Sources */,
+				F8D0609427FDD93800D8252E /* AlertDisplayer.swift in Sources */,
 				F808F62327F7655300C44D28 /* UserGetServiceProtocol.swift in Sources */,
 				26D3037427FA187700EC561C /* HomeViewController.swift in Sources */,
 				F8E7FD4F27FCC28F00293937 /* RepositoryDetailsCoordinator.swift in Sources */,
@@ -988,6 +992,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

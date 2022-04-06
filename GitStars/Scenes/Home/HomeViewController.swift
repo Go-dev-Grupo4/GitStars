@@ -14,8 +14,6 @@ class HomeViewController: TriStateViewController {
     
     var safeArea: UILayoutGuide!
     var toogle = true
-    var timeoutTimer: Timer?
-    var searchLanguage = "swift"
         
     var viewModel: HomeViewModel?
     
@@ -48,7 +46,7 @@ class HomeViewController: TriStateViewController {
         searchController.searchBar.scopeButtonTitles = [
             NSLocalizedString("ascendingTitle", comment: ""),
             NSLocalizedString("descendingTitle", comment: "")]
-        searchController.searchBar.selectedScopeButtonIndex = 0
+        searchController.searchBar.selectedScopeButtonIndex = 1
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsScopeBar = false
         searchController.definesPresentationContext = true
@@ -75,8 +73,7 @@ class HomeViewController: TriStateViewController {
         
         configUI()
         setupDelegates()
-        
-        fetchRepositories(language: searchLanguage)
+        fetchRepositories()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,13 +98,13 @@ class HomeViewController: TriStateViewController {
         configTableView()
     }
     
-    @objc private func fetchRepositories(language: String) {
+    @objc private func fetchRepositories() {
         state = .loading
-        viewModel?.fetchRepositories(language: language)
+        viewModel?.fetchRepositories()
     }
     
     @objc func fetchRepositoriesTimeout() {
-        timeoutTimer?.invalidate()
+//        timeoutTimer?.invalidate()
         self.state = .error
     }
     
@@ -164,7 +161,7 @@ class HomeViewController: TriStateViewController {
     }
     
     @objc private func reloadCallback() {
-        fetchRepositories(language: searchLanguage)
+        fetchRepositories()
     }
     
 
@@ -187,10 +184,23 @@ extension HomeViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let language = searchBar.searchTextField.text {
-            searchLanguage = language
+            viewModel?.searchLanguage = language
             viewModel?.resetPage()
-            fetchRepositories(language: language)
+            fetchRepositories()
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if selectedScope == 0 {
+            viewModel?.searchOrder = "asc"
+        } else {
+            viewModel?.searchOrder = "desc"
+        }
+        viewModel?.resetPage()
+        fetchRepositories()
+//        toogle = !toogle
+//        searchController.searchBar.setShowsScope(false, animated: true)
+//        navigationController?.navigationBar.sizeToFit()
     }
 }
 
@@ -234,7 +244,7 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
 
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
     if indexPaths.contains(where: isLoadingCell) {
-      viewModel?.fetchRepositories(language: searchLanguage)
+      viewModel?.fetchRepositories()
     }
   }
 }

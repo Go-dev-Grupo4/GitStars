@@ -117,23 +117,16 @@ class RepositoryDetailsViewController: TriStateViewController {
     
     lazy var favoriteBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action:  #selector(favoriteButtonPressed))
-        
-                
+        button.tintColor = .systemYellow
         return button
-//        let button = UIButton(type: .system)
-//        button.setTitle(NSLocalizedString("makeFavoriteTitle", comment: ""), for: .normal)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
-//        return button
     }()
     
     lazy var presentView: UIView = {
        let view = UIView()
-        
-        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -151,6 +144,7 @@ class RepositoryDetailsViewController: TriStateViewController {
     override func viewDidAppear(_ animated: Bool) {
         setupData()
     }
+    
     // MARK: - Private Functions
     
     private func setupDelegates() {
@@ -280,26 +274,14 @@ class RepositoryDetailsViewController: TriStateViewController {
         
         // Se o repositório vier da API, precisamos verificar se o mesmo está nos favoritos do CoreData
         if let repositoryFromHome = viewmodel.apiRepository {
-            
-            //viewmodel.fetchRepositoryCoreData()
-//
-//            if let url = URL(string: repositoryFromHome.author.avatarUrl) {
-//                repoImage.kf.setImage(with: url)
-//            }
-//            repoDescriptionLabel.text = repositoryFromHome.repoDescription
-//            autorLabel.attributedText = generateLabelText(prefix: NSLocalizedString("authorPrefix", comment: ""), text: repositoryFromHome.author.login)
-//            observadoresLabel.attributedText = generateLabelText(prefix: NSLocalizedString("watchersPrefix", comment: ""), text: "\(repositoryFromHome.watchers)")
-//            dataCriacaoLabel.attributedText = generateLabelText(prefix: NSLocalizedString("creationDatePrefix", comment: ""), text: repositoryFromHome.createdAt)
-//            licencaLabel.attributedText = generateLabelText(prefix: NSLocalizedString("licensePrefix", comment: ""), text: repositoryFromHome.license?.name ?? NSLocalizedString("defaultNoLicenseText", comment: ""))
-//            title = repositoryFromHome.name
-            
+            viewmodel.fetchRepositoryCoreData()
             setupUI(with: repositoryFromHome)
             return
         }
         
         // Se o repositório vier do CoreData, precisamos pegar seus detalhes na API
         if let repositoryFromCoreData = viewmodel.coreDataRepository {
-            //viewmodel.fetchRepositoryApi()
+            viewmodel.fetchRepositoryApi()
             changeFavoriteButtonTitle(isFavorite: repositoryFromCoreData.isFavorite)
         }
     }
@@ -314,13 +296,9 @@ class RepositoryDetailsViewController: TriStateViewController {
     private func changeFavoriteButtonTitle(isFavorite: Bool) {
         DispatchQueue.main.async {
             if isFavorite {
-                //self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("undoFavoriteTitle", comment: "")
-//                self.favoriteButton.setTitle(NSLocalizedString("undoFavoriteTitle", comment: ""), for: .normal)
-                self.favoriteBarButtonItem.image = UIImage(systemName: "star")
-            } else {
-//                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("favoriteTitle", comment: "")
-//                self.favoriteButton.setTitle(NSLocalizedString("favoriteTitle", comment: ""), for: .normal)
                 self.favoriteBarButtonItem.image = UIImage(systemName: "star.fill")
+            } else {
+                self.favoriteBarButtonItem.image = UIImage(systemName: "star")
             }
         }
     }
@@ -347,7 +325,6 @@ class RepositoryDetailsViewController: TriStateViewController {
             self.setupLoadingState()
         case .normal:
             self.setupNormalState()
-            self.setupData()
         case .error:
             setupErrorState()
         }

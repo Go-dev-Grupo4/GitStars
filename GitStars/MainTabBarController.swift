@@ -9,13 +9,29 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
+    // MARK: - Coordinators
+    
+    private var homeCoordinator: HomeCoordinator?
+    private var favoritesCoordinator: FavoritesCoordinator?
+    private var teamCoordinator: TeamCoordinator?
+    
+    // MARK: - ViewControllers
+    private var homeViewController: UIViewController? {
+        return self.homeCoordinator?.rootViewController
+    }
+    
+    private var favoritesViewController: UIViewController? {
+        return self.favoritesCoordinator?.rootViewController
+    }
+    
+    private var teamViewController: UIViewController? {
+        return self.teamCoordinator?.rootViewController
+    }
+    
+    // MARK: - NavigationControllers with Tab icons
+    
     lazy var homeNavigationController: UINavigationController! = {
-        let searchRepoService = SearchRepoService()
-        let repoViewModel = HomeViewModel(searchRepoServices: searchRepoService)
-        let homeViewController = HomeViewController()
-        homeViewController.viewModel = repoViewModel
-        
-        let navigationController = UINavigationController(rootViewController: homeViewController)
+        let navigationController = UINavigationController()
         
         let itemBar = UITabBarItem(title: NSLocalizedString("homeTabBarTitle", comment: ""), image: UIImage(systemName: "house.fill"), tag: 0)
         navigationController.tabBarItem = itemBar
@@ -24,12 +40,7 @@ class MainTabBarController: UITabBarController {
     }()
     
     lazy var favoritesNavigationController: UINavigationController! = {
-        let searchRepoService = SearchRepoCoreDataService()
-        let favoriteViewModel = FavoritesViewModel(searchRepoServices: searchRepoService)
-        let rootViewController = FavoritesViewController()
-        rootViewController.viewModel = favoriteViewModel
-        
-        let navigationController = UINavigationController(rootViewController: rootViewController)
+        let navigationController = UINavigationController()
         
         let itemBar = UITabBarItem(title: NSLocalizedString("favoriteTabBarTitle", comment: ""), image: UIImage(systemName: "star.fill"), tag: 1)
         navigationController.tabBarItem = itemBar
@@ -38,7 +49,7 @@ class MainTabBarController: UITabBarController {
     }()
     
     lazy var teamNavigationController: UINavigationController! = {
-        let navigationController = UINavigationController(rootViewController: TeamViewController())
+        let navigationController = UINavigationController()
         
         let itemBar = UITabBarItem(title: NSLocalizedString("teamTabBarTitle", comment: ""), image: UIImage(systemName: "person.3.fill"), tag: 2)
         navigationController.tabBarItem = itemBar
@@ -50,6 +61,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupCoordinators()
         setupViewControllers()
         configUI()
         
@@ -61,8 +73,23 @@ class MainTabBarController: UITabBarController {
         UITabBar.appearance().backgroundColor = .systemBackground
     }
     
+    private func setupCoordinators() {
+        homeCoordinator = HomeCoordinator(navigationController: homeNavigationController)
+        homeCoordinator?.start()
+        
+        favoritesCoordinator = FavoritesCoordinator(navigationController: favoritesNavigationController)
+        favoritesCoordinator?.start()
+        
+        teamCoordinator = TeamCoordinator(navigationController: teamNavigationController)
+        teamCoordinator?.start()
+    }
+    
     private func setupViewControllers() {
-        setViewControllers([homeNavigationController, favoritesNavigationController, teamNavigationController], animated: true)
+        if let homeViewController = homeViewController,
+           let favoritesViewController = favoritesViewController,
+        let teamViewController = teamViewController {
+            setViewControllers([homeViewController, favoritesViewController, teamViewController], animated: true)
+        }
     }
 }
 

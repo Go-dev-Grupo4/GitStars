@@ -12,6 +12,8 @@ class FavoritesViewModel {
     
     private var search: SearchRepoCoreDataServiceProtocol
     
+    var coordinator: FavoritesCoordinator?
+    
     var repositories: [Repository]?
     
     init(searchRepoServices: SearchRepoCoreDataServiceProtocol) {

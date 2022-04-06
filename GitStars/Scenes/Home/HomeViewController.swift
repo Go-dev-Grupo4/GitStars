@@ -185,13 +185,10 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repositoryDetailsViewController = RepositoryDetailsViewController()
-        
-        let repositoryDetailsViewModel = RepositoryDetailsViewModel(searchRepoByIdServices: SearchRepoByIdService())
-        repositoryDetailsViewModel.apiRepository = viewModel?.repositories[indexPath.row]
-        repositoryDetailsViewController.viewmodel = repositoryDetailsViewModel
-        
-        navigationController?.pushViewController(repositoryDetailsViewController, animated: true)
+
+        if let repo = viewModel?.repositories[indexPath.row] {
+            self.viewModel?.coordinator?.repositoryDetail(repo: repo)
+        }
     }
 }
 
@@ -204,9 +201,7 @@ extension HomeViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ReusableTableViewCell.identifier, for: indexPath) as? ReusableTableViewCell else {
             return UITableViewCell(style: .subtitle, reuseIdentifier: "CELL")
         }
-        if isLoadingCell(for: indexPath) {
-//            cell.configure(with: .none)
-        } else {
+        if !isLoadingCell(for: indexPath) {
             if let repo = viewModel?.repositories[indexPath.row] {
                 cell.setupView(with: repo)
             }

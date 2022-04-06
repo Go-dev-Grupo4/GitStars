@@ -14,6 +14,8 @@ class HomeViewModel {
     private var total = 0
     private var isFetchInProgress = false
     
+    var coordinator: HomeCoordinator?
+    
     var gitResponse: GitResponse?
     
     var repositories: [Repo] = []
@@ -80,4 +82,5 @@ class HomeViewModel {
         currentPage = 1
         repositories = []
     }
+    
 }

@@ -107,7 +107,7 @@ class RepositoryDetailsViewController: TriStateViewController {
 
     lazy var linkRepoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitleColor(UIColor.label, for: .normal)
+        button.setTitleColor(Colors.tintTabBarItem, for: .normal)
         button.setTitle(NSLocalizedString("repositoryLinkTitle", comment: ""), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.addTarget(self, action: #selector(pressedRepositoryLink), for: .touchUpInside)

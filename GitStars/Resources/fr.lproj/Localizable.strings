@@ -9,7 +9,7 @@
 // MARK: texts for buttons
 "ascendingTitle" = "Ascendant";
 "descendingTitle" = "Décroissant";
-"repositoryLinkTitle" = "Lien de Référentiel";
+"repositoryLinkTitle" = "Lien de Référentiel →";
 "makeFavoriteTitle" = "Favori";
 "undoFavoriteTitle" = "Défavorisé";
 "reloadTitle" = "Recharger";

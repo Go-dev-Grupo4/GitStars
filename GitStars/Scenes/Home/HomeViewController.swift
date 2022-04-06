@@ -90,7 +90,6 @@ class HomeViewController: TriStateViewController {
         title = NSLocalizedString("homeTitle", comment: "")
         
         navigationController?.title = NSLocalizedString("homeTabBarTitle", comment: "")
-        
         view.backgroundColor = .systemBackground
         
         configNavigationBar()
@@ -104,7 +103,6 @@ class HomeViewController: TriStateViewController {
     }
     
     @objc func fetchRepositoriesTimeout() {
-//        timeoutTimer?.invalidate()
         self.state = .error
     }
     
@@ -112,9 +110,8 @@ class HomeViewController: TriStateViewController {
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
         
-        
         navigationItem.rightBarButtonItem = barButtonItem
-        navigationItem.rightBarButtonItem?.tintColor = .label
+        navigationItem.rightBarButtonItem?.tintColor = Colors.tintTabBarItem
         navigationController?.navigationBar.topItem?.hidesSearchBarWhenScrolling = false
         
         let apearence = UINavigationBarAppearance()

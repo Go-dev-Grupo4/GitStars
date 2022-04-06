@@ -56,11 +56,18 @@ class MainTabBarController: UITabBarController {
         
         return navigationController
     }()
-
+    
+    lazy var appearence: UINavigationBarAppearance = {
+        var appearence = UINavigationBarAppearance()
+        appearence.shadowColor = Colors.primaryBackgroundColor
+        appearence.backgroundColor = Colors.primaryBackgroundColor
+        appearence.titleTextAttributes = [.foregroundColor: Colors.tintTabBarItem]
+        return appearence
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupCoordinators()
         setupViewControllers()
         configUI()
@@ -69,8 +76,10 @@ class MainTabBarController: UITabBarController {
     }
     
     private func configUI() {
-        UITabBar.appearance().tintColor = UIColor.label
+        UITabBar.appearance().tintColor = Colors.tintTabBarItem
+        UITabBar.appearance().unselectedItemTintColor = Colors.standartTabBarItem
         UITabBar.appearance().backgroundColor = .systemBackground
+        setupNavigationBar()
     }
     
     private func setupCoordinators() {
@@ -87,15 +96,24 @@ class MainTabBarController: UITabBarController {
     private func setupViewControllers() {
         if let homeViewController = homeViewController,
            let favoritesViewController = favoritesViewController,
-        let teamViewController = teamViewController {
+           let teamViewController = teamViewController {
             setViewControllers([homeViewController, favoritesViewController, teamViewController], animated: true)
         }
+    }
+    
+    private func setupNavigationBar() {
+        homeNavigationController.navigationBar.tintColor = Colors.tintTabBarItem
+        favoritesNavigationController.navigationBar.tintColor = Colors.tintTabBarItem
+        teamNavigationController.navigationBar.tintColor = Colors.tintTabBarItem
+        
+        homeNavigationController.navigationBar.standardAppearance = appearence
+        favoritesNavigationController.navigationBar.standardAppearance = appearence
+        teamNavigationController.navigationBar.standardAppearance = appearence
     }
 }
 
 extension MainTabBarController : UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
         
         return ViewControllerAnimation(fromIndex: fromVC.tabBarItem.tag, toIndex: toVC.tabBarItem.tag)
     }
@@ -111,7 +129,7 @@ class ViewControllerAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         self.fromIndex = fromIndex
         self.toIndex = toIndex
         super.init()
-
+        
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -128,7 +146,7 @@ class ViewControllerAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         }
         
         transitionContext.containerView.addSubview(toVc)
-
+        
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
             toVc.transform = .identity
             

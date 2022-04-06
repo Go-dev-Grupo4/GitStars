@@ -13,7 +13,7 @@ class RepositoryDetailsViewModel {
     
     var searchRepoByIdService: SearchRepoByIdService
     
-    var coreDataRepository: Repository?
+    var coreDataRepository: FavoritesModel?
     
     var apiRepository: Repo?
     
@@ -49,7 +49,7 @@ class RepositoryDetailsViewModel {
         searchRepoByIdService.execute(id: apiRepository.id, datasource: .coreData) { result in
             switch result {
             case .success(let repoResponse):
-                if let repoResponse = repoResponse as? Repository {
+                if let repoResponse = repoResponse as? FavoritesModel {
                     self.successCoreData(repo: repoResponse)
                 }
             case .failure(let error):
@@ -63,7 +63,7 @@ class RepositoryDetailsViewModel {
             searchRepoByIdService.execute(id: repo.id, datasource: .coreData) { result in
                 switch result {
                 case .success(let resultRepo):
-                    self.coreDataRepository = resultRepo as? Repository
+                    self.coreDataRepository = resultRepo as? FavoritesModel
                     self.removeFavoriteRepo()
                 case .failure(let error):
                     switch error {
@@ -89,7 +89,7 @@ class RepositoryDetailsViewModel {
     
     private func addFavoriteRepo() {
         if let repo = self.apiRepository {
-            let newRepo = Repository(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? NSLocalizedString("defaultDescriptionText", comment: ""), avatarURL: repo.author.avatarUrl, isFavorite: true)
+            let newRepo = FavoritesModel(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? NSLocalizedString("defaultDescriptionText", comment: ""), avatarURL: repo.author.avatarUrl, isFavorite: true)
             ManagedObjectContext.shared.save(repository: newRepo) { error in
                 print(error)
                 delegate?.favoritedRepoError(error)
@@ -126,7 +126,7 @@ class RepositoryDetailsViewModel {
         delegate?.errorToFetchRepoApi(error)
     }
     
-    private func successCoreData(repo: Repository) {
+    private func successCoreData(repo: FavoritesModel) {
         coreDataRepository = repo
         delegate?.fetchRepoWithSuccessCoreData()
     }

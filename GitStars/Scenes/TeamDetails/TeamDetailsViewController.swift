@@ -288,7 +288,7 @@ extension TeamDetailsViewController {
     @objc private func pressedGithub() {
         if let github = dev?.github,
            let url = URL(string: github){
-            let request = URLRequest(url: url)
+            let _ = URLRequest(url: url)
             webView = WebViewController()
             webView?.destinationUrl = github
             self.navigationController?.pushViewController(webView!, animated: true)

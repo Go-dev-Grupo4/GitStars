@@ -15,7 +15,7 @@ class SearchRepoService: SearchRepoServiceProtocol {
     func execute(language: String, page: Int = 1, handler: @escaping Completion) {
         session.configuration.waitsForConnectivity = false
         
-        let request: HomeRequest = .searchAllRepoByLanguage(language: language, page: page)
+        let request: Request = .searchAllRepoByLanguage(language: language, page: page)
         
         
         if var baseUrl = URLComponents(string: request.baseURL) {

@@ -9,5 +9,5 @@ import Foundation
 
 protocol SearchRepoCoreDataServiceProtocol: AnyObject {
     
-    func execute(handler: @escaping(Result<[Repository], RepoError>) -> Void)
+    func execute(handler: @escaping(Result<[FavoritesModel], RepoError>) -> Void)
 }

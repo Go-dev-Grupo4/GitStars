@@ -90,7 +90,7 @@ class FavoritesViewController: TriStateViewController {
     }
 }
 
-extension FavoritesViewController: FavoriteManagerDelegate {
+extension FavoritesViewController: FavoritesManagerDelegate {
     func fetchRepoWithSuccess() {
         self.state = .normal
         DispatchQueue.main.async {

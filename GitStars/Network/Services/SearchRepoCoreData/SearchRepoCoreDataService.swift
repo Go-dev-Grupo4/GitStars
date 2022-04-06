@@ -7,11 +7,11 @@
 
 import Foundation
 
-typealias CompletionRepositories = (Result<[Repository], RepoError>) -> Void
+typealias CompletionRepositories = (Result<[FavoritesModel], RepoError>) -> Void
 
 class SearchRepoCoreDataService: SearchRepoCoreDataServiceProtocol {
     
-    func execute(handler: @escaping (Result<[Repository], RepoError>) -> Void) {
+    func execute(handler: @escaping (Result<[FavoritesModel], RepoError>) -> Void) {
         
         let repositories = ManagedObjectContext.shared.getRepositories()
         

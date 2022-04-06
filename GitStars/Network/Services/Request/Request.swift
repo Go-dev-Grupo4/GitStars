@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HomeRequest : URLRequestProtocol {
+enum Request: URLRequestProtocol {
     
     case searchAllRepoByLanguage(language: String, page: Int)
     case searchRepoById(id: Int)

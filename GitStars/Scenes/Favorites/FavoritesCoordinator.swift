@@ -32,7 +32,7 @@ class FavoritesCoordinator: Coordinator {
         navigationController.setViewControllers([favoritesViewController], animated: true)
     }
     
-    func repositoryDetail(repo: Repository) {
+    func repositoryDetail(repo: FavoritesModel) {
         let repositoryDetailsCoordinator = RepositoryDetailsCoordinator(navigationController: navigationController, repo: repo)
         childCoordinators.append(repositoryDetailsCoordinator)
         repositoryDetailsCoordinator.parentCoordinator = self

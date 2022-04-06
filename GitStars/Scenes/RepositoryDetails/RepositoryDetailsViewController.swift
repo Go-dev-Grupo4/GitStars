@@ -7,12 +7,19 @@
 
 import UIKit
 
-class RepositoryDetailsViewController: UIViewController {
+class RepositoryDetailsViewController: TriStateViewController {
     
     // MARK: - Variables
     
     var viewModel: RepositoryDetailsViewModel?
-
+    
+    private var state: ViewState = .loading {
+        didSet {
+            DispatchQueue.main.async {
+                self.setupView()
+            }
+        }
+    }
     // MARK: - UI Elements
     
     lazy var repoImage: UIImageView = {
@@ -108,14 +115,25 @@ class RepositoryDetailsViewController: UIViewController {
         return button
     }()
     
-    lazy var favoriteButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(NSLocalizedString("makeFavoriteTitle", comment: ""), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
+    lazy var favoriteBarButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action:  #selector(favoriteButtonPressed))
+        
+                
         return button
+//        let button = UIButton(type: .system)
+//        button.setTitle(NSLocalizedString("makeFavoriteTitle", comment: ""), for: .normal)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
+//        return button
     }()
     
+    lazy var presentView: UIView = {
+       let view = UIView()
+        
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -123,9 +141,16 @@ class RepositoryDetailsViewController: UIViewController {
         
         setupDelegates()
         configUI()
-        setupData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        state = .loading
+        configNavigationBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupData()
+    }
     // MARK: - Private Functions
     
     private func setupDelegates() {
@@ -143,97 +168,97 @@ class RepositoryDetailsViewController: UIViewController {
     private func addAndConfigureElements() {
 
         // ADD ELEMENTS INTO VIEW
-        view.addSubview(repoImage)
-        view.addSubview(repoDescriptionLabel)
-        view.addSubview(autorIcon)
-        view.addSubview(autorLabel)
-        view.addSubview(observadoresIcon)
-        view.addSubview(observadoresLabel)
-        view.addSubview(dataCriacaoIcon)
-        view.addSubview(dataCriacaoLabel)
-        view.addSubview(licencaIcon)
-        view.addSubview(licencaLabel)
-        view.addSubview(linkRepoButton)
-        view.addSubview(favoriteButton)
-
+        contentView.addSubview( presentView)
+        presentView.sizeUpToFillSuperview()
+        
+        presentView.addSubview(repoImage)
+        presentView.addSubview(repoDescriptionLabel)
+        presentView.addSubview(autorIcon)
+        presentView.addSubview(autorLabel)
+        presentView.addSubview(observadoresIcon)
+        presentView.addSubview(observadoresLabel)
+        presentView.addSubview(dataCriacaoIcon)
+        presentView.addSubview(dataCriacaoLabel)
+        presentView.addSubview(licencaIcon)
+        presentView.addSubview(licencaLabel)
+        presentView.addSubview(linkRepoButton)
+        
         // CONFIGURE ELEMENTS CONSTRAINTS
         NSLayoutConstraint.activate([
-            repoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            repoImage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
+            repoImage.centerXAnchor.constraint(equalTo: presentView.centerXAnchor),
+            repoImage.topAnchor.constraint(equalTo: presentView.layoutMarginsGuide.topAnchor, constant: 10),
             repoImage.heightAnchor.constraint(equalToConstant: 150),
             repoImage.widthAnchor.constraint(equalToConstant: 200)
         ])
-        
+
         NSLayoutConstraint.activate([
             repoDescriptionLabel.topAnchor.constraint(equalTo: repoImage.bottomAnchor, constant: 23),
-            repoDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            repoDescriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            repoDescriptionLabel.leadingAnchor.constraint(equalTo: presentView.leadingAnchor, constant: 16),
+            repoDescriptionLabel.trailingAnchor.constraint(equalTo: presentView.trailingAnchor, constant: -16)
         ])
-        
+
         NSLayoutConstraint.activate([
             autorIcon.topAnchor.constraint(equalTo: repoDescriptionLabel.bottomAnchor, constant: 16),
-            autorIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            autorIcon.leadingAnchor.constraint(equalTo: presentView.leadingAnchor, constant: 16),
             autorIcon.heightAnchor.constraint(equalToConstant: 36),
             autorIcon.widthAnchor.constraint(equalToConstant: 36)
         ])
-        
+
         NSLayoutConstraint.activate([
             autorLabel.centerYAnchor.constraint(equalTo: autorIcon.centerYAnchor),
             autorLabel.leadingAnchor.constraint(equalTo: autorIcon.trailingAnchor, constant: 16),
-            autorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            autorLabel.trailingAnchor.constraint(equalTo: presentView.trailingAnchor, constant: -16)
         ])
 
         NSLayoutConstraint.activate([
             observadoresIcon.topAnchor.constraint(equalTo: autorIcon.bottomAnchor, constant: 16),
-            observadoresIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            observadoresIcon.leadingAnchor.constraint(equalTo: presentView.leadingAnchor, constant: 16),
             observadoresIcon.heightAnchor.constraint(equalToConstant: 36),
             observadoresIcon.widthAnchor.constraint(equalToConstant: 36)
         ])
-        
+
         NSLayoutConstraint.activate([
             observadoresLabel.centerYAnchor.constraint(equalTo: observadoresIcon.centerYAnchor),
             observadoresLabel.leadingAnchor.constraint(equalTo: observadoresIcon.trailingAnchor, constant: 16),
-            observadoresLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            observadoresLabel.trailingAnchor.constraint(equalTo: presentView.trailingAnchor, constant: -16)
         ])
-        
+
         NSLayoutConstraint.activate([
             dataCriacaoIcon.topAnchor.constraint(equalTo: observadoresIcon.bottomAnchor, constant: 16),
-            dataCriacaoIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            dataCriacaoIcon.leadingAnchor.constraint(equalTo: presentView.leadingAnchor, constant: 16),
             dataCriacaoIcon.heightAnchor.constraint(equalToConstant: 36),
             dataCriacaoIcon.widthAnchor.constraint(equalToConstant: 36)
         ])
-        
+
         NSLayoutConstraint.activate([
             dataCriacaoLabel.centerYAnchor.constraint(equalTo: dataCriacaoIcon.centerYAnchor),
             dataCriacaoLabel.leadingAnchor.constraint(equalTo: dataCriacaoIcon.trailingAnchor, constant: 16),
-            dataCriacaoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            dataCriacaoLabel.trailingAnchor.constraint(equalTo: presentView.trailingAnchor, constant: -16)
         ])
 
         NSLayoutConstraint.activate([
             licencaIcon.topAnchor.constraint(equalTo: dataCriacaoIcon.bottomAnchor, constant: 16),
-            licencaIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            licencaIcon.leadingAnchor.constraint(equalTo: presentView.leadingAnchor, constant: 16),
             licencaIcon.heightAnchor.constraint(equalToConstant: 36),
             licencaIcon.widthAnchor.constraint(equalToConstant: 36)
         ])
-        
+
         NSLayoutConstraint.activate([
             licencaLabel.centerYAnchor.constraint(equalTo: licencaIcon.centerYAnchor),
             licencaLabel.leadingAnchor.constraint(equalTo: licencaIcon.trailingAnchor, constant: 16),
-            licencaLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            licencaLabel.trailingAnchor.constraint(equalTo: presentView.trailingAnchor, constant: -16)
         ])
 
         NSLayoutConstraint.activate([
             linkRepoButton.topAnchor.constraint(equalTo: licencaLabel.bottomAnchor, constant: 50),
-            linkRepoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            linkRepoButton.centerXAnchor.constraint(equalTo: presentView.centerXAnchor)
         ])
-        
-        NSLayoutConstraint.activate([
-            favoriteButton.topAnchor.constraint(equalTo: linkRepoButton.bottomAnchor, constant: 15),
-            favoriteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
     }
     
+    private func configNavigationBar() {
+        navigationItem.rightBarButtonItem = favoriteBarButtonItem
+    }
+
     // CREATES A CUSTOM NSMutableAttributedString WITH A BOLD FONT PREFIX AND A REGULAR FONT CONTENT
     private func generateLabelText(prefix: String, text: String) -> NSMutableAttributedString {
         let boldAttribute = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .bold)]
@@ -255,22 +280,26 @@ class RepositoryDetailsViewController: UIViewController {
         
         // Se o repositório vier da API, precisamos verificar se o mesmo está nos favoritos do CoreData
         if let repositoryFromHome = viewmodel.apiRepository {
-            viewmodel.fetchRepositoryCoreData()
-            if let url = URL(string: repositoryFromHome.author.avatarUrl) {
-                repoImage.kf.setImage(with: url)
-            }
-            repoDescriptionLabel.text = repositoryFromHome.repoDescription
-            autorLabel.attributedText = generateLabelText(prefix: NSLocalizedString("authorPrefix", comment: ""), text: repositoryFromHome.author.login)
-            observadoresLabel.attributedText = generateLabelText(prefix: NSLocalizedString("watchersPrefix", comment: ""), text: "\(repositoryFromHome.watchers)")
-            dataCriacaoLabel.attributedText = generateLabelText(prefix: NSLocalizedString("creationDatePrefix", comment: ""), text: repositoryFromHome.createdAt)
-            licencaLabel.attributedText = generateLabelText(prefix: NSLocalizedString("licensePrefix", comment: ""), text: repositoryFromHome.license?.name ?? NSLocalizedString("defaultNoLicenseText", comment: ""))
-            title = repositoryFromHome.name
+            
+            //viewmodel.fetchRepositoryCoreData()
+//
+//            if let url = URL(string: repositoryFromHome.author.avatarUrl) {
+//                repoImage.kf.setImage(with: url)
+//            }
+//            repoDescriptionLabel.text = repositoryFromHome.repoDescription
+//            autorLabel.attributedText = generateLabelText(prefix: NSLocalizedString("authorPrefix", comment: ""), text: repositoryFromHome.author.login)
+//            observadoresLabel.attributedText = generateLabelText(prefix: NSLocalizedString("watchersPrefix", comment: ""), text: "\(repositoryFromHome.watchers)")
+//            dataCriacaoLabel.attributedText = generateLabelText(prefix: NSLocalizedString("creationDatePrefix", comment: ""), text: repositoryFromHome.createdAt)
+//            licencaLabel.attributedText = generateLabelText(prefix: NSLocalizedString("licensePrefix", comment: ""), text: repositoryFromHome.license?.name ?? NSLocalizedString("defaultNoLicenseText", comment: ""))
+//            title = repositoryFromHome.name
+            
+            setupUI(with: repositoryFromHome)
             return
         }
         
         // Se o repositório vier do CoreData, precisamos pegar seus detalhes na API
         if let repositoryFromCoreData = viewmodel.coreDataRepository {
-            viewmodel.fetchRepositoryApi()
+            //viewmodel.fetchRepositoryApi()
             changeFavoriteButtonTitle(isFavorite: repositoryFromCoreData.isFavorite)
         }
     }
@@ -285,9 +314,13 @@ class RepositoryDetailsViewController: UIViewController {
     private func changeFavoriteButtonTitle(isFavorite: Bool) {
         DispatchQueue.main.async {
             if isFavorite {
-                self.favoriteButton.setTitle(NSLocalizedString("undoFavoriteTitle", comment: ""), for: .normal)
+                //self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("undoFavoriteTitle", comment: "")
+//                self.favoriteButton.setTitle(NSLocalizedString("undoFavoriteTitle", comment: ""), for: .normal)
+                self.favoriteBarButtonItem.image = UIImage(systemName: "star")
             } else {
-                self.favoriteButton.setTitle(NSLocalizedString("favoriteTitle", comment: ""), for: .normal)
+//                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("favoriteTitle", comment: "")
+//                self.favoriteButton.setTitle(NSLocalizedString("favoriteTitle", comment: ""), for: .normal)
+                self.favoriteBarButtonItem.image = UIImage(systemName: "star.fill")
             }
         }
     }
@@ -297,25 +330,43 @@ class RepositoryDetailsViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Ok", style: .default))
     }
     
-//    private func parseDate(date: String) -> String? {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//        if let date = dateFormatter.date(from: date) {
-//            
-//        }
-//    }
-    
     @objc private func pressedRepositoryLink() {
         
         if let github = viewModel?.apiRepository?.url,
-           let url = URL(string: github){
+           let _ = URL(string: github){
             let webView = WebViewController()
             webView.destinationUrl = github
             self.navigationController?.pushViewController(webView, animated: true)
         }
         
     }
+    
+    private func setupView() {
+        switch state {
+        case .loading:
+            self.setupLoadingState()
+        case .normal:
+            self.setupNormalState()
+            self.setupData()
+        case .error:
+            setupErrorState()
+        }
+    }
+    
+    private func setupUI(with apiRepo: Repo) {
+        self.title = apiRepo.name
+        if let url = URL(string: apiRepo.author.avatarUrl) {
+            self.repoImage.kf.setImage(with: url)
+        }
+        self.repoDescriptionLabel.text = apiRepo.repoDescription
+        self.autorLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("authorPrefix", comment: ""), text: apiRepo.author.login)
+        self.observadoresLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("watchersPrefix", comment: ""), text: "\(apiRepo.watchers)")
+        self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("creationDatePrefix", comment: ""), text: apiRepo.createdAt)
+        self.licencaLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("licensePrefix", comment: ""), text: apiRepo.license?.name ?? NSLocalizedString("defaultNoLicenseText", comment: ""))
+        
+        self.state = .normal
+    }
+    
 }
 
 // MARK: - RepositoryDetailsManagerDelegate
@@ -325,15 +376,8 @@ extension RepositoryDetailsViewController: RepositoryDetailsManagerDelegate {
         guard let apiRepo = viewModel?.apiRepository else { return }
         
         DispatchQueue.main.async {
-            self.title = apiRepo.name
-            if let url = URL(string: apiRepo.author.avatarUrl) {
-                self.repoImage.kf.setImage(with: url)
-            }
-            self.repoDescriptionLabel.text = apiRepo.repoDescription
-            self.autorLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("authorPrefix", comment: ""), text: apiRepo.author.login)
-            self.observadoresLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("watchersPrefix", comment: ""), text: "\(apiRepo.watchers)")
-            self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("creationDatePrefix", comment: ""), text: apiRepo.createdAt)
-            self.licencaLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("licensePrefix", comment: ""), text: apiRepo.license?.name ?? NSLocalizedString("defaultNoLicenseText", comment: ""))
+            self.setupUI(with: apiRepo)
+            self.state = .normal
         }
     }
     

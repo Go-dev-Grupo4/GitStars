@@ -7,13 +7,20 @@
 
 import UIKit
 
-class TeamViewController: UIViewController {
+class TeamViewController: TriStateViewController {
 
     // MARK: - Variables
+    var viewModel: TeamViewModel?
     
     var safeArea: UILayoutGuide!
     
-    var developers: [Developer] = []
+    private var state: ViewState = .loading {
+        didSet {
+            DispatchQueue.main.async {
+                self.setupView()
+            }
+        }
+    }
     
     // MARK: - UI Components
     
@@ -32,8 +39,15 @@ class TeamViewController: UIViewController {
         safeArea = view.layoutMarginsGuide
         
         configUI()
-        getDataMock()
         setupDelegates()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        state = .loading
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchTeam()
     }
     
     // MARK: - Private functions
@@ -55,15 +69,27 @@ class TeamViewController: UIViewController {
         ])
     }
     
-    private func getDataMock() {
-        developers = DataSource.developers
+    private func fetchTeam() {
+        viewModel?.fetchTeam()
     }
     
     private func setupDelegates() {
         tableView.delegate = self
         tableView.dataSource = self
+        viewModel?.delegate = self
     }
     
+    private func setupView() {
+        switch state {
+        case .loading:
+            self.setupLoadingState()
+        case .normal:
+            self.setupNormalState()
+            self.tableView.reloadData()
+        case .error:
+            setupErrorState()
+        }
+    }
 }
 
 extension TeamViewController: UITableViewDelegate {
@@ -72,26 +98,38 @@ extension TeamViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let teamDetailsViewController = TeamDetailsViewController()
+        guard let dev = viewModel?.team?.members[indexPath.row] else { return }
         
-        let dev = developers[indexPath.row]
-        teamDetailsViewController.dev = dev
-        navigationController?.pushViewController(teamDetailsViewController, animated: true)
+        viewModel?.showDetail(dev: dev)
     }
 }
 
 extension TeamViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ReusableTableViewCell.identifier, for: indexPath) as? ReusableTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ReusableTableViewCell.identifier, for: indexPath) as? ReusableTableViewCell,
+              let dev = viewModel?.team?.members[indexPath.row] else {
             return UITableViewCell(style: .subtitle, reuseIdentifier: "CELL")
         }
-        let dev = developers[indexPath.row]
+    
         cell.setupView(with: dev)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return developers.count
+        return viewModel?.team?.members.count ?? 0
+    }
+}
+
+extension TeamViewController: TeamManagerDelegate {
+    func fetchTeamWithSuccess() {
+        self.state = .normal
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func errorToFetchTeam(_ error: String) {
+        self.state = .error
     }
 }

@@ -12,11 +12,11 @@ import CoreData
 typealias onCompletionHandler = (String) -> Void
 
 protocol managedProtocol {
-    func getRepositories() -> [Repository]
+    func getRepositories() -> [FavoritesModel]
 }
 
 protocol managedSaveProtocol {
-    func save(repository: Repository, onCompletionHandler: onCompletionHandler)
+    func save(repository: FavoritesModel, onCompletionHandler: onCompletionHandler)
 }
 
 protocol managedDeleteProtocol {
@@ -37,8 +37,8 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
         return appDelegate.persistentContainer.viewContext
     }
     
-    func getRepositories() -> [Repository] {
-        var repositoriesList: [Repository] = []
+    func getRepositories() -> [FavoritesModel] {
+        var repositoriesList: [FavoritesModel] = []
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
         
         do {
@@ -52,7 +52,7 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
                    let avatarURL = item.value(forKey: "avatarURL") as? String,
                    let isFavorite = item.value(forKey: "isFavorite") as? Bool {
 
-                    let repository = Repository(id: id, repoName: repoName, repoDescription: repoDescription, avatarURL: avatarURL, isFavorite: isFavorite)
+                    let repository = FavoritesModel(id: id, repoName: repoName, repoDescription: repoDescription, avatarURL: avatarURL, isFavorite: isFavorite)
                     
                     repositoriesList.append(repository)
                 }
@@ -64,7 +64,7 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
         return repositoriesList
     }
 
-    func save(repository: Repository, onCompletionHandler: (String) -> Void) {
+    func save(repository: FavoritesModel, onCompletionHandler: (String) -> Void) {
         
         let context = getContext()
         
@@ -86,7 +86,7 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
         }
     }
     
-    func update(repository: Repository, onCompletionHandler: (String) -> Void) {
+    func update(repository: FavoritesModel, onCompletionHandler: (String) -> Void) {
         let context = getContext()
         
         let predicate = NSPredicate(format: "id == %@","\(repository.id)")
@@ -134,9 +134,9 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
         }
     }
 
-    func getRepositoryById(_ id: Int) -> Repository? {
+    func getRepositoryById(_ id: Int) -> FavoritesModel? {
         
-        var repo: Repository?
+        var repo: FavoritesModel?
         
         let predicate = NSPredicate(format: "id == %@","\(id)")
         let fetchRequest: NSFetchRequest<NSFetchRequestResult>=NSFetchRequest(entityName: entity)
@@ -152,7 +152,7 @@ class ManagedObjectContext: managedProtocol, managedSaveProtocol, managedDeleteP
                let avatarURL = entityReult.value(forKey: "avatarURL") as? String,
                let isFavorite = entityReult.value(forKey: "isFavorite") as? Bool {
 
-                repo = Repository(id: id, repoName: repoName, repoDescription: repoDescription, avatarURL: avatarURL, isFavorite: isFavorite)
+                repo = FavoritesModel(id: id, repoName: repoName, repoDescription: repoDescription, avatarURL: avatarURL, isFavorite: isFavorite)
             }
 
         } catch let error as NSError {

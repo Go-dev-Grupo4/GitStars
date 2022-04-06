@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Repository: Codable {
+struct FavoritesModel: Codable {
     let id: Int
     let repoName: String
     let repoDescription: String

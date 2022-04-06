@@ -10,12 +10,16 @@ import SwiftUI
 
 class HomeViewController: TriStateViewController {
     
+    // MARK: - Public variables
+    
     var safeArea: UILayoutGuide!
     var toogle = true
     var timeoutTimer: Timer?
     var searchLanguage = "swift"
         
     var viewModel: HomeViewModel?
+    
+    // MARK: - Private Variables
     
     private var state: ViewState = .loading {
         didSet {
@@ -35,6 +39,8 @@ class HomeViewController: TriStateViewController {
             setupErrorState()
         }
     }
+    
+    // MARK: - UI Components
 
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -60,6 +66,8 @@ class HomeViewController: TriStateViewController {
         return tableView
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,6 +78,16 @@ class HomeViewController: TriStateViewController {
         
         fetchRepositories(language: searchLanguage)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCallback), name: .reloadCallback, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .reloadCallback, object: nil)
+    }
+    
+    // MARK: - Private Functions
     
     private func configUI() {
         title = NSLocalizedString("homeTitle", comment: "")
@@ -128,6 +146,8 @@ class HomeViewController: TriStateViewController {
         
     }
     
+    // MARK: - Button Targets
+    
     @objc private func changeSortOrder() {
         
         if toogle {
@@ -147,15 +167,10 @@ class HomeViewController: TriStateViewController {
         fetchRepositories(language: searchLanguage)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadCallback), name: .reloadCallback, object: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: .reloadCallback, object: nil)
-    }
+
 }
 
+// MARK: - UISearchBarDelegate
 extension HomeViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
@@ -179,6 +194,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
@@ -191,6 +207,8 @@ extension HomeViewController: UITableViewDelegate {
         }
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -210,6 +228,8 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDataSourcePrefetching
+
 extension HomeViewController: UITableViewDataSourcePrefetching {
 
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
@@ -219,6 +239,7 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
   }
 }
 
+// MARK: - RepoManagerDelegate
 extension HomeViewController: RepoManagerDelegate {
     func fetchRepoWithSuccess(with newIndexPathsToReload: [IndexPath]?) {
         self.state = .normal

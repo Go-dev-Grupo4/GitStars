@@ -49,7 +49,7 @@ class ReusableTableViewCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = .init(name: "SFProText-Regular", size: 17)
-        label.textColor = .primaryLabelColor
+        label.textColor = Colors.primaryLabelColor
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
@@ -60,7 +60,7 @@ class ReusableTableViewCell: UITableViewCell {
     lazy var descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = .init(name: "SFProText-Regular", size: 14)
-        label.textColor = .secondaryLabelColor
+        label.textColor = Colors.secondaryLabelColor
         label.numberOfLines = 3
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false

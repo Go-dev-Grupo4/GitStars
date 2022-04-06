@@ -390,5 +390,4 @@ extension RepositoryDetailsViewController: RepositoryDetailsManagerDelegate {
     func unfavoritedRepoError(_ error: String) {
         self.showAlertError(message: error)
     }
-    
 }

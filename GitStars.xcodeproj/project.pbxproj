@@ -271,8 +271,6 @@
 				2662182327F24AB3008A8B48 /* Application */,
 				2662182227F24AA5008A8B48 /* Resources */,
 				266217F827F24A03008A8B48 /* GitStars.xcdatamodeld */,
-				2662182927F24C0A008A8B48 /* MainTabBarController.swift */,
-				2623BC8127FBE04C00AE0AD3 /* Localizable.strings */,
 			);
 			path = GitStars;
 			sourceTree = "<group>";
@@ -280,6 +278,7 @@
 		2662182227F24AA5008A8B48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2623BC8127FBE04C00AE0AD3 /* Localizable.strings */,
 				266217FB27F24A03008A8B48 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -288,6 +287,7 @@
 		2662182327F24AB3008A8B48 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				2662182927F24C0A008A8B48 /* MainTabBarController.swift */,
 				266217EF27F24A03008A8B48 /* AppDelegate.swift */,
 				266217F127F24A03008A8B48 /* SceneDelegate.swift */,
 				266217FD27F24A03008A8B48 /* LaunchScreen.storyboard */,

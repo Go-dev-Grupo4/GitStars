@@ -78,6 +78,26 @@ class WebViewController: UIViewController {
         
         if let url = destinationUrl {
             
+            // TRY TO OPEN INSTALLED APPS
+            if url.contains("linkedin") {
+                let scheme = "linkedin://"
+                if let deepLink = URL(string: scheme) {
+                    if UIApplication.shared.canOpenURL(deepLink) {
+                        UIApplication.shared.open(deepLink)
+                    }
+                }
+            }
+            
+            if url.contains("github") {
+                let scheme = "github://" //NAO ENCONTREI O DEEP LINK E CHUTEI ESSE
+                if let deepLink = URL(string: scheme) {
+                    if UIApplication.shared.canOpenURL(deepLink) {
+                        UIApplication.shared.open(deepLink)
+                    }
+                }
+            }
+
+            // IF APPS ARE NOT INTALLED, OPENS WEBVIEW NAVIGATION
             let prefix = String("www")
             if url.lowercased().hasPrefix(prefix) {
                 let newUrl = "https:/\(url)"
@@ -148,4 +168,5 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
     }
+
 }

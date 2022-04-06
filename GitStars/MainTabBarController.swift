@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController {
     lazy var homeNavigationController: UINavigationController! = {
         let navigationController = UINavigationController()
         
-        let itemBar = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
+        let itemBar = UITabBarItem(title: NSLocalizedString("homeTabBarTitle", comment: ""), image: UIImage(systemName: "house.fill"), tag: 0)
         navigationController.tabBarItem = itemBar
         
         return navigationController
@@ -42,7 +42,7 @@ class MainTabBarController: UITabBarController {
     lazy var favoritesNavigationController: UINavigationController! = {
         let navigationController = UINavigationController()
         
-        let itemBar = UITabBarItem(title: "Favoritos", image: UIImage(systemName: "star.fill"), tag: 1)
+        let itemBar = UITabBarItem(title: NSLocalizedString("favoriteTabBarTitle", comment: ""), image: UIImage(systemName: "star.fill"), tag: 1)
         navigationController.tabBarItem = itemBar
         
         return navigationController
@@ -51,7 +51,7 @@ class MainTabBarController: UITabBarController {
     lazy var teamNavigationController: UINavigationController! = {
         let navigationController = UINavigationController()
         
-        let itemBar = UITabBarItem(title: "Team", image: UIImage(systemName: "person.3.fill"), tag: 2)
+        let itemBar = UITabBarItem(title: NSLocalizedString("teamTabBarTitle", comment: ""), image: UIImage(systemName: "person.3.fill"), tag: 2)
         navigationController.tabBarItem = itemBar
         
         return navigationController

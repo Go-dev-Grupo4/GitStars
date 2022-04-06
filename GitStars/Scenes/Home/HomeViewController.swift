@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeViewController: TriStateViewController {
     
@@ -27,22 +28,20 @@ class HomeViewController: TriStateViewController {
     private func setupView() {
         switch state {
         case .loading:
-            print("loading")
             self.setupLoadingState()
         case .normal:
-            print("normal")
             self.setupNormalState()
         case .error:
-            print("error")
             setupErrorState()
         }
     }
 
-    
     lazy var searchController: UISearchController = {
-        
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.scopeButtonTitles = ["Ascending", "Descending"]
+        
+        searchController.searchBar.scopeButtonTitles = [
+            NSLocalizedString("ascendingTitle", comment: ""),
+            NSLocalizedString("descendingTitle", comment: "")]
         searchController.searchBar.selectedScopeButtonIndex = 0
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsScopeBar = false
@@ -73,20 +72,18 @@ class HomeViewController: TriStateViewController {
     }
     
     private func configUI() {
-        title = "List"
+        title = NSLocalizedString("homeTitle", comment: "")
+        
+        navigationController?.title = NSLocalizedString("homeTabBarTitle", comment: "")
+        
         view.backgroundColor = .systemBackground
         
         configNavigationBar()
         configSearchBar()
-        
-        tableView.register(ReusableTableViewCell.self, forCellReuseIdentifier: ReusableTableViewCell.identifier)
-        tableView.showsVerticalScrollIndicator = false
-        
-        contentView.addSubview(tableView)
-        tableView.sizeUpToFillSuperview()
+        configTableView()
     }
     
-    func fetchRepositories(language: String) {
+    @objc private func fetchRepositories(language: String) {
         state = .loading
         viewModel?.fetchRepositories(language: language)
     }
@@ -100,25 +97,30 @@ class HomeViewController: TriStateViewController {
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
         
+        
         navigationItem.rightBarButtonItem = barButtonItem
         navigationItem.rightBarButtonItem?.tintColor = .label
         navigationController?.navigationBar.topItem?.hidesSearchBarWhenScrolling = false
         
-        
         let apearence = UINavigationBarAppearance()
         apearence.shadowColor = UIColor.clear
-        
     }
     
     private func configSearchBar() {
         self.navigationItem.searchController = searchController
     }
     
+    private func configTableView() {
+        tableView.register(ReusableTableViewCell.self, forCellReuseIdentifier: ReusableTableViewCell.identifier)
+        tableView.showsVerticalScrollIndicator = false
+        
+        contentView.addSubview(tableView)
+        tableView.sizeUpToFillSuperview()
+    }
+    
     private func setupDelegates() {
         
-        searchController.delegate = self
         searchController.searchBar.delegate = self
-        //searchController.searchBar.searchTextField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.prefetchDataSource = self
@@ -140,26 +142,32 @@ class HomeViewController: TriStateViewController {
         }
         toogle = !toogle
     }
+    
+    @objc private func reloadCallback() {
+        fetchRepositories(language: searchLanguage)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCallback), name: .reloadCallback, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .reloadCallback, object: nil)
+    }
 }
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
-        //navigationController?.navigationBar.sizeToFit()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        
         searchBar.setShowsCancelButton(false, animated: true)
-        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.searchTextField.text = ""
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -168,26 +176,6 @@ extension HomeViewController: UISearchBarDelegate {
             viewModel?.resetPage()
             fetchRepositories(language: language)
         }
-    }
-}
-
-extension HomeViewController: UISearchControllerDelegate {
-    
-    func willPresentSearchController(_ searchController: UISearchController) {
-    }
-    
-    func willDismissSearchController(_ searchController: UISearchController) {
-        
-    }
-    
-    func didDismissSearchController(_ searchController: UISearchController) {
-    }
-    
-    
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        //searchBar.setShowsScope(false, animated: true)
-        //searchBar.resignFirstResponder()
     }
 }
 
@@ -226,7 +214,6 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
 
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
     if indexPaths.contains(where: isLoadingCell) {
-        print("Deu fetch pelo prefetch")
       viewModel?.fetchRepositories(language: searchLanguage)
     }
   }

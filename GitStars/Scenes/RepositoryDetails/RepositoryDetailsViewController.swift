@@ -25,7 +25,7 @@ class RepositoryDetailsViewController: UIViewController {
         
     lazy var repoDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Repo`s description"
+        label.text = NSLocalizedString("defaultDescriptionText", comment: "")
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ class RepositoryDetailsViewController: UIViewController {
 
     lazy var autorLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Autor", text: "Nome do autor")
+        label.attributedText = generateLabelText(prefix: NSLocalizedString("authorPrefix", comment: ""), text: NSLocalizedString("defaultAuthorText", comment: ""))
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -59,7 +59,7 @@ class RepositoryDetailsViewController: UIViewController {
 
     lazy var observadoresLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Contagem de observadores", text: "00000")
+        label.attributedText = generateLabelText(prefix: NSLocalizedString("watchersPrefix", comment: ""), text: "00000")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -75,7 +75,7 @@ class RepositoryDetailsViewController: UIViewController {
 
     lazy var dataCriacaoLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Data de criação", text: "00/00/0000")
+        label.attributedText = generateLabelText(prefix: NSLocalizedString("creationDatePrefix", comment: ""), text: "00/00/0000")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -91,7 +91,7 @@ class RepositoryDetailsViewController: UIViewController {
 
     lazy var licencaLabel: UILabel = {
         let label = UILabel()
-        label.attributedText = generateLabelText(prefix: "Licença", text: "MIT License")
+        label.attributedText = generateLabelText(prefix: NSLocalizedString("licensePrefix", comment: ""), text: NSLocalizedString("defaultLicenseText", comment: ""))
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
@@ -101,16 +101,16 @@ class RepositoryDetailsViewController: UIViewController {
     lazy var linkRepoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(UIColor.label, for: .normal)
-        button.setTitle("Link of repository", for: .normal)
+        button.setTitle(NSLocalizedString("repositoryLinkTitle", comment: ""), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-//        button.addTarget(self, action: #selector(fazerNavegacao), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pressedRepositoryLink), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     lazy var favoriteButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Make a favorite", for: .normal)
+        button.setTitle(NSLocalizedString("makeFavoriteTitle", comment: ""), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
         return button
@@ -134,7 +134,7 @@ class RepositoryDetailsViewController: UIViewController {
 
     private func configUI() {
         
-        title = "Name of repository"
+        title = NSLocalizedString("repositoryDetailTitle", comment: "")
         view.backgroundColor = .systemBackground
         
         addAndConfigureElements()
@@ -260,10 +260,10 @@ class RepositoryDetailsViewController: UIViewController {
                 repoImage.kf.setImage(with: url)
             }
             repoDescriptionLabel.text = repositoryFromHome.repoDescription
-            autorLabel.attributedText = generateLabelText(prefix: "Author", text: repositoryFromHome.author.login)
-            observadoresLabel.attributedText = generateLabelText(prefix: "Count of watchers", text: "\(repositoryFromHome.watchers)")
-            dataCriacaoLabel.attributedText = generateLabelText(prefix: "Creation date", text: repositoryFromHome.createdAt.parseISO8601Date())
-            licencaLabel.attributedText = generateLabelText(prefix: "License", text: repositoryFromHome.license?.name ?? "No License")
+            autorLabel.attributedText = generateLabelText(prefix: NSLocalizedString("authorPrefix", comment: ""), text: repositoryFromHome.author.login)
+            observadoresLabel.attributedText = generateLabelText(prefix: NSLocalizedString("watchersPrefix", comment: ""), text: "\(repositoryFromHome.watchers)")
+            dataCriacaoLabel.attributedText = generateLabelText(prefix: NSLocalizedString("creationDatePrefix", comment: ""), text: repositoryFromHome.createdAt)
+            licencaLabel.attributedText = generateLabelText(prefix: NSLocalizedString("licensePrefix", comment: ""), text: repositoryFromHome.license?.name ?? NSLocalizedString("defaultNoLicenseText", comment: ""))
             title = repositoryFromHome.name
             return
         }
@@ -285,18 +285,37 @@ class RepositoryDetailsViewController: UIViewController {
     private func changeFavoriteButtonTitle(isFavorite: Bool) {
         DispatchQueue.main.async {
             if isFavorite {
-                self.favoriteButton.setTitle("Undo favorite", for: .normal)
+                self.favoriteButton.setTitle(NSLocalizedString("undoFavoriteTitle", comment: ""), for: .normal)
             } else {
-                self.favoriteButton.setTitle("Make favorite", for: .normal)
+                self.favoriteButton.setTitle(NSLocalizedString("favoriteTitle", comment: ""), for: .normal)
             }
         }
     }
     
     private func showAlertError(message: String) {
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("errorAlertTitle", comment: ""), message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default))
     }
     
+//    private func parseDate(date: String) -> String? {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+//        if let date = dateFormatter.date(from: date) {
+//            
+//        }
+//    }
+    
+    @objc private func pressedRepositoryLink() {
+        
+        if let github = viewmodel?.apiRepository?.url,
+           let url = URL(string: github){
+            let webView = WebViewController()
+            webView.destinationUrl = github
+            self.navigationController?.pushViewController(webView, animated: true)
+        }
+        
+    }
 }
 
 // MARK: - RepositoryDetailsManagerDelegate
@@ -311,10 +330,10 @@ extension RepositoryDetailsViewController: RepositoryDetailsManagerDelegate {
                 self.repoImage.kf.setImage(with: url)
             }
             self.repoDescriptionLabel.text = apiRepo.repoDescription
-            self.autorLabel.attributedText = self.generateLabelText(prefix: "Author", text: apiRepo.author.login)
-            self.observadoresLabel.attributedText = self.generateLabelText(prefix: "Count of watchers", text: "\(apiRepo.watchers)")
-            self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: "Creation date", text: apiRepo.createdAt.parseISO8601Date())
-            self.licencaLabel.attributedText = self.generateLabelText(prefix: "License", text: apiRepo.license?.name ?? "No License")
+            self.autorLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("authorPrefix", comment: ""), text: apiRepo.author.login)
+            self.observadoresLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("watchersPrefix", comment: ""), text: "\(apiRepo.watchers)")
+            self.dataCriacaoLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("creationDatePrefix", comment: ""), text: apiRepo.createdAt)
+            self.licencaLabel.attributedText = self.generateLabelText(prefix: NSLocalizedString("licensePrefix", comment: ""), text: apiRepo.license?.name ?? NSLocalizedString("defaultNoLicenseText", comment: ""))
         }
     }
     

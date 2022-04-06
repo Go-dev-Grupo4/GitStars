@@ -34,7 +34,7 @@ class ErrorView: UIView {
     lazy var errorTitle: UILabel = {
         let label = UILabel()
         
-        label.text = "Oops... 👀"
+        label.text = NSLocalizedString("errorMessageTitle", comment: "")
         label.textColor = .label
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
@@ -46,10 +46,7 @@ class ErrorView: UIView {
     lazy var errorDescription: UILabel = {
         let label = UILabel()
         
-        label.text = """
-        Sorry, the service cannot be run.
-            Try again later
-        """
+        label.text = NSLocalizedString("errorMessageDescription", comment: "")
         label.textColor = .label
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -62,7 +59,7 @@ class ErrorView: UIView {
     lazy var callbackButton: UIButton = {
         let button = UIButton(type: .system)
         
-        button.setTitle("Reload", for: .normal)
+        button.setTitle(NSLocalizedString("reloadTitle", comment: ""), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.tintColor = .label
         button.setImage(UIImage(systemName: "arrow.counterclockwise"), for: .normal)
@@ -71,8 +68,8 @@ class ErrorView: UIView {
         button.layer.borderColor = UIColor.label.cgColor
         button.layer.borderWidth = 2
         button.setTitleShadowColor(.label, for: .normal)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(sendNoticicationCallback), for: .touchUpInside)
         
         return button
     }()
@@ -81,6 +78,7 @@ class ErrorView: UIView {
         super.init(frame: .zero)
         
         configView()
+        NotificationCenter.default.post(name: .reloadCallback, object: callbackButton)
     }
     
     required init?(coder: NSCoder) {
@@ -104,44 +102,21 @@ class ErrorView: UIView {
             errorImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             contentStackView.topAnchor.constraint(equalTo: errorImageView.bottomAnchor, constant: 15),
-            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            contentStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15)
         ])
         
         addSubview(callbackButton)
 
         NSLayoutConstraint.activate([
             callbackButton.heightAnchor.constraint(equalToConstant: 40),
-            callbackButton.widthAnchor.constraint(equalToConstant: 100),
+            callbackButton.widthAnchor.constraint(equalToConstant: 150),
             callbackButton.topAnchor.constraint(equalTo: contentStackView.bottomAnchor, constant: 15),
             callbackButton.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
     
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 200, height: 255)
+    @objc private func sendNoticicationCallback() {
+        NotificationCenter.default.post(name: .reloadCallback, object: nil)
     }
 }
-//
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//struct ErrorViewViewRepresentable: UIViewRepresentable {
-//    func makeUIView(context: Context) -> UIView {
-//        return ErrorView()
-//    }
-//
-//    func updateUIView(_ view: UIView, context: Context) {
-//
-//    }
-//}
-//
-//@available(iOS 13.0, *)
-//struct ErrorViewViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        ErrorViewViewRepresentable()
-//            .preferredColorScheme(.light)
-//            .previewLayout(.device)
-//            .previewDevice("iPhone 11")
-//    }
-//}
-//#endif

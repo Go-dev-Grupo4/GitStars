@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TriStateViewController: UIViewController {
     
@@ -70,8 +71,10 @@ class TriStateViewController: UIViewController {
         view.addSubview(errorView)
         
         NSLayoutConstraint.activate([
-            errorView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            errorView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+            errorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            errorView.heightAnchor.constraint(equalToConstant: 255),
+            errorView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
         ])
     }
 }
@@ -79,26 +82,21 @@ class TriStateViewController: UIViewController {
 extension TriStateViewController: TriStateViewProtocol {
     
     func setupLoadingState() {
-    
         contentView.isHidden = true
-        
         errorView.removeFromSuperview()
-        
         setupLoadingView()
     }
     
     func setupErrorState() {
         loadingView.removeFromSuperview()
         contentView.isHidden = true
-        
         setupErrorView()
     }
     
     func setupNormalState() {
-     
         loadingView.removeFromSuperview()
         errorView.removeFromSuperview()
-        
         contentView.isHidden = false
     }
+
 }

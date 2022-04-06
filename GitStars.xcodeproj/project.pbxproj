@@ -224,6 +224,7 @@
 		266217EE27F24A03008A8B48 /* GitStars */ = {
 			isa = PBXGroup;
 			children = (
+				3A5911D627FD4540007F89EB /* DesignSystem */,
 				F8E7FD4727FCC07E00293937 /* Coordinator */,
 				F808F61727F75EEB00C44D28 /* Scenes */,
 				F808F60E27F7559500C44D28 /* Commons */,
@@ -267,6 +268,14 @@
 				F8E7FD4527FCC06900293937 /* TriStateView */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		3A5911D627FD4540007F89EB /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				3A5911D427FBE69D007F89EB /* AppColors.swift */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 		4CF2C22A27F3EBB200ABB8E7 /* Mock */ = {
@@ -350,7 +359,6 @@
 			children = (
 				2643FB0227F68EF2008EA2C7 /* Extensions */,
 				F808F60F27F755A900C44D28 /* Constants.swift */,
-				3A5911D427FBE69D007F89EB /* AppColors.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";

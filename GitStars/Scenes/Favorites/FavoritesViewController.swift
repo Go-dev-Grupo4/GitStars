@@ -9,8 +9,12 @@ import UIKit
 
 class FavoritesViewController: TriStateViewController {
  
+    // MARK: - Variables
+    
     var viewModel: FavoritesViewModel?
     
+    
+    // MARK: - Screen state
     private var state: ViewState = .loading {
         didSet {
             DispatchQueue.main.async {
@@ -31,6 +35,8 @@ class FavoritesViewController: TriStateViewController {
         }
     }
     
+    // MARK: - UI Components
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         
@@ -39,6 +45,8 @@ class FavoritesViewController: TriStateViewController {
         
         return tableView
     }()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +64,12 @@ class FavoritesViewController: TriStateViewController {
     override func viewDidAppear(_ animated: Bool) {
         fetchRepositories()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .reloadCallback, object: nil)
+    }
+    
+    // MARK: - Private functions
     
     private func configUI() {
         title = NSLocalizedString("favoriteTitle", comment: "")
@@ -85,12 +99,12 @@ class FavoritesViewController: TriStateViewController {
         fetchRepositories()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: .reloadCallback, object: nil)
-    }
+
 }
 
-extension FavoritesViewController: FavoriteManagerDelegate {
+// MARK: - FavoritesManagerDelegate
+
+extension FavoritesViewController: FavoritesManagerDelegate {
     func fetchRepoWithSuccess() {
         self.state = .normal
         DispatchQueue.main.async {
@@ -104,6 +118,8 @@ extension FavoritesViewController: FavoriteManagerDelegate {
 }
 
 
+// MARK: - UITableViewDelegate
+
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
@@ -116,6 +132,8 @@ extension FavoritesViewController: UITableViewDelegate {
         }
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -9,7 +9,7 @@
 // MARK: texts for buttons
 "ascendingTitle" = "Ascendente";
 "descendingTitle" = "Descendente";
-"repositoryLinkTitle" = "Link do Repositório";
+"repositoryLinkTitle" = "Link do Repositório →";
 "makeFavoriteTitle" = "Favoritar";
 "undoFavoriteTitle" = "Desfavoritar";
 "reloadTitle" = "Recarregar";
@@ -49,3 +49,10 @@
 "errorMessageTitle" = "Opa... 👀";
 "errorMessageDescription" = "Desculpe, o serviço não pode ser executado.
 Tente novamente mais tarde.";
+
+// MARK: Onboarding
+"onboardingTitle" = "Bem vindo ao GitStars 🌟";
+"githubLabel" = "Explore os repositórios mais favoritados das suas linguagens preferidas";
+"favoritesLabel" = "Favorite os repositórios que mais gostar para acompanhá-los";
+"orderLabel" = "Pesquise a partir dos mais favoritados ou menos favoritados";
+

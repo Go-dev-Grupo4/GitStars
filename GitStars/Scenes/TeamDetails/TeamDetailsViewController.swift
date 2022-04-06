@@ -110,13 +110,16 @@ class TeamDetailsViewController: UIViewController {
         return button
     }()
     
+    // MARK: Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configUI()
-        
     }
     
+    
+    // MARK: Private methods
+    /// Configuration of UI
     private func configUI() {
         
         title = NSLocalizedString("teamDetailTitle", comment: "")
@@ -136,6 +139,7 @@ class TeamDetailsViewController: UIViewController {
         }
     }
     
+    /// setting up internal elements (views)
     private func addAndConfigureElements() {
         
         // ADD ELEMENTS INTO VIEW
@@ -232,7 +236,14 @@ class TeamDetailsViewController: UIViewController {
         return newString
     }
     
-  
+    private func showAlert() {
+        let alertController = UIAlertController(title: NSLocalizedString("errorAlertTitle", comment: ""), message: NSLocalizedString("errorMessageDescription", comment: ""), preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(action)
+        
+        present(alertController, animated: true)
+    }
 }
 
 // MARK: - Buttons callbacks
@@ -288,7 +299,7 @@ extension TeamDetailsViewController {
     @objc private func pressedGithub() {
         if let github = dev?.github,
            let url = URL(string: github){
-            let request = URLRequest(url: url)
+            let _ = URLRequest(url: url)
             webView = WebViewController()
             webView?.destinationUrl = github
             self.navigationController?.pushViewController(webView!, animated: true)
@@ -309,6 +320,7 @@ extension TeamDetailsViewController: MFMailComposeViewControllerDelegate {
             print("sent")
         case .failed:
             print("failed")
+            showAlert()
         @unknown default:
             print("default")
         }

@@ -14,8 +14,6 @@ class HomeViewController: TriStateViewController {
     
     var safeArea: UILayoutGuide!
     var toogle = true
-    var timeoutTimer: Timer?
-    var searchLanguage = "swift"
         
     var viewModel: HomeViewModel?
     
@@ -48,7 +46,7 @@ class HomeViewController: TriStateViewController {
         searchController.searchBar.scopeButtonTitles = [
             NSLocalizedString("ascendingTitle", comment: ""),
             NSLocalizedString("descendingTitle", comment: "")]
-        searchController.searchBar.selectedScopeButtonIndex = 0
+        searchController.searchBar.selectedScopeButtonIndex = 1
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsScopeBar = false
         searchController.definesPresentationContext = true
@@ -75,8 +73,7 @@ class HomeViewController: TriStateViewController {
         
         configUI()
         setupDelegates()
-        
-        fetchRepositories(language: searchLanguage)
+        fetchRepositories()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,7 +90,6 @@ class HomeViewController: TriStateViewController {
         title = NSLocalizedString("homeTitle", comment: "")
         
         navigationController?.title = NSLocalizedString("homeTabBarTitle", comment: "")
-        
         view.backgroundColor = .systemBackground
         
         configNavigationBar()
@@ -101,13 +97,12 @@ class HomeViewController: TriStateViewController {
         configTableView()
     }
     
-    @objc private func fetchRepositories(language: String) {
+    @objc private func fetchRepositories() {
         state = .loading
-        viewModel?.fetchRepositories(language: language)
+        viewModel?.fetchRepositories()
     }
     
     @objc func fetchRepositoriesTimeout() {
-        timeoutTimer?.invalidate()
         self.state = .error
     }
     
@@ -115,9 +110,8 @@ class HomeViewController: TriStateViewController {
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
         
-        
         navigationItem.rightBarButtonItem = barButtonItem
-        navigationItem.rightBarButtonItem?.tintColor = .label
+        navigationItem.rightBarButtonItem?.tintColor = Colors.tintTabBarItem
         navigationController?.navigationBar.topItem?.hidesSearchBarWhenScrolling = false
         
         let apearence = UINavigationBarAppearance()
@@ -164,7 +158,7 @@ class HomeViewController: TriStateViewController {
     }
     
     @objc private func reloadCallback() {
-        fetchRepositories(language: searchLanguage)
+        fetchRepositories()
     }
     
 
@@ -187,10 +181,35 @@ extension HomeViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let language = searchBar.searchTextField.text {
-            searchLanguage = language
+            viewModel?.searchLanguage = language
             viewModel?.resetPage()
-            fetchRepositories(language: language)
+            fetchRepositories()
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if selectedScope == 0 {
+            viewModel?.searchOrder = "asc"
+        } else {
+            viewModel?.searchOrder = "desc"
+        }
+        viewModel?.resetPage()
+        fetchRepositories()
+//        toogle = !toogle
+//        searchController.searchBar.setShowsScope(false, animated: true)
+//        navigationController?.navigationBar.sizeToFit()
+        animateSearchBarFading()
+    }
+    
+    private func animateSearchBarFading() {
+        UIView.animate(withDuration: 1.0, //1
+            delay: 0.0, //2
+            usingSpringWithDamping: 0.3, //3
+            initialSpringVelocity: 1, //4
+            options: UIView.AnimationOptions.curveEaseInOut, //5
+            animations: ({ //6
+            self.navigationController?.navigationBar.sizeToFit()
+        }), completion: nil)
     }
 }
 
@@ -234,7 +253,7 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
 
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
     if indexPaths.contains(where: isLoadingCell) {
-      viewModel?.fetchRepositories(language: searchLanguage)
+      viewModel?.fetchRepositories()
     }
   }
 }

@@ -24,5 +24,18 @@ class AppCoordinator: Coordinator {
         window.rootViewController = mainTabBarController
         
         window.makeKeyAndVisible()
+                
+        let userDidOnboarding = UserDefaults.standard.bool(forKey: Constants.UserDefaultsConstants.userDidOnboardingKey)
+        
+        if userDidOnboarding == false {
+            flowOnboarding(mainTabBar: mainTabBarController)
+        }
+    }
+    
+    func flowOnboarding(mainTabBar: MainTabBarController) {
+        let onboardingViewController = OnboardingViewController()
+        mainTabBar.present(onboardingViewController, animated: true) {
+            UserDefaults.standard.set(true, forKey: Constants.UserDefaultsConstants.userDidOnboardingKey)
+        }
     }
 }

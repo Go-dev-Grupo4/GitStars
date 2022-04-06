@@ -24,12 +24,17 @@ class TeamCoordinator: Coordinator {
     
     func start() {
         
+        let teamService = TeamService()
+        let teamViewModel = TeamViewModel(teamServices: teamService)
+        teamViewModel.coordinator = self
+        
         let teamViewController = TeamViewController()
+        teamViewController.viewModel = teamViewModel
         
         navigationController.setViewControllers([teamViewController], animated: true)
     }
     
-    func teamDetail(dev: Developer) {
+    func flowDetail(dev: Developer) {
         let teamDetailsCoordinator = TeamDetailsCoordinator(navigationController: navigationController, dev: dev)
         childCoordinators.append(teamDetailsCoordinator)
         teamDetailsCoordinator.parentCoordinator = self

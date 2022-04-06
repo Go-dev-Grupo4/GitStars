@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 struct Developer {
     
     let name : String

@@ -23,7 +23,7 @@ class RepositoryDetailsCoordinator: Coordinator {
         self.repo = repo
     }
     
-    init(navigationController: UINavigationController, repo: Repository) {
+    init(navigationController: UINavigationController, repo: FavoritesModel) {
         self.navigationController = navigationController
         self.repo = repo
     }
@@ -36,7 +36,7 @@ class RepositoryDetailsCoordinator: Coordinator {
         if let repo = repo as? Repo {
             viewModel.apiRepository = repo
         }
-        if let repo = repo as? Repository {
+        if let repo = repo as? FavoritesModel {
             viewModel.coreDataRepository = repo
         }
         repositoryDetailsViewController.viewModel = viewModel

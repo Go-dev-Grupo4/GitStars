@@ -134,7 +134,7 @@ class ReusableTableViewCell: UITableViewCell {
             descriptionLabel.text = repo.repoDescription
         }
         
-        if let repo = model as? Repository {
+        if let repo = model as? FavoritesModel {
             if let url = URL(string: repo.avatarURL) {
                 mainImageView.kf.setImage(with: url)
             }

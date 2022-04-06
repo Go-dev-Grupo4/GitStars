@@ -13,8 +13,4 @@ enum Environment {
         return Constants.baseURL
     }
     
-    
-    static var token: String {
-        return Constants.token
-    }
 }

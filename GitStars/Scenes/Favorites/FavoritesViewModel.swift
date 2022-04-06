@@ -8,13 +8,13 @@
 import Foundation
 
 class FavoritesViewModel {
-    weak var delegate: FavoriteManagerDelegate?
+    weak var delegate: FavoritesManagerDelegate?
     
     private var search: SearchRepoCoreDataServiceProtocol
     
     var coordinator: FavoritesCoordinator?
     
-    var repositories: [Repository]?
+    var repositories: [FavoritesModel]?
     
     init(searchRepoServices: SearchRepoCoreDataServiceProtocol) {
         self.search = searchRepoServices
@@ -31,7 +31,7 @@ class FavoritesViewModel {
         }
     }
     
-    private func success(repositories: [Repository]) {
+    private func success(repositories: [FavoritesModel]) {
         self.repositories = repositories
         delegate?.fetchRepoWithSuccess()
     }

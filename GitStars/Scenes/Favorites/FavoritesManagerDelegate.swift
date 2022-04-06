@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol FavoriteManagerDelegate: AnyObject {
+protocol FavoritesManagerDelegate: AnyObject {
     func fetchRepoWithSuccess()
     func errorToFetchRepo(_ error: String)
 }

@@ -9,15 +9,28 @@ import UIKit
 
 class TeamViewModel {
     
+    // MARK: - Variables
     weak var delegate: TeamManagerDelegate?
     weak var coordinator: TeamCoordinator?
     var service: TeamService?
     var team: TeamModel?
     
+    // MARK: - Initializer
     init(teamServices: TeamService) {
         self.service = teamServices
     }
     
+    // MARK: - Private methods
+    private func success(team: TeamModel) {
+        self.team = team
+        delegate?.fetchTeamWithSuccess()
+    }
+    
+    private func error(error: String) {
+        delegate?.errorToFetchTeam(error)
+    }
+    
+    // MARK: - Public methods
     func fetchTeam() {
         service?.execute() { result in
             switch result {
@@ -31,14 +44,5 @@ class TeamViewModel {
     
     func showDetail(dev: Developer) {
         coordinator?.flowDetail(dev: dev)
-    }
-    
-    private func success(team: TeamModel) {
-        self.team = team
-        delegate?.fetchTeamWithSuccess()
-    }
-    
-    private func error(error: String) {
-        delegate?.errorToFetchTeam(error)
     }
 }

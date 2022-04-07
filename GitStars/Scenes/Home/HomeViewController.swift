@@ -97,15 +97,6 @@ class HomeViewController: TriStateViewController {
         configTableView()
     }
     
-    @objc private func fetchRepositories() {
-        state = .loading
-        viewModel?.fetchRepositories()
-    }
-    
-    @objc func fetchRepositoriesTimeout() {
-        self.state = .error
-    }
-    
     private func configNavigationBar() {
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
@@ -161,10 +152,18 @@ class HomeViewController: TriStateViewController {
         fetchRepositories()
     }
     
-
+    @objc private func fetchRepositories() {
+        state = .loading
+        viewModel?.fetchRepositories()
+    }
+    
+    @objc private func fetchRepositoriesTimeout() {
+        self.state = .error
+    }
 }
 
 // MARK: - UISearchBarDelegate
+
 extension HomeViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
@@ -188,32 +187,34 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
         if selectedScope == 0 {
             viewModel?.searchOrder = "asc"
         } else {
             viewModel?.searchOrder = "desc"
         }
+        
         viewModel?.resetPage()
         fetchRepositories()
-//        toogle = !toogle
-//        searchController.searchBar.setShowsScope(false, animated: true)
-//        navigationController?.navigationBar.sizeToFit()
         animateSearchBarFading()
     }
     
     private func animateSearchBarFading() {
-        UIView.animate(withDuration: 1.0, //1
-            delay: 0.0, //2
-            usingSpringWithDamping: 0.3, //3
-            initialSpringVelocity: 1, //4
-            options: UIView.AnimationOptions.curveEaseInOut, //5
-            animations: ({ //6
-            self.navigationController?.navigationBar.sizeToFit()
+        UIView.animate(withDuration: 1.0,
+            delay: 0.0,
+            usingSpringWithDamping: 0.3,
+            initialSpringVelocity: 1,
+            options: UIView.AnimationOptions.curveEaseInOut,
+            animations: ({
+            
+                self.navigationController?.navigationBar.sizeToFit()
+            
         }), completion: nil)
     }
 }
 
 // MARK: - UITableViewDelegate
+
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
@@ -259,6 +260,7 @@ extension HomeViewController: UITableViewDataSourcePrefetching {
 }
 
 // MARK: - RepoManagerDelegate
+
 extension HomeViewController: RepoManagerDelegate {
     func fetchRepoWithSuccess(with newIndexPathsToReload: [IndexPath]?) {
         self.state = .normal
@@ -271,6 +273,7 @@ extension HomeViewController: RepoManagerDelegate {
 }
 
 // MARK: - Infinite scroll methods
+
 extension HomeViewController {
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
         return indexPath.row >= (viewModel?.currentCount ?? 2) - 2

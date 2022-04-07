@@ -20,6 +20,7 @@ class RepositoryDetailsViewController: TriStateViewController {
             }
         }
     }
+    
     // MARK: - UI Elements
     
     lazy var repoImage: UIImageView = {
@@ -145,7 +146,7 @@ class RepositoryDetailsViewController: TriStateViewController {
         setupData()
     }
     
-    // MARK: - Private Functions
+    // MARK: - Private methods
     
     private func setupDelegates() {
         viewModel?.delegate = self
@@ -286,13 +287,6 @@ class RepositoryDetailsViewController: TriStateViewController {
         }
     }
     
-    @objc private func favoriteButtonPressed() {
-        guard let viewmodel = viewModel else {
-            return
-        }
-        viewmodel.changeRepositoryFavoriteStatus()
-    }
-    
     private func changeFavoriteButtonTitle(isFavorite: Bool) {
         DispatchQueue.main.async {
             if isFavorite {
@@ -306,17 +300,6 @@ class RepositoryDetailsViewController: TriStateViewController {
     private func showAlertError(message: String) {
         let alertController = UIAlertController(title: NSLocalizedString("errorAlertTitle", comment: ""), message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-    }
-    
-    @objc private func pressedRepositoryLink() {
-        
-        if let github = viewModel?.apiRepository?.url,
-           let _ = URL(string: github){
-            let webView = WebViewController()
-            webView.destinationUrl = github
-            self.navigationController?.pushViewController(webView, animated: true)
-        }
-        
     }
     
     private func setupView() {
@@ -344,6 +327,23 @@ class RepositoryDetailsViewController: TriStateViewController {
         self.state = .normal
     }
     
+    @objc private func pressedRepositoryLink() {
+        
+        if let github = viewModel?.apiRepository?.url,
+           let _ = URL(string: github){
+            let webView = WebViewController()
+            webView.destinationUrl = github
+            self.navigationController?.pushViewController(webView, animated: true)
+        }
+        
+    }
+    
+    @objc private func favoriteButtonPressed() {
+        guard let viewmodel = viewModel else {
+            return
+        }
+        viewmodel.changeRepositoryFavoriteStatus()
+    }
 }
 
 // MARK: - RepositoryDetailsManagerDelegate

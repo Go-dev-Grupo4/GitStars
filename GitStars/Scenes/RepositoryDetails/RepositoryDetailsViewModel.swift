@@ -9,6 +9,7 @@ import Foundation
 
 class RepositoryDetailsViewModel {
     
+    // MARK: Variables
     weak var delegate: RepositoryDetailsManagerDelegate?
     
     var searchRepoByIdService: SearchRepoByIdService
@@ -17,11 +18,61 @@ class RepositoryDetailsViewModel {
     
     var apiRepository: Repo?
     
-    
+    // MARK: - Initializers
     init(searchRepoByIdServices: SearchRepoByIdService) {
         self.searchRepoByIdService = searchRepoByIdServices
     }
     
+    // MARK: - Private methods
+    private func addFavoriteRepo() {
+        if let repo = self.apiRepository {
+            let newRepo = FavoritesModel(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? NSLocalizedString("defaultDescriptionText", comment: ""), avatarURL: repo.author.avatarUrl, isFavorite: true)
+            ManagedObjectContext.shared.save(repository: newRepo) { error in
+                print(error)
+                delegate?.favoritedRepoError(error)
+                return
+            }
+            delegate?.favoritedRepoSuccess()
+        } else if let repo = self.coreDataRepository {
+            ManagedObjectContext.shared.save(repository: repo) { error in
+                print(error)
+                delegate?.favoritedRepoError(error)
+                return
+            }
+            delegate?.favoritedRepoSuccess()
+        }
+    }
+    
+    private func removeFavoriteRepo() {
+        guard let repo = self.coreDataRepository else { return }
+        
+        ManagedObjectContext.shared.delete(id: repo.id) { error in
+            print(error)
+            delegate?.unfavoritedRepoError(error)
+            return
+        }
+        delegate?.unfavoritedRepoSuccess()
+    }
+    
+    private func successApi(repo: Repo) {
+        self.apiRepository = repo
+        delegate?.fetchRepoWithSuccessApi()
+    }
+    
+    private func errorApi(error: String) {
+        delegate?.errorToFetchRepoApi(error)
+    }
+    
+    private func successCoreData(repo: FavoritesModel) {
+        coreDataRepository = repo
+        delegate?.fetchRepoWithSuccessCoreData()
+    }
+    
+    private func errorCoreData(error: String) {
+        delegate?.errorToFetchRepoCoreData(error)
+    }
+    
+    // MARK: - Public methods
     func fetchRepositoryApi() {
         guard let coreDataRepository = coreDataRepository else {
             self.errorApi(error: "Repository not found")
@@ -85,53 +136,5 @@ class RepositoryDetailsViewModel {
                 self.addFavoriteRepo()
             }
         }
-    }
-    
-    private func addFavoriteRepo() {
-        if let repo = self.apiRepository {
-            let newRepo = FavoritesModel(id: repo.id, repoName: repo.name, repoDescription: repo.repoDescription ?? NSLocalizedString("defaultDescriptionText", comment: ""), avatarURL: repo.author.avatarUrl, isFavorite: true)
-            ManagedObjectContext.shared.save(repository: newRepo) { error in
-                print(error)
-                delegate?.favoritedRepoError(error)
-                return
-            }
-            delegate?.favoritedRepoSuccess()
-        } else if let repo = self.coreDataRepository {
-            ManagedObjectContext.shared.save(repository: repo) { error in
-                print(error)
-                delegate?.favoritedRepoError(error)
-                return
-            }
-            delegate?.favoritedRepoSuccess()
-        }
-    }
-    
-    private func removeFavoriteRepo() {
-        guard let repo = self.coreDataRepository else { return }
-        
-        ManagedObjectContext.shared.delete(id: repo.id) { error in
-            print(error)
-            delegate?.unfavoritedRepoError(error)
-            return
-        }
-        delegate?.unfavoritedRepoSuccess()
-    }
-    
-    private func successApi(repo: Repo) {
-        self.apiRepository = repo
-        delegate?.fetchRepoWithSuccessApi()
-    }
-    
-    private func errorApi(error: String) {
-        delegate?.errorToFetchRepoApi(error)
-    }
-    
-    private func successCoreData(repo: FavoritesModel) {
-        coreDataRepository = repo
-        delegate?.fetchRepoWithSuccessCoreData()
-    }
-    
-    private func errorCoreData(error: String) {
-        delegate?.errorToFetchRepoCoreData(error)
     }
 }

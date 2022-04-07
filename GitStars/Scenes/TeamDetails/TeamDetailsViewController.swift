@@ -16,6 +16,7 @@ class TeamDetailsViewController: UIViewController {
     
     var webView: WebViewController?
     
+    // MARK: - UI Components
     lazy var devImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "photo.artframe")
@@ -99,7 +100,6 @@ class TeamDetailsViewController: UIViewController {
         return image
     }()
     
-
     lazy var githubLabel: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor.label, for: .normal)
@@ -307,6 +307,7 @@ extension TeamDetailsViewController {
     }
 }
 
+// MARK: - MFMailComposeViewControllerDelegate
 extension TeamDetailsViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         

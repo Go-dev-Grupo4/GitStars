@@ -9,11 +9,11 @@ import Foundation
 
 // MARK: - Author
 struct Author: Codable {
+    
     let login: String
     let id: Int
     let name: String?
     let avatarUrl: String
-    
     
     enum CodingKeys: String, CodingKey {
         case login, id

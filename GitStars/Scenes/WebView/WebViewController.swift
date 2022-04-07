@@ -35,7 +35,7 @@ class WebViewController: UIViewController {
         configUI()
     }
     
-    // MARK: - Private functions
+    // MARK: - Private methods
     
     private func configUI() {
         view.backgroundColor = .systemBackground
@@ -118,6 +118,7 @@ class WebViewController: UIViewController {
 
 }
 
+// MARK: - WebViewcontroller actions from buttons implementation
 extension WebViewController {
     
     @objc
@@ -149,7 +150,7 @@ extension WebViewController {
     
 }
 
-
+// MARK: - WKNavigationDelegate
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title

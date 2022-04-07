@@ -127,6 +127,8 @@ class OnboardingViewController: UIViewController {
         configUI()
     }
     
+    
+    // MARK: - Private methods
     private func configUI() {
         view.backgroundColor = .systemBackground
         
@@ -185,6 +187,7 @@ class OnboardingViewController: UIViewController {
         ])
     }
     
+    //MARK: - Action Methods
     @objc func continuePressed() {
         self.dismiss(animated: true)
     }

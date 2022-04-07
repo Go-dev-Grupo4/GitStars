@@ -5,6 +5,7 @@ import Foundation
 
 // MARK: - License
 struct License: Codable {
+    
     let key, name, spdxID: String?
     let url: String?
     let nodeID: String?

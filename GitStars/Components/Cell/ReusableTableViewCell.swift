@@ -10,10 +10,12 @@ import Kingfisher
 
 class ReusableTableViewCell: UITableViewCell {
     
+    // MARK: - Constants
     static let identifier = "ReusableTableViewCell"
     
     let mainImageDiameter: CGFloat = 85
     
+    // MARK: - UI Components
     lazy var mainImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "photo.circle.fill"))
         imageView.contentMode = .scaleAspectFill
@@ -76,14 +78,17 @@ class ReusableTableViewCell: UITableViewCell {
         return image
     }()
     
+    // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
+    // MARK: - Event methods
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
+    // MARK: - Public methods
     func configUI() {
         addSubview(mainImageView)
         addSubview(horizontalStackView)
@@ -97,7 +102,7 @@ class ReusableTableViewCell: UITableViewCell {
         setupConstraints()
     }
     
-    public func setupConstraints() {
+    func setupConstraints() {
         
         NSLayoutConstraint.activate([
             mainImageView.widthAnchor.constraint(equalToConstant: mainImageDiameter),

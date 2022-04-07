@@ -14,6 +14,7 @@ class SearchRepoByIdService: SearchRepoByIdServiceProtocol {
     let session = URLSession.shared
     
     func execute(id: Int, datasource: Datasource, handler: @escaping CompletionRepository) {
+        
         switch datasource {
         case .coreData:
             getFromCoreData(id: id, handler: handler)
@@ -23,6 +24,7 @@ class SearchRepoByIdService: SearchRepoByIdServiceProtocol {
     }
     
     private func getFromApi(id: Int, handler: @escaping CompletionRepository) {
+        
         let request: Request = .searchRepoById(id: id)
         
         if var baseUrl = URLComponents(string: "\(request.baseURL)/\(request.path)/\(id)") {

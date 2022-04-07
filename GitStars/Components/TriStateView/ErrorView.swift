@@ -9,6 +9,7 @@ import UIKit
 
 class ErrorView: UIView {
 
+    // MARK: - UI Components
     lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
         
@@ -74,6 +75,7 @@ class ErrorView: UIView {
         return button
     }()
     
+    // MARK: - Initializer
     init() {
         super.init(frame: .zero)
         
@@ -85,6 +87,7 @@ class ErrorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Private methods
     private func configView() {
         
         layer.cornerRadius = 34

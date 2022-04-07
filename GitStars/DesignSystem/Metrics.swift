@@ -9,7 +9,7 @@
 import UIKit
 
 struct Metrics {
-    
+    /// Define constantes de margem
     struct Margin {
         
         static let none: CGFloat = 0

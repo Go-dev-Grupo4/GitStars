@@ -231,6 +231,7 @@
 		2648C58C27FD4CD7000EB239 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				2656F22427FE5A3C007D5FAC /* Metrics.swift */,
 				2648C58F27FD4D16000EB239 /* Colors.swift */,
 			);
 			path = DesignSystem;
@@ -268,7 +269,6 @@
 		266217EE27F24A03008A8B48 /* GitStars */ = {
 			isa = PBXGroup;
 			children = (
-				2656F22427FE5A3C007D5FAC /* Metrics.swift */,
 				2648C58C27FD4CD7000EB239 /* DesignSystem */,
 				F8E7FD4727FCC07E00293937 /* Coordinator */,
 				F808F61727F75EEB00C44D28 /* Scenes */,

@@ -8,7 +8,9 @@
 import Foundation
 
 class UserGetService: UserGetServiceProtocol {
+    
     let session = URLSession.shared
+    
     func execute(login: String, handler: @escaping (Result<Author, UserError>) -> Void) {
         let request: Request = .getUser(login: login)
         

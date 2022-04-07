@@ -10,6 +10,7 @@ import SwiftUI
 
 class TriStateViewController: UIViewController {
     
+    // MARK: - UI Componenets
     lazy var errorView: ErrorView = {
         let view = ErrorView()
         
@@ -34,6 +35,7 @@ class TriStateViewController: UIViewController {
         return activity
     }()
     
+    // MARK: - Life Cycle
     internal func stopLoading() {
         loadingView.removeFromSuperview()
     }
@@ -44,7 +46,7 @@ class TriStateViewController: UIViewController {
         configUI()
     }
     
-    
+    // MARK: - Private methods
     private func configUI() {
         view.addSubview(contentView)
         

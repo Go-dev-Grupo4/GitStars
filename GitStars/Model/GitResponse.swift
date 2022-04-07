@@ -10,6 +10,7 @@ import Foundation
 // MARK: - GitResponse
 
 struct GitResponse: Codable {
+    
     let totalCount: Int
     let incompleteResults: Bool
     let repos: [Repo]

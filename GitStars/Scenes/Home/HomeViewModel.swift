@@ -8,8 +8,9 @@
 import Foundation
 
 class HomeViewModel {
-    weak var delegate: RepoManagerDelegate?
     
+    // MARK: - Variables
+    weak var delegate: RepoManagerDelegate?
     private var searchRepoServices: SearchRepoServiceProtocol
     private var total = 0
     private var isFetchInProgress = false
@@ -33,28 +34,13 @@ class HomeViewModel {
     var searchLanguage = "swift"
     var searchOrder = "desc"
     
+    // MARK: - Initializer
     init(searchRepoServices: SearchRepoServiceProtocol) {
         self.searchRepoServices = searchRepoServices
     }
-    
-    func fetchRepositories() {
-        guard !isFetchInProgress else {
-          return
-        }
-        
-        isFetchInProgress = true
-        searchRepoServices.execute(language: searchLanguage, order: searchOrder, page: currentPage) { result in
-            switch result {
-            case .success(let gitResponse):
-                self.isFetchInProgress = false
-                self.success(gitResponse: gitResponse)
-            case .failure(let error):
-                self.isFetchInProgress = false
-                self.error(error: "Error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
+
+    // MARK: - Private methods
+
     private func success(gitResponse: GitResponse) {
         DispatchQueue.main.async {
             self.gitResponse = gitResponse
@@ -79,6 +65,26 @@ class HomeViewModel {
       let startIndex = repositories.count - newRepositories.count
       let endIndex = startIndex + newRepositories.count
       return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+    }
+    
+    // MARK: - Public methods
+    
+    func fetchRepositories() {
+        guard !isFetchInProgress else {
+          return
+        }
+        
+        isFetchInProgress = true
+        searchRepoServices.execute(language: searchLanguage, order: searchOrder, page: currentPage) { result in
+            switch result {
+            case .success(let gitResponse):
+                self.isFetchInProgress = false
+                self.success(gitResponse: gitResponse)
+            case .failure(let error):
+                self.isFetchInProgress = false
+                self.error(error: "Error: \(error.localizedDescription)")
+            }
+        }
     }
     
     func resetPage() {

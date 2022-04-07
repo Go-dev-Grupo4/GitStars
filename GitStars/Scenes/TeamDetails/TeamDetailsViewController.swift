@@ -17,6 +17,7 @@ class TeamDetailsViewController: UIViewController {
     var webView: WebViewController?
     
     // MARK: - UI Components
+    
     lazy var devImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "photo.artframe")
@@ -258,8 +259,7 @@ extension TeamDetailsViewController {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url)
                 } else {
-                    // Mostra Alert de erro
-                }
+                    showAlert()
             }
         }
     }
@@ -275,6 +275,8 @@ extension TeamDetailsViewController {
                 
                 present(mail, animated: true)
                 
+            } else {
+                showAlert()
             }
         }
     }

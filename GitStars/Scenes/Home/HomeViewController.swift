@@ -156,10 +156,7 @@ class HomeViewController: TriStateViewController {
         state = .loading
         viewModel?.fetchRepositories()
     }
-    
-    @objc private func fetchRepositoriesTimeout() {
-        self.state = .error
-    }
+
 }
 
 // MARK: - UISearchBarDelegate
@@ -187,29 +184,13 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        
         if selectedScope == 0 {
             viewModel?.searchOrder = "asc"
         } else {
             viewModel?.searchOrder = "desc"
         }
-        
         viewModel?.resetPage()
         fetchRepositories()
-        animateSearchBarFading()
-    }
-    
-    private func animateSearchBarFading() {
-        UIView.animate(withDuration: 1.0,
-            delay: 0.0,
-            usingSpringWithDamping: 0.3,
-            initialSpringVelocity: 1,
-            options: UIView.AnimationOptions.curveEaseInOut,
-            animations: ({
-            
-                self.navigationController?.navigationBar.sizeToFit()
-            
-        }), completion: nil)
     }
 }
 

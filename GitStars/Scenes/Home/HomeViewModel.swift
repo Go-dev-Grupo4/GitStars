@@ -9,12 +9,15 @@ import Foundation
 
 class HomeViewModel {
     
-    // MARK: - Variables
-    weak var delegate: RepoManagerDelegate?
+    // MARK: - Private variables
+    
     private var searchRepoServices: SearchRepoServiceProtocol
     private var total = 0
     private var isFetchInProgress = false
+
+    // MARK: - Public variables
     
+    weak var delegate: RepoManagerDelegate?
     var coordinator: HomeCoordinator?
     
     var gitResponse: GitResponse?
@@ -34,13 +37,39 @@ class HomeViewModel {
     var searchLanguage = "swift"
     var searchOrder = "desc"
     
-    // MARK: - Initializer
+    // MARK: - Life cycle
+    
     init(searchRepoServices: SearchRepoServiceProtocol) {
         self.searchRepoServices = searchRepoServices
     }
-
-    // MARK: - Private methods
-
+    
+    // MARK: - Public functions
+    
+    func fetchRepositories() {
+        guard !isFetchInProgress else {
+          return
+        }
+        
+        isFetchInProgress = true
+        searchRepoServices.execute(language: searchLanguage, order: searchOrder, page: currentPage) { result in
+            switch result {
+            case .success(let gitResponse):
+                self.isFetchInProgress = false
+                self.success(gitResponse: gitResponse)
+            case .failure(let error):
+                self.isFetchInProgress = false
+                self.error(error: "Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func resetPage() {
+        currentPage = 1
+        repositories = []
+    }
+    
+    // MARK: - Private functions
+    
     private func success(gitResponse: GitResponse) {
         DispatchQueue.main.async {
             self.gitResponse = gitResponse
@@ -65,31 +94,6 @@ class HomeViewModel {
       let startIndex = repositories.count - newRepositories.count
       let endIndex = startIndex + newRepositories.count
       return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
-    }
-    
-    // MARK: - Public methods
-    
-    func fetchRepositories() {
-        guard !isFetchInProgress else {
-          return
-        }
-        
-        isFetchInProgress = true
-        searchRepoServices.execute(language: searchLanguage, order: searchOrder, page: currentPage) { result in
-            switch result {
-            case .success(let gitResponse):
-                self.isFetchInProgress = false
-                self.success(gitResponse: gitResponse)
-            case .failure(let error):
-                self.isFetchInProgress = false
-                self.error(error: "Error: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    func resetPage() {
-        currentPage = 1
-        repositories = []
     }
     
 }

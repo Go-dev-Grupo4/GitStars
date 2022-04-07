@@ -111,9 +111,10 @@ class OnboardingViewController: UIViewController {
     lazy var continueButton: UIButton = {
         let button = UIButton(type: .roundedRect)
         button.setTitle("Continuar", for: .normal)
-        button.backgroundColor = .systemPurple
+        button.backgroundColor = Colors.primaryBackgroundColor
         button.layer.cornerRadius = 25
-        button.setTitleColor(UIColor.label, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(continuePressed), for: .touchUpInside)
         return button

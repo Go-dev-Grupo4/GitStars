@@ -59,8 +59,8 @@ class MainTabBarController: UITabBarController {
     
     lazy var appearence: UINavigationBarAppearance = {
         var appearence = UINavigationBarAppearance()
-        appearence.shadowColor = Colors.primaryBackgroundColor
-        appearence.backgroundColor = Colors.primaryBackgroundColor
+        appearence.shadowColor = Colors.secondaryBackgoundColor
+        appearence.backgroundColor = Colors.secondaryBackgoundColor
         appearence.titleTextAttributes = [.foregroundColor: Colors.tintTabBarItem]
         return appearence
     }()

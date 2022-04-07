@@ -195,21 +195,6 @@ extension HomeViewController: UISearchBarDelegate {
         }
         viewModel?.resetPage()
         fetchRepositories()
-//        toogle = !toogle
-//        searchController.searchBar.setShowsScope(false, animated: true)
-//        navigationController?.navigationBar.sizeToFit()
-        animateSearchBarFading()
-    }
-    
-    private func animateSearchBarFading() {
-        UIView.animate(withDuration: 1.0, //1
-            delay: 0.0, //2
-            usingSpringWithDamping: 0.3, //3
-            initialSpringVelocity: 1, //4
-            options: UIView.AnimationOptions.curveEaseInOut, //5
-            animations: ({ //6
-            self.navigationController?.navigationBar.sizeToFit()
-        }), completion: nil)
     }
 }
 

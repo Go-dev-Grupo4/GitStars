@@ -81,6 +81,7 @@ class TriStateViewController: UIViewController {
     }
 }
 
+// MARK: - Implementation of the protocol TriStateViewProtocol
 extension TriStateViewController: TriStateViewProtocol {
     
     func setupLoadingState() {

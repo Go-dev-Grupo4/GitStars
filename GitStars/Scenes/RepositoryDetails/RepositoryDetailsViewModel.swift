@@ -28,6 +28,7 @@ class RepositoryDetailsViewModel {
     // MARK: - Public functions
     
     func fetchRepositoryApi() {
+        
         guard let coreDataRepository = coreDataRepository else {
             self.errorApi(error: "Repository not found")
             return
@@ -110,5 +111,34 @@ class RepositoryDetailsViewModel {
                 return
             }
         }
+    }
+    
+    private func removeFavoriteRepo() {
+        guard let repo = self.coreDataRepository else { return }
+        
+        ManagedObjectContext.shared.delete(id: repo.id) { error in
+            print(error)
+            delegate?.unfavoritedRepoError(error)
+            return
+        }
+        delegate?.unfavoritedRepoSuccess()
+    }
+    
+    private func successApi(repo: Repo) {
+        self.apiRepository = repo
+        delegate?.fetchRepoWithSuccessApi()
+    }
+    
+    private func errorApi(error: String) {
+        delegate?.errorToFetchRepoApi(error)
+    }
+    
+    private func successCoreData(repo: FavoritesModel) {
+        coreDataRepository = repo
+        delegate?.fetchRepoWithSuccessCoreData()
+    }
+    
+    private func errorCoreData(error: String) {
+        delegate?.errorToFetchRepoCoreData(error)
     }
 }

@@ -245,12 +245,9 @@ class TeamDetailsViewController: UIViewController {
         
         present(alertController, animated: true)
     }
-}
-
-// MARK: - Buttons callbacks
-
-extension TeamDetailsViewController {
     
+    // MARK: - Buttons callbacks
+
     @objc private func pressedPhone() {
         if let phoneNumber = dev?.phone {
             let scheme = "tel://\(phoneNumber.replacingOccurrences(of: " ", with: ""))"
@@ -260,6 +257,7 @@ extension TeamDetailsViewController {
                     UIApplication.shared.open(url)
                 } else {
                     showAlert()
+                }
             }
         }
     }
@@ -330,3 +328,4 @@ extension TeamDetailsViewController: MFMailComposeViewControllerDelegate {
         
     }
 }
+

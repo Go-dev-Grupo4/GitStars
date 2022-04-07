@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  GitStars
+
+  Created by Idwall Go Dev 003 on 04/04/22.
+  
+*/
+
+// MARK: texts for buttons
+"ascendingTitle" = "Ascendant";
+"descendingTitle" = "Décroissant";
+"repositoryLinkTitle" = "Lien de Référentiel →";
+"makeFavoriteTitle" = "Favori";
+"undoFavoriteTitle" = "Défavorisé";
+"reloadTitle" = "Recharger";
+
+// MARK: titles for views
+"homeTitle" = "Référentiels";
+"favoriteTitle" = "Favoris";
+"teamTitle" = "Équipe";
+"repositoryDetailTitle" = "Nome do repositório";
+"errorAlertTitle" = "Erreur";
+"teamDetailTitle" = "Nom";
+
+// MARK: titles for tab bar
+"homeTabBarTitle" = "Référentiels";
+"favoriteTabBarTitle" = "Favoris";
+"teamTabBarTitle" = "Équipe";
+
+// MARK: default prefixes and texts for labels
+"defaultDescriptionText" = "Sans descriptif";
+"authorPrefix" = "Auteur";
+"defaultAuthorText" = "Nom de l'auteur";
+"watchersPrefix" = "Nombre d'observateurs";
+"creationDatePrefix" = "Date de Création";
+"licensePrefix" = "Licence";
+"defaultLicenseText" = "Licence MIT";
+"defaultNoLicenseText" = "Pas de Licence";
+"defaultDeveloperAboutText" = "Parlez nous de vous.";
+"phonePrefix" = "Téléphone";
+"emailPrefix" = "Email";
+"defaultEmailText" = "jean.valjean@oscar.com.br";
+"linkedinPrefix" = "Linkedin";
+"defaultLinkedinText" = "linkedin.com/in/";
+"githubPrefix" = "Github";
+"defaultGithubText" = "github.com/";
+
+// MARK: messages and texts
+"errorMessageTitle" = "Oups... 👀";
+"errorMessageDescription" = "Désolé, le service ne peut pas fonctionner.
+Réessayez plus tard.";
+
+// MARK: Onboarding
+"onboardingTitle" = "Bienvenue sur Gitstars 🌟";
+"githubLabel" = "Explorez les référentiels les plus préférés pour vos langues préférées";
+"favoritesLabel" = "Favorisez les référentiels que vous aimez le plus pour les suivre";
+"orderLabel" = "Rechercher parmi les favoris les plus ou les moins favoris";

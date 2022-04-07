@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  GitStars
+
+  Created by Idwall Go Dev 003 on 04/04/22.
+  
+*/
+
+// MARK: texts for buttons
+"ascendingTitle" = "Ascendente";
+"descendingTitle" = "Descendente";
+"repositoryLinkTitle" = "Enlace del Repositorio →";
+"makeFavoriteTitle" = "Favorito";
+"undoFavoriteTitle" = "Desfavorecer";
+"reloadTitle" = "Recargar";
+
+// MARK: titles for views
+"homeTitle" = "Repositorios";
+"favoriteTitle" = "Favoritos";
+"teamTitle" = "Equipo";
+"repositoryDetailTitle" = "Nombre del Repositorio";
+"errorAlertTitle" = "Error";
+"teamDetailTitle" = "Nombre";
+
+// MARK: titles for tab bar
+"homeTabBarTitle" = "Repositorios";
+"favoriteTabBarTitle" = "Favoritos";
+"teamTabBarTitle" = "Equipo";
+
+// MARK: default prefixes and texts for labels
+"defaultDescriptionText" = "No hay una descripción";
+"authorPrefix" = "Autor";
+"defaultAuthorText" = "Nombre del Autor";
+"watchersPrefix" = "Conteo de Observadores";
+"creationDatePrefix" = "Fecha de Creación";
+"licensePrefix" = "Licencia";
+"defaultLicenseText" = "Licencia MIT";
+"defaultNoLicenseText" = "No Licenciado";
+"defaultDeveloperAboutText" = "Cuéntanos acerca de ti.";
+"phonePrefix" = "Teléfono";
+"emailPrefix" = "Email";
+"defaultEmailText" = "antonio.banderas@oscar.com.br";
+"linkedinPrefix" = "Linkedin";
+"defaultLinkedinText" = "linkedin.com/in/";
+"githubPrefix" = "Github";
+"defaultGithubText" = "github.com/";
+
+// MARK: messages and texts
+"errorMessageTitle" = "Ups... 👀";
+"errorMessageDescription" = "Lo sentimos, el servicio no puede ejecutarse.
+Vuelva a intentarlo más tarde.";
+
+// MARK: Onboarding
+"onboardingTitle" = "Bienvenido a GitStars 🌟";
+"githubLabel" = "Explore los repositorios más favoritos para sus idiomas favoritos";
+"favoritesLabel" = "Marca como favoritos los repositorios que más te gusten para seguirlos";
+"orderLabel" = "Buscar desde la mayoría de los favoritos o menos favoritos";

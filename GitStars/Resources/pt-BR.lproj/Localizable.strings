@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  GitStars
+
+  Created by Idwall Go Dev 003 on 04/04/22.
+  
+*/
+
+// MARK: texts for buttons
+"ascendingTitle" = "Ascendente";
+"descendingTitle" = "Descendente";
+"repositoryLinkTitle" = "Link do Repositório →";
+"makeFavoriteTitle" = "Favoritar";
+"undoFavoriteTitle" = "Desfavoritar";
+"reloadTitle" = "Recarregar";
+
+// MARK: titles for views
+"homeTitle" = "Repositórios";
+"favoriteTitle" = "Favoritos";
+"teamTitle" = "Time";
+"repositoryDetailTitle" = "Nome do repositório";
+"errorAlertTitle" = "Erro";
+"teamDetailTitle" = "Nome";
+
+// MARK: titles for tab bar
+"homeTabBarTitle" = "Repositórios";
+"favoriteTabBarTitle" = "Favoritos";
+"teamTabBarTitle" = "Time";
+
+// MARK: default prefixes and texts for labels
+"defaultDescriptionText" = "Sem descrição";
+"authorPrefix" = "Autor";
+"defaultAuthorText" = "Nome do autor";
+"watchersPrefix" = "Contagem de observadores";
+"creationDatePrefix" = "Data de criação";
+"licensePrefix" = "Licença";
+"defaultLicenseText" = "Licença MIT";
+"defaultNoLicenseText" = "Sem Licença";
+"defaultDeveloperAboutText" = "Conte-nos sobre você.";
+"phonePrefix" = "Telefone";
+"emailPrefix" = "Email";
+"defaultEmailText" = "will.smith@oscar.com.br";
+"linkedinPrefix" = "Linkedin";
+"defaultLinkedinText" = "linkedin.com/in/";
+"githubPrefix" = "Github";
+"defaultGithubText" = "github.com/";
+
+// MARK: messages and texts
+"errorMessageTitle" = "Opa... 👀";
+"errorMessageDescription" = "Desculpe, o serviço não pode ser executado.
+Tente novamente mais tarde.";
+
+// MARK: Onboarding
+"onboardingTitle" = "Bem vindo ao GitStars 🌟";
+"githubLabel" = "Explore os repositórios mais favoritados das suas linguagens preferidas";
+"favoritesLabel" = "Favorite os repositórios que mais gostar para acompanhá-los";
+"orderLabel" = "Pesquise a partir dos mais favoritados ou menos favoritados";
+

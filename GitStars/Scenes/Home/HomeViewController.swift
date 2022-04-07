@@ -97,15 +97,6 @@ class HomeViewController: TriStateViewController {
         configTableView()
     }
     
-    @objc private func fetchRepositories() {
-        state = .loading
-        viewModel?.fetchRepositories()
-    }
-    
-    @objc func fetchRepositoriesTimeout() {
-        self.state = .error
-    }
-    
     private func configNavigationBar() {
         let barButtonImage = UIImage(systemName: "slider.horizontal.3")
         let barButtonItem = UIBarButtonItem(image: barButtonImage, style: .plain, target: self, action: #selector(changeSortOrder))
@@ -161,10 +152,15 @@ class HomeViewController: TriStateViewController {
         fetchRepositories()
     }
     
+    @objc private func fetchRepositories() {
+        state = .loading
+        viewModel?.fetchRepositories()
+    }
 
 }
 
 // MARK: - UISearchBarDelegate
+
 extension HomeViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)

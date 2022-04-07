@@ -92,6 +92,8 @@ class TeamViewController: TriStateViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension TeamViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
@@ -103,6 +105,8 @@ extension TeamViewController: UITableViewDelegate {
         viewModel?.showDetail(dev: dev)
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension TeamViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -120,6 +124,8 @@ extension TeamViewController: UITableViewDataSource {
         return viewModel?.team?.members.count ?? 0
     }
 }
+
+// MARK: - TeamManagerDelegate
 
 extension TeamViewController: TeamManagerDelegate {
     func fetchTeamWithSuccess() {

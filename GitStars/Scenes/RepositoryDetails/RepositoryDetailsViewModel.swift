@@ -9,6 +9,8 @@ import Foundation
 
 class RepositoryDetailsViewModel {
     
+    // MARK: - Variables
+    
     weak var delegate: RepositoryDetailsManagerDelegate?
     
     var searchRepoByIdService: SearchRepoByIdService
@@ -17,10 +19,13 @@ class RepositoryDetailsViewModel {
     
     var apiRepository: Repo?
     
+    // MARK: - Life Cycle
     
     init(searchRepoByIdServices: SearchRepoByIdService) {
         self.searchRepoByIdService = searchRepoByIdServices
     }
+    
+    // MARK: - Public functions
     
     func fetchRepositoryApi() {
         guard let coreDataRepository = coreDataRepository else {
@@ -86,6 +91,8 @@ class RepositoryDetailsViewModel {
             }
         }
     }
+    
+    // MARK: - Private functions
     
     private func addFavoriteRepo() {
         if let repo = self.apiRepository {

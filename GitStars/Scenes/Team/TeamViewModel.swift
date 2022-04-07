@@ -9,14 +9,20 @@ import UIKit
 
 class TeamViewModel {
     
+    // MARK: - Variables
+    
     weak var delegate: TeamManagerDelegate?
     weak var coordinator: TeamCoordinator?
     var service: TeamService?
     var team: TeamModel?
     
+    // MARK: - Life Cycle
+    
     init(teamServices: TeamService) {
         self.service = teamServices
     }
+    
+    // MARK: - Public functions
     
     func fetchTeam() {
         service?.execute() { result in
@@ -32,6 +38,8 @@ class TeamViewModel {
     func showDetail(dev: Developer) {
         coordinator?.flowDetail(dev: dev)
     }
+    
+    // MARK: - Private functions
     
     private func success(team: TeamModel) {
         self.team = team

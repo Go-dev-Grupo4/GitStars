@@ -8,6 +8,8 @@
 import Foundation
 
 class FavoritesViewModel {
+    
+    // MARK: - Variables
     weak var delegate: FavoritesManagerDelegate?
     
     private var search: SearchRepoCoreDataServiceProtocol
@@ -16,9 +18,13 @@ class FavoritesViewModel {
     
     var repositories: [FavoritesModel]?
     
+    // MARK: - Life Cycle
+    
     init(searchRepoServices: SearchRepoCoreDataServiceProtocol) {
         self.search = searchRepoServices
     }
+    
+    // MARK: - Public functions
     
     func fetchRepositories() {
         search.execute() { result in
@@ -30,6 +36,8 @@ class FavoritesViewModel {
             }
         }
     }
+    
+    // MARK: - Private functions
     
     private func success(repositories: [FavoritesModel]) {
         self.repositories = repositories

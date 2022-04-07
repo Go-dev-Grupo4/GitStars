@@ -61,9 +61,11 @@ class MainTabBarController: UITabBarController {
         var appearence = UINavigationBarAppearance()
         appearence.shadowColor = Colors.secondaryBackgoundColor
         appearence.backgroundColor = Colors.secondaryBackgoundColor
-        appearence.titleTextAttributes = [.foregroundColor: Colors.tintTabBarItem]
+        appearence.titleTextAttributes = [.foregroundColor: Colors.tintTabBarItem ?? UIColor.label]
         return appearence
     }()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +76,8 @@ class MainTabBarController: UITabBarController {
         
         self.delegate = self
     }
+    
+    // MARK: - Private functions
     
     private func configUI() {
         UITabBar.appearance().tintColor = Colors.tintTabBarItem
@@ -112,12 +116,16 @@ class MainTabBarController: UITabBarController {
     }
 }
 
+// MARK: - UITabBarControllerDelegate
+
 extension MainTabBarController : UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         return ViewControllerAnimation(fromIndex: fromVC.tabBarItem.tag, toIndex: toVC.tabBarItem.tag)
     }
 }
+
+// MARK: - UIViewControllerAnimatedTransitioning
 
 class ViewControllerAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     

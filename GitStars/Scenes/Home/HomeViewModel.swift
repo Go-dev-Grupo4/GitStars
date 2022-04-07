@@ -8,12 +8,16 @@
 import Foundation
 
 class HomeViewModel {
-    weak var delegate: RepoManagerDelegate?
+    
+    // MARK: - Private variables
     
     private var searchRepoServices: SearchRepoServiceProtocol
     private var total = 0
     private var isFetchInProgress = false
+
+    // MARK: - Public variables
     
+    weak var delegate: RepoManagerDelegate?
     var coordinator: HomeCoordinator?
     
     var gitResponse: GitResponse?
@@ -33,9 +37,13 @@ class HomeViewModel {
     var searchLanguage = "swift"
     var searchOrder = "desc"
     
+    // MARK: - Life cycle
+    
     init(searchRepoServices: SearchRepoServiceProtocol) {
         self.searchRepoServices = searchRepoServices
     }
+    
+    // MARK: - Public functions
     
     func fetchRepositories() {
         guard !isFetchInProgress else {
@@ -54,6 +62,13 @@ class HomeViewModel {
             }
         }
     }
+    
+    func resetPage() {
+        currentPage = 1
+        repositories = []
+    }
+    
+    // MARK: - Private functions
     
     private func success(gitResponse: GitResponse) {
         DispatchQueue.main.async {
@@ -79,11 +94,6 @@ class HomeViewModel {
       let startIndex = repositories.count - newRepositories.count
       let endIndex = startIndex + newRepositories.count
       return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
-    }
-    
-    func resetPage() {
-        currentPage = 1
-        repositories = []
     }
     
 }
